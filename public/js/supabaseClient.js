@@ -52,23 +52,32 @@
 
     async init() {
       if (this.initialized) return;
+      const defaultUrl = 'https://ktijkefbnjbhphfelwvd.supabase.co';
+      const defaultKey = 'sb_publishable_p4sz-WuWH9kqHYaKT-03gw_1CnDmtYJ';
+
+      let url = defaultUrl;
+      let key = defaultKey;
+
       try {
         const res = await fetch('/api/config');
         if (res.ok) {
           this.config = await res.json();
-          if (this.config.supabaseUrl && this.config.supabaseAnonKey && window.supabase) {
-            this.client = window.supabase.createClient(
-              this.config.supabaseUrl,
-              this.config.supabaseAnonKey
-            );
-            console.log('[SupabaseService] Initialized with Supabase Cloud backend');
-          } else {
-            console.log('[SupabaseService] Operating in local persistence mode (SQLite)');
-          }
+          if (this.config.supabaseUrl) url = this.config.supabaseUrl;
+          if (this.config.supabaseAnonKey) key = this.config.supabaseAnonKey;
         }
       } catch (err) {
-        console.warn('[SupabaseService] Config fetch failed, using fallback mode:', err);
+        console.warn('[SupabaseService] Config endpoint unreachable, using default credentials');
       }
+
+      if (url && key && window.supabase) {
+        try {
+          this.client = window.supabase.createClient(url, key);
+          console.log('[SupabaseService] Initialized with Supabase project:', url);
+        } catch (e) {
+          console.warn('[SupabaseService] Failed to initialize client:', e);
+        }
+      }
+
       this.initialized = true;
 
       // Restore session from localStorage if present
