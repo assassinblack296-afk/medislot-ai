@@ -484,6 +484,26 @@ router.post('/prescriptions/:id/refill', (req, res) => {
 // SMART WAITLIST
 // -------------------------------------------------------------
 
+// GET /waitlist — Fetch current waitlist entries
+router.get('/waitlist', (req, res) => {
+  try {
+    const rows = db.prepare(`
+      SELECT id, patient_name, contact, specialty_requested, doctor_id, created_at
+      FROM waitlist
+      ORDER BY created_at DESC
+      LIMIT 50
+    `).all();
+
+    res.json({
+      success: true,
+      count: rows.length,
+      waitlist: rows
+    });
+  } catch (err) {
+    res.status(500).json({ success: false, error: err.message });
+  }
+});
+
 router.post('/waitlist', (req, res) => {
   try {
     const { patientName = 'Alex Morgan', contact, specialtyRequested = 'General Cardiology', doctorId = null } = req.body;

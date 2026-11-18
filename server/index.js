@@ -50,12 +50,13 @@ app.use('/api', apiRoutes);
 // Fallback to index.html for Single Page Application navigation
 app.get('*', (req, res, next) => {
   if (req.path.startsWith('/api')) {
-    return next();
+    // Any unmatched /api/* route → return JSON 404, never HTML
+    return res.status(404).json({ success: false, error: `API route not found: ${req.method} ${req.path}` });
   }
   res.sendFile(path.join(__dirname, '..', 'public', 'index.html'));
 });
 
-// Global error handler
+// Global error handler (also ensures JSON for /api errors)
 app.use((err, req, res, next) => {
   console.error('Server error:', err);
   res.status(500).json({ success: false, error: 'Internal Server Error' });
