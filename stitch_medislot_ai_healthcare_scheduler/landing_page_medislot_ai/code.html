@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_standard" name="shell-type"/><title>MediSlot AI - Smart Medical Appointment Booking</title><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&amp;family=Plus+Jakarta+Sans:wght@400;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config={darkMode:"class",theme:{extend:{"colors":{"on-primary-container":"#fffbff","error-container":"#ffdad6","on-secondary-container":"#76014e","outline-variant":"#cbc3d7","surface-container-highest":"#d8e3fb","on-primary-fixed":"#23005c","surface-tint":"#6d3bd7","surface-variant":"#d8e3fb","surface-container-high":"#dee8ff","inverse-primary":"#d0bcff","on-tertiary-fixed-variant":"#5c4300","secondary":"#a43073","on-primary":"#ffffff","on-secondary":"#ffffff","error":"#ba1a1a","tertiary-fixed-dim":"#f9bd22","surface-container-lowest":"#ffffff","outline":"#7b7486","inverse-on-surface":"#ecf1ff","background":"#f9f9ff","primary-fixed":"#e9ddff","tertiary-fixed":"#ffdf9f","surface-dim":"#cfdaf2","secondary-container":"#fc79bd","tertiary-container":"#956e00","on-primary-fixed-variant":"#5516be","on-secondary-fixed":"#3d0026","on-background":"#111c2d","on-tertiary-fixed":"#261a00","on-error":"#ffffff","inverse-surface":"#263143","surface":"#f9f9ff","primary-fixed-dim":"#d0bcff","on-error-container":"#93000a","on-surface":"#111c2d","on-tertiary-container":"#fffbff","on-surface-variant":"#494454","on-tertiary":"#ffffff","surface-container-low":"#f0f3ff","tertiary":"#765700","secondary-fixed":"#ffd8e7","surface-bright":"#f9f9ff","surface-container":"#e7eeff","secondary-fixed-dim":"#ffafd3","primary":"#6b38d4","primary-container":"#8455ef","on-secondary-fixed-variant":"#85145a"},"borderRadius":{"DEFAULT":"1rem","lg":"2rem","xl":"3rem","full":"9999px"},"spacing":{"space-xs":"0.25rem","space-md":"1rem","margin":"2rem","space-lg":"1.5rem","gutter-mobile":"1rem","space-xl":"2.5rem","space-sm":"0.5rem","margin-mobile":"1rem","gutter":"1.5rem"},"fontFamily":{"headline-xl":["Outfit"],"label-md":["Plus Jakarta Sans"],"body-md":["Plus Jakarta Sans"],"headline-lg-mobile":["Outfit"],"headline-md":["Outfit"],"body-sm":["Plus Jakarta Sans"],"headline-xl-mobile":["Outfit"],"label-lg":["Plus Jakarta Sans"],"headline-sm":["Outfit"],"headline-lg":["Outfit"],"body-lg":["Plus Jakarta Sans"],"label-sm":["Plus Jakarta Sans"]},"fontSize":{"headline-xl":["48px",{"lineHeight":"56px","letterSpacing":"-0.02em","fontWeight":"800"}],"label-md":["12px",{"lineHeight":"16px","letterSpacing":"0.03em","fontWeight":"700"}],"body-md":["15px",{"lineHeight":"24px","fontWeight":"400"}],"headline-lg-mobile":["26px",{"lineHeight":"34px","letterSpacing":"-0.01em","fontWeight":"700"}],"headline-md":["24px",{"lineHeight":"32px","letterSpacing":"-0.01em","fontWeight":"700"}],"body-sm":["13px",{"lineHeight":"20px","fontWeight":"400"}],"headline-xl-mobile":["32px",{"lineHeight":"40px","letterSpacing":"-0.01em","fontWeight":"800"}],"label-lg":["14px",{"lineHeight":"20px","letterSpacing":"0.02em","fontWeight":"700"}],"headline-sm":["20px",{"lineHeight":"28px","fontWeight":"600"}],"headline-lg":["36px",{"lineHeight":"44px","letterSpacing":"-0.015em","fontWeight":"700"}],"body-lg":["18px",{"lineHeight":"28px","fontWeight":"400"}],"label-sm":["11px",{"lineHeight":"14px","letterSpacing":"0.04em","fontWeight":"800"}]}}}};</script></head><body class="bg-surface font-body-md text-on-surface antialiased"><header class="fixed top-0 left-0 right-0 z-50 bg-[#FFFDF5] border-b-2 border-[#1E293B] shadow-[0_4px_0_0_#1E293B]"><div class="h-20 w-full px-gutter flex items-center justify-between gap-space-md"><div class="flex items-center gap-space-md"><img alt="MediSlot AI Brand Logo" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/ALJJyrDxGcr9a14B_ezYtZtT_zqUjLZxrpDfUsI7BaO1RbyJbU0ympuF9pCbRWA5-Bst3UUks9hd-19w413UvHsVRXEpSVCjLZdltH_j2ogQrjQFEZVr7GEZoo02HOHjx-CxThYPdgR1Bs__mqGmQb9v0-ABWDF2n7Y48gs5q35_pMcjF6wzXLCoSu4e4VUp-8PM2WOaEMaKc_QTZ6WO8vi-xjtzd_dx5ETEC7gXp-aAKdVa"/><div class="flex flex-col"><span class="font-headline-sm text-headline-sm text-on-surface tracking-tight leading-none">MediSlot AI</span><span class="hidden lg:inline-block font-label-sm text-label-sm bg-tertiary-fixed text-on-tertiary-fixed border border-[#1E293B] px-space-sm py-0.5 rounded-full mt-1">Smart Booking. Better Healthcare.</span></div></div><nav class="hidden xl:flex items-center gap-space-sm bg-surface-container-low p-1.5 rounded-full border-2 border-[#1E293B] shadow-[2px_2px_0px_#1E293B]" data-active-classes="bg-primary text-on-primary font-bold shadow-[2px_2px_0px_#1E293B]"><a aria-current="page" class="px-space-md py-1.5 rounded-full transition-all bg-primary text-on-primary font-bold shadow-[2px_2px_0px_#1E293B]" data-path="landing" href="#">Landing</a><a class="px-space-md py-1.5 rounded-full font-label-md text-label-md text-on-surface-variant hover:text-on-surface transition-all" data-path="patient-portal" href="#">Patient Portal</a><a class="px-space-md py-1.5 rounded-full font-label-md text-label-md text-on-surface-variant hover:text-on-surface transition-all" data-path="find-doctors" href="#">Find Doctors</a><a class="px-space-md py-1.5 rounded-full font-label-md text-label-md text-on-surface-variant hover:text-on-surface transition-all" data-path="book-appointment" href="#">Book Appointment</a><a class="px-space-md py-1.5 rounded-full font-label-md text-label-md text-on-surface-variant hover:text-on-surface transition-all" data-path="doctor-console" href="#">Doctor Console</a><a class="px-space-md py-1.5 rounded-full font-label-md text-label-md text-on-surface-variant hover:text-on-surface transition-all" data-path="admin-hub" href="#">Admin Hub</a></nav><div class="flex items-center gap-space-sm"><button class="hidden sm:flex items-center gap-1.5 bg-secondary-fixed text-on-secondary-fixed border-2 border-[#1E293B] px-space-md py-1.5 rounded-full shadow-[2px_2px_0px_#1E293B] hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-[3px_3px_0px_#1E293B] active:translate-x-0.5 active:translate-y-0.5 active:shadow-none transition-transform font-label-md text-label-md" type="button"><span class="material-symbols-outlined text-secondary text-[18px]">smart_toy</span>Ask MediBot AI</button><a class="hidden md:flex items-center gap-1 bg-primary text-on-primary border-2 border-[#1E293B] px-space-md py-2 rounded-full shadow-[3px_3px_0px_#1E293B] hover:-translate-x-0.5 hover:-translate-y-0.5 active:translate-x-0.5 active:translate-y-0.5 active:shadow-none font-label-lg text-label-lg transition-transform" data-path="book-appointment" href="#">Book Slot</a><div class="flex items-center gap-space-xs pl-space-xs"><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div><span class="hidden lg:inline-flex bg-surface-container-highest border border-[#1E293B] text-on-surface font-label-sm text-label-sm px-space-sm py-0.5 rounded-full">Verified Patient</span></div></div></div></header><main class="w-full pt-20 bg-[#FFFDF5] min-h-screen"><div class="flex flex-col w-full">
+<!-- Top Geometric Ambient Accents (Self-contained) -->
+<div class="relative w-full overflow-hidden px-gutter pb-space-xl">
+<!-- Floating Memphis Geometric Confetti / Stickers -->
+<div class="absolute top-6 left-12 w-6 h-6 rounded-full bg-secondary-fixed rotate-12 pointer-events-none hidden sm:block"></div>
+<div class="absolute top-20 right-24 text-tertiary-fixed-dim text-2xl font-black pointer-events-none select-none rotate-6">✦</div>
+<div class="absolute top-64 right-10 w-10 h-10 rounded-lg bg-surface-container rotate-45 pointer-events-none hidden lg:block"></div>
+<div class="absolute top-80 left-6 text-secondary text-3xl font-black pointer-events-none select-none -rotate-12">★</div>
+<!-- HERO SECTION -->
+<div class="max-w-7xl mx-auto w-full pt-space-lg lg:pt-space-xl">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-space-lg items-center">
+<!-- Left Hero Column: Copy & Search Console -->
+<div class="lg:col-span-7 flex flex-col items-start gap-space-md">
+<!-- Category Sticker Badge -->
+<div class="inline-flex items-center gap-space-xs bg-tertiary-fixed text-on-tertiary-fixed px-space-md py-1.5 rounded-full shadow-[2px_2px_0px_#1E293B] -rotate-1 hover:rotate-0 transition-transform">
+<span class="text-tertiary font-headline-sm leading-none">✦</span>
+<span class="font-label-md text-label-md tracking-wider uppercase">Next-Gen Healthcare Scheduling</span>
+</div>
+<!-- Expressive Headline -->
+<h1 class="font-headline-xl text-headline-xl text-on-surface tracking-tight leading-tight">
+            Your Health, <br class="hidden sm:inline"/>Your Time —
+            <span class="relative inline-block text-primary">
+              Book Smarter!
+              <svg class="absolute -bottom-2.5 left-0 w-full h-4 text-secondary" fill="none" preserveaspectratio="none" viewbox="0 0 260 20">
+<path d="M4 14C60 4 190 6 256 12" stroke="currentColor" stroke-linecap="round" stroke-width="4"></path>
+</svg>
+</span>
+</h1>
+<!-- Body Description -->
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-xl">
+            Say goodbye to waiting room fatigue. MediSlot AI coordinates multi-clinic schedules, predicts cancellations in real time, and secures the exact consultation slot you need in under 15 seconds.
+          </p>
+<!-- Interactive Neo-Brutalist Search Console Card -->
+<div class="w-full mt-space-sm bg-surface-container-lowest p-space-md md:p-space-lg rounded-lg shadow-[4px_4px_0px_#1E293B]">
+<form class="flex flex-col md:flex-row items-stretch md:items-center gap-space-sm" id="hero-search-form" onsubmit="event.preventDefault(); highlightSlots();">
+<!-- Doctor / Specialty Input -->
+<div class="flex-1 flex items-center gap-space-xs bg-surface-container-low px-space-md py-3 rounded-lg shadow-[2px_2px_0px_#1E293B] focus-within:shadow-[3px_3px_0px_#6b38d4] transition-all">
+<span class="material-symbols-outlined text-primary text-[20px]">person_search</span>
+<input class="bg-transparent w-full font-body-md text-body-md text-on-surface focus:outline-none placeholder:text-outline" id="doctor-query" placeholder="Doctor, symptom, or specialty..." type="text"/>
+</div>
+<!-- Specialty Select Dropdown -->
+<div class="flex items-center gap-space-xs bg-surface-container-low px-space-md py-3 rounded-lg shadow-[2px_2px_0px_#1E293B] focus-within:shadow-[3px_3px_0px_#6b38d4] transition-all">
+<span class="material-symbols-outlined text-secondary text-[20px]">stethoscope</span>
+<select class="bg-transparent font-label-md text-label-md text-on-surface focus:outline-none cursor-pointer" id="specialty-select">
+<option value="cardio">Cardiology</option>
+<option selected="" value="derma">Dermatology</option>
+<option value="neuro">Neurology</option>
+<option value="ped">Pediatrics</option>
+<option value="ortho">Orthopedics</option>
+</select>
+</div>
+<!-- Action Button -->
+<button class="flex items-center justify-center gap-2 bg-primary text-on-primary px-space-lg py-3 rounded-full font-label-lg text-label-lg shadow-[4px_4px_0px_#1E293B] hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-[5px_5px_0px_#1E293B] active:translate-x-1 active:translate-y-1 active:shadow-none transition-all" type="submit">
+<span>Find Doctor</span>
+<span class="text-tertiary-fixed font-bold">✦</span>
+</button>
+</form>
+<!-- Quick Filter Tags -->
+<div class="flex flex-wrap items-center gap-space-xs mt-space-sm pt-space-xs">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Fast Track:</span>
+<button class="bg-surface-container text-on-surface font-label-sm text-label-sm px-space-sm py-1 rounded-full shadow-[2px_2px_0px_#1E293B] hover:bg-secondary-fixed transition-colors" onclick="setQuickSearch('Cardiologist (Today)')" type="button">⚡ Available Today</button>
+<button class="bg-surface-container text-on-surface font-label-sm text-label-sm px-space-sm py-1 rounded-full shadow-[2px_2px_0px_#1E293B] hover:bg-tertiary-fixed transition-colors" onclick="setQuickSearch('Telehealth Video')" type="button">📹 Video Consult</button>
+<button class="bg-surface-container text-on-surface font-label-sm text-label-sm px-space-sm py-1 rounded-full shadow-[2px_2px_0px_#1E293B] hover:bg-surface-container-highest transition-colors" onclick="setQuickSearch('Top-Rated Pediatrician')" type="button">★ 4.9+ Rated</button>
+</div>
+</div>
+<!-- Trust Badges Line -->
+<div class="flex items-center gap-space-md pt-space-xs">
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-primary text-[18px]">verified_user</span>
+<span class="font-label-sm text-label-sm text-on-surface font-bold">HIPAA Compliant</span>
+</div>
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-secondary text-[18px]">bolt</span>
+<span class="font-label-sm text-label-sm text-on-surface font-bold">Zero Wait Guarantee</span>
+</div>
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-tertiary text-[18px]">lock</span>
+<span class="font-label-sm text-label-sm text-on-surface font-bold">Encrypted Intake</span>
+</div>
+</div>
+</div>
+<!-- Right Hero Column: Neo-Brutalist Mascot & Interactive Scheduling Matrix -->
+<div class="lg:col-span-5 relative flex justify-center mt-space-lg lg:mt-0">
+<!-- Background Geometric Backdrop -->
+<div class="absolute -inset-2 bg-secondary-fixed rounded-xl -rotate-2 shadow-[4px_4px_0px_#1E293B]"></div>
+<!-- Main Interactive Card Frame -->
+<div class="relative w-full bg-surface-container-lowest p-space-md rounded-xl shadow-[4px_4px_0px_#1E293B] flex flex-col gap-space-md">
+<!-- Card Header Ribbon -->
+<div class="flex items-center justify-between bg-primary-fixed text-on-primary-fixed p-space-sm rounded-lg shadow-[2px_2px_0px_#1E293B]">
+<div class="flex items-center gap-space-xs">
+<span class="inline-flex w-3 h-3 rounded-full bg-secondary"></span>
+<span class="font-label-md text-label-md">LIVE CLINICAL RADAR</span>
+</div>
+<span class="bg-surface-container-lowest text-on-surface font-label-sm text-label-sm px-space-xs py-0.5 rounded-full shadow-[1px_1px_0px_#1E293B]">AI Matched</span>
+</div>
+<!-- Doctor Profile Highlight -->
+<div class="flex items-center gap-space-md bg-surface p-space-sm rounded-lg shadow-[2px_2px_0px_#1E293B]">
+<div class="relative w-16 h-16 rounded-full overflow-hidden shadow-[2px_2px_0px_#1E293B] bg-primary flex-shrink-0">
+<img class="w-full h-full object-cover" data-alt="Close up warm studio portrait of Dr. Sarah Chen, friendly Asian female dermatologist wearing modern white clinical coat with stethoscope, bright pastel neo-pop background, vivid lighting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCO6yE8jhy_PRl2uPV90uMITJo2VWtg0mjqhns9Wj_kJ0qNX9Kw_YQ88YBd3iJV0FSOuAdt6ZtfdBtMZrm1I1MYSULg6pUiNq1O8T9Ek3nOqIIY80xPQMEm5KQSDU761AaZwVcosqPGyPuRcVRJOv3JUP6dreO4f9rrrcC0C2vBytVATyAQC1vz5ZPJByxR2S3ytPVNVLPZDk2_6AFvQCdgmJ4q-OE4t0MPSiA247c"/>
+</div>
+<div class="flex flex-col">
+<div class="flex items-center gap-1">
+<h3 class="font-headline-sm text-headline-sm text-on-surface leading-none">Dr. Sarah Chen</h3>
+<span class="material-symbols-outlined text-primary text-[18px]">verified</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Chief Dermatologist • St. Jude Pavilion</p>
+<div class="flex items-center gap-1 mt-1">
+<span class="text-tertiary-fixed-dim text-sm font-bold">★★★★★</span>
+<span class="font-label-sm text-label-sm text-on-surface font-bold">4.98 (340 reviews)</span>
+</div>
+</div>
+</div>
+<!-- Floating Pill Banner: Confirmed Status Sticker -->
+<div class="flex items-center justify-between bg-surface-container-highest p-space-sm rounded-lg shadow-[2px_2px_0px_#1E293B] rotate-1">
+<div class="flex items-center gap-2">
+<span class="w-2.5 h-2.5 rounded-full bg-secondary animate-pulse"></span>
+<span class="font-label-md text-label-md text-on-surface">Dr. Sarah • 10:30 AM Slot Opened</span>
+</div>
+<span class="bg-secondary-container text-on-secondary-container font-label-sm text-label-sm px-2 py-0.5 rounded-full shadow-[1px_1px_0px_#1E293B]">Instant Claim</span>
+</div>
+<!-- Visual Slot Matrix -->
+<div class="flex flex-col gap-space-xs">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase font-bold tracking-wider">Predictive Queue Slot Matrix</span>
+<div class="grid grid-cols-3 gap-space-xs" id="slot-picker-grid">
+<button class="slot-btn py-2 px-space-xs text-center rounded-lg bg-surface-container-low font-label-md text-label-md text-on-surface shadow-[2px_2px_0px_#1E293B] hover:-translate-y-0.5 hover:shadow-[3px_3px_0px_#1E293B] active:translate-y-0 active:shadow-none transition-all" onclick="selectSlot(this)" type="button">
+                  09:15 AM
+                </button>
+<button class="slot-btn active-slot py-2 px-space-xs text-center rounded-lg bg-primary text-on-primary font-label-md text-label-md shadow-[2px_2px_0px_#1E293B] hover:-translate-y-0.5 hover:shadow-[3px_3px_0px_#1E293B] transition-all" onclick="selectSlot(this)" type="button">
+                  10:30 AM ⚡
+                </button>
+<button class="slot-btn py-2 px-space-xs text-center rounded-lg bg-surface-container-low font-label-md text-label-md text-on-surface shadow-[2px_2px_0px_#1E293B] hover:-translate-y-0.5 hover:shadow-[3px_3px_0px_#1E293B] active:translate-y-0 active:shadow-none transition-all" onclick="selectSlot(this)" type="button">
+                  11:45 AM
+                </button>
+<button class="slot-btn py-2 px-space-xs text-center rounded-lg bg-surface-container-low font-label-md text-label-md text-on-surface shadow-[2px_2px_0px_#1E293B] hover:-translate-y-0.5 hover:shadow-[3px_3px_0px_#1E293B] active:translate-y-0 active:shadow-none transition-all" onclick="selectSlot(this)" type="button">
+                  02:00 PM
+                </button>
+<button class="slot-btn py-2 px-space-xs text-center rounded-lg bg-secondary-fixed text-on-secondary-fixed font-label-md text-label-md shadow-[2px_2px_0px_#1E293B] hover:-translate-y-0.5 hover:shadow-[3px_3px_0px_#1E293B] active:translate-y-0 active:shadow-none transition-all" onclick="selectSlot(this)" type="button">
+                  03:15 PM 🔥
+                </button>
+<button class="slot-btn py-2 px-space-xs text-center rounded-lg bg-surface-container-low font-label-md text-label-md text-on-surface shadow-[2px_2px_0px_#1E293B] hover:-translate-y-0.5 hover:shadow-[3px_3px_0px_#1E293B] active:translate-y-0 active:shadow-none transition-all" onclick="selectSlot(this)" type="button">
+                  04:30 PM
+                </button>
+</div>
+</div>
+<!-- Bottom Sticker Stamp: 100% Shield -->
+<div class="flex items-center justify-between bg-tertiary-fixed text-on-tertiary-fixed px-space-md py-space-sm rounded-lg shadow-[2px_2px_0px_#1E293B]">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[20px]">shield_with_heart</span>
+<span class="font-label-md text-label-md">Double Booking Shield</span>
+</div>
+<span class="font-headline-sm text-headline-sm leading-none">100% Guarantee</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- STATISTICS RIBBON (NEO-BRUTALIST STICKER TILES) -->
+<section class="w-full bg-surface-container-high py-space-lg px-gutter shadow-[0_4px_0_0_#1E293B]">
+<div class="max-w-7xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-space-md">
+<!-- Stat 1 -->
+<div class="bg-surface-container-lowest p-space-md rounded-lg shadow-[4px_4px_0px_#1E293B] flex flex-col items-center text-center -rotate-1 hover:rotate-0 transition-transform">
+<span class="font-headline-lg text-headline-lg text-primary leading-none">1,200+</span>
+<span class="font-label-md text-label-md text-on-surface mt-1">Verified Doctors</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Across 38 specialties</span>
+</div>
+<!-- Stat 2 -->
+<div class="bg-surface-container-lowest p-space-md rounded-lg shadow-[4px_4px_0px_#1E293B] flex flex-col items-center text-center rotate-1 hover:rotate-0 transition-transform">
+<span class="font-headline-lg text-headline-lg text-secondary leading-none">45,000+</span>
+<span class="font-label-md text-label-md text-on-surface mt-1">Happy Patients</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Zero canceled delays</span>
+</div>
+<!-- Stat 3 -->
+<div class="bg-surface-container-lowest p-space-md rounded-lg shadow-[4px_4px_0px_#1E293B] flex flex-col items-center text-center -rotate-1 hover:rotate-0 transition-transform">
+<span class="font-headline-lg text-headline-lg text-tertiary-container leading-none">99.4%</span>
+<span class="font-label-md text-label-md text-on-surface mt-1">AI Match Accuracy</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Predictive intake triage</span>
+</div>
+<!-- Stat 4 -->
+<div class="bg-surface-container-lowest p-space-md rounded-lg shadow-[4px_4px_0px_#1E293B] flex flex-col items-center text-center rotate-1 hover:rotate-0 transition-transform">
+<div class="flex items-center gap-1 text-tertiary-fixed-dim leading-none">
+<span class="font-headline-lg text-headline-lg text-on-surface">4.9</span>
+<span class="text-xl">★★★★★</span>
+</div>
+<span class="font-label-md text-label-md text-on-surface mt-1">Patient Rating</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Based on 12k+ audits</span>
+</div>
+</div>
+</section>
+<!-- FEATURES SECTION: THREE PLAYFUL MEMPHIS CARDS -->
+<section class="w-full py-space-xl px-gutter">
+<div class="max-w-7xl mx-auto flex flex-col gap-space-lg">
+<!-- Section Title & Overline -->
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-space-sm">
+<div>
+<div class="inline-flex items-center gap-1 bg-secondary-fixed text-on-secondary-fixed font-label-sm text-label-sm px-space-sm py-0.5 rounded-full shadow-[2px_2px_0px_#1E293B] mb-2">
+<span>✦ SUPERCHARGED SCHEDULING</span>
+</div>
+<h2 class="font-headline-lg text-headline-lg text-on-surface">Designed for Patients. Engineered for Clinics.</h2>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-md">
+          Medical software doesn’t have to feel like a 1998 spreadsheet. Enjoy tactile speed, guaranteed bookings, and effortless care management.
+        </p>
+</div>
+<!-- Bento-style 3 Features Grid -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-space-lg pt-space-md">
+<!-- Card 1: AI Smart Scheduling (Violet Header) -->
+<div class="relative bg-surface-container-lowest p-space-lg rounded-xl shadow-[4px_4px_0px_#1E293B] flex flex-col justify-between group hover:-translate-y-1 transition-transform">
+<!-- Floating circular icon overlapping top edge -->
+<div class="absolute -top-6 left-6 w-14 h-14 rounded-full bg-primary-container text-on-primary-container shadow-[3px_3px_0px_#1E293B] flex items-center justify-center">
+<span class="material-symbols-outlined text-[28px]">calendar_month</span>
+</div>
+<div class="pt-space-md flex flex-col gap-space-sm">
+<div class="inline-flex items-center self-start bg-primary-fixed text-on-primary-fixed px-space-sm py-0.5 rounded-full font-label-sm text-label-sm shadow-[1px_1px_0px_#1E293B]">
+              Predictive Optimization
+            </div>
+<h3 class="font-headline-md text-headline-md text-on-surface">AI Smart Scheduling</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">
+              Proprietary neural scheduling dynamically levels clinical load, prevents doctor burnout, and aligns complex multi-department appointments smoothly.
+            </p>
+</div>
+<!-- Feature Micro-Graphic -->
+<div class="mt-space-md p-space-sm bg-surface-container-low rounded-lg shadow-[2px_2px_0px_#1E293B] flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="text-xs bg-primary text-on-primary px-2 py-0.5 rounded-full font-bold">Auto-Triage</span>
+<span class="font-label-sm text-label-sm text-on-surface">Severity Rank #1</span>
+</div>
+<span class="font-label-sm text-label-sm text-primary font-bold">Saved 22 mins</span>
+</div>
+</div>
+<!-- Card 2: Instant Booking (Hot Pink Header) -->
+<div class="relative bg-surface-container-lowest p-space-lg rounded-xl shadow-[4px_4px_0px_#1E293B] flex flex-col justify-between group hover:-translate-y-1 transition-transform">
+<!-- Floating circular icon overlapping top edge -->
+<div class="absolute -top-6 left-6 w-14 h-14 rounded-full bg-secondary text-on-secondary shadow-[3px_3px_0px_#1E293B] flex items-center justify-center">
+<span class="material-symbols-outlined text-[28px]">bolt</span>
+</div>
+<div class="pt-space-md flex flex-col gap-space-sm">
+<div class="inline-flex items-center self-start bg-secondary-fixed text-on-secondary-fixed px-space-sm py-0.5 rounded-full font-label-sm text-label-sm shadow-[1px_1px_0px_#1E293B]">
+              10-Second Checkout
+            </div>
+<h3 class="font-headline-md text-headline-md text-on-surface">Instant Appointment Booking</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">
+              No endless phone queues or reception hold music. Pick an open slot, enter brief medical notes, and confirm your hospital pass in under ten seconds.
+            </p>
+</div>
+<!-- Feature Micro-Graphic -->
+<div class="mt-space-md p-space-sm bg-secondary-fixed-dim/40 rounded-lg shadow-[2px_2px_0px_#1E293B] flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="text-xs bg-secondary text-on-secondary px-2 py-0.5 rounded-full font-bold">Confirmed</span>
+<span class="font-label-sm text-label-sm text-on-surface">SMS Pass Delivered</span>
+</div>
+<span class="material-symbols-outlined text-secondary text-[20px]">check_circle</span>
+</div>
+</div>
+<!-- Card 3: Automated Reminders & Sync (Mint / Tertiary Header) -->
+<div class="relative bg-surface-container-lowest p-space-lg rounded-xl shadow-[4px_4px_0px_#1E293B] flex flex-col justify-between group hover:-translate-y-1 transition-transform">
+<!-- Floating circular icon overlapping top edge -->
+<div class="absolute -top-6 left-6 w-14 h-14 rounded-full bg-tertiary-fixed text-on-tertiary-fixed shadow-[3px_3px_0px_#1E293B] flex items-center justify-center">
+<span class="material-symbols-outlined text-[28px]">notifications_active</span>
+</div>
+<div class="pt-space-md flex flex-col gap-space-sm">
+<div class="inline-flex items-center self-start bg-surface-container-highest text-on-surface px-space-sm py-0.5 rounded-full font-label-sm text-label-sm shadow-[1px_1px_0px_#1E293B]">
+              Two-Way Auto-Sync
+            </div>
+<h3 class="font-headline-md text-headline-md text-on-surface">Automated Reminders &amp; Sync</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">
+              Continuous sync with Google Calendar, Apple iCal, WhatsApp, and patient portals. Automatic prep alerts remind you about fasting or diagnostic tests.
+            </p>
+</div>
+<!-- Feature Micro-Graphic -->
+<div class="mt-space-md p-space-sm bg-surface-container-low rounded-lg shadow-[2px_2px_0px_#1E293B] flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="text-xs bg-surface-dim text-on-surface px-2 py-0.5 rounded-full font-bold">Synced</span>
+<span class="font-label-sm text-label-sm text-on-surface">WhatsApp + Calendar</span>
+</div>
+<span class="font-label-sm text-label-sm text-tertiary font-bold">1 hr prior</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- INTERACTIVE AI ASSISTANT BANNER (MEDIBOT SCANNER) -->
+<section class="w-full px-gutter pb-space-xl">
+<div class="max-w-7xl mx-auto">
+<div class="relative bg-surface-container-highest p-space-md md:p-space-lg rounded-xl shadow-[4px_4px_0px_#1E293B] flex flex-col md:flex-row items-center justify-between gap-space-md overflow-hidden">
+<!-- Left Side: Icon & Dynamic Status -->
+<div class="flex items-center gap-space-md z-10">
+<div class="w-16 h-16 rounded-full bg-secondary-fixed text-on-secondary-fixed flex items-center justify-center shadow-[3px_3px_0px_#1E293B] flex-shrink-0">
+<span class="material-symbols-outlined text-[32px] text-secondary">smart_toy</span>
+</div>
+<div class="flex flex-col">
+<div class="flex items-center gap-2">
+<span class="font-headline-sm text-headline-sm text-on-surface">Need an Urgent Slot?</span>
+<span class="bg-secondary text-on-secondary font-label-sm text-label-sm px-2 py-0.5 rounded-full shadow-[1px_1px_0px_#1E293B]">Live Pulse</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-xl">
+              MediBot AI scans real-time cancellations every 60 seconds across regional clinics. Jump ahead in line safely when urgent vacancies open.
+            </p>
+</div>
+</div>
+<!-- Right Side: Live Scanning Feedback & Action Button -->
+<div class="flex flex-col sm:flex-row items-center gap-space-sm z-10 w-full md:w-auto">
+<div class="flex items-center gap-2 bg-surface-container-lowest px-space-md py-2.5 rounded-full shadow-[2px_2px_0px_#1E293B] w-full sm:w-auto justify-center">
+<span class="w-2.5 h-2.5 rounded-full bg-primary animate-ping"></span>
+<span class="font-label-md text-label-md text-on-surface" id="scanner-status">Scanning 14 hospitals...</span>
+</div>
+<button class="w-full sm:w-auto flex items-center justify-center gap-2 bg-secondary text-on-secondary px-space-lg py-2.5 rounded-full font-label-lg text-label-lg shadow-[3px_3px_0px_#1E293B] hover:-translate-y-0.5 hover:shadow-[4px_4px_0px_#1E293B] active:translate-y-0.5 active:shadow-none transition-all" onclick="triggerUrgentScan(this)" type="button">
+<span>Activate Priority Watch</span>
+<span class="material-symbols-outlined text-[18px]">emergency</span>
+</button>
+</div>
+<!-- Decorative background star -->
+<div class="absolute -right-6 -bottom-8 text-surface-container-high text-8xl font-black select-none pointer-events-none opacity-40">
+          ✦
+        </div>
+</div>
+</div>
+</section>
+<!-- DOCTOR DIRECTORY PREVIEW CARDS (ADDITIONAL RICH SECTION) -->
+<section class="w-full bg-surface-container-low py-space-xl px-gutter shadow-[0_4px_0_0_#1E293B]">
+<div class="max-w-7xl mx-auto flex flex-col gap-space-lg">
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-space-sm">
+<div>
+<span class="font-label-sm text-label-sm uppercase tracking-wider bg-tertiary-fixed text-on-tertiary-fixed px-space-sm py-0.5 rounded-full shadow-[1px_1px_0px_#1E293B]">Available Specialists</span>
+<h2 class="font-headline-lg text-headline-lg text-on-surface mt-1">Book Today with Top Clinical Faculty</h2>
+</div>
+<a class="font-label-lg text-label-lg text-primary hover:text-secondary flex items-center gap-1 transition-colors" href="#">
+          View All 1,200+ Practitioners <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+</a>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-space-md">
+<!-- Doctor 1 -->
+<div class="bg-surface-container-lowest p-space-md rounded-xl shadow-[4px_4px_0px_#1E293B] flex flex-col justify-between gap-space-md">
+<div class="flex items-start gap-space-sm">
+<div class="w-16 h-16 rounded-full overflow-hidden shadow-[2px_2px_0px_#1E293B] bg-secondary-fixed flex-shrink-0">
+<img class="w-full h-full object-cover" data-alt="Studio portrait of Dr. Marcus Vance, charismatic male African American cardiologist in modern scrubs, warm lighting, playful pastel pop background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDryLmh0f8mvFJusuOvJs7ujONvPBJOnucl9-sdd1YWaJfwvpJQdnAbx5bIgtvPkPQtg2_eDDi8QwDP0yZg4jqDpro4GBsZVF48eoh1vJFanuLlcwqTfoLxQ84RndejtWmgqW9C3xYquzFB-bt60oqX2dAlaHlr-_LJ2yLh2-bEqzsOtLWUdrIelWuyhpjKzwIN1rh_UKxT07JLcLCHI1eyPw0NeM5eW5M86KfmnWQ"/>
+</div>
+<div>
+<span class="bg-surface-container text-on-surface text-label-sm font-label-sm px-2 py-0.5 rounded-full shadow-[1px_1px_0px_#1E293B]">Cardiologist</span>
+<h4 class="font-headline-sm text-headline-sm text-on-surface mt-1">Dr. Marcus Vance</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Metro Heart Institute • 14 yrs exp</p>
+</div>
+</div>
+<div class="flex items-center justify-between border-t-0 pt-space-xs">
+<span class="font-label-md text-label-md text-primary">Next: Today, 3:30 PM</span>
+<button class="bg-primary text-on-primary px-space-md py-1.5 rounded-full font-label-sm text-label-sm shadow-[2px_2px_0px_#1E293B] hover:-translate-y-0.5 active:translate-y-0 transition-transform" type="button">Book Slot</button>
+</div>
+</div>
+<!-- Doctor 2 -->
+<div class="bg-surface-container-lowest p-space-md rounded-xl shadow-[4px_4px_0px_#1E293B] flex flex-col justify-between gap-space-md">
+<div class="flex items-start gap-space-sm">
+<div class="w-16 h-16 rounded-full overflow-hidden shadow-[2px_2px_0px_#1E293B] bg-tertiary-fixed flex-shrink-0">
+<img class="w-full h-full object-cover" data-alt="Studio portrait of Dr. Elena Rostova, approachable female neurologist with glasses in contemporary medical lab attire, smiling warmly, vibrant colorful backdrop." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDv7uMsMsgAh3XofgrxnB_fbwUrwk2Yux3jZdQPKGFofdxRMdoIrc5DguvKZ6fZQ8XdeeornvPWDsgxz_41aCcSWwWR2pBpFaSdvs0WSZUTZXoYxA66FnUso9HQihZgoJMfN4FqETwhwDgyrHY9rl47VpoLX1CDWLh0ExAueON6Bv_UL8iDFZ47njEFr069ET9Yjl3bzC31g8BGGax3VT-doIbcfGt7_NpmhXm3rPo"/>
+</div>
+<div>
+<span class="bg-secondary-fixed text-on-secondary-fixed text-label-sm font-label-sm px-2 py-0.5 rounded-full shadow-[1px_1px_0px_#1E293B]">Neurologist</span>
+<h4 class="font-headline-sm text-headline-sm text-on-surface mt-1">Dr. Elena Rostova</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Cerebral Center • 9 yrs exp</p>
+</div>
+</div>
+<div class="flex items-center justify-between border-t-0 pt-space-xs">
+<span class="font-label-md text-label-md text-secondary">Next: Tomorrow, 9:00 AM</span>
+<button class="bg-secondary text-on-secondary px-space-md py-1.5 rounded-full font-label-sm text-label-sm shadow-[2px_2px_0px_#1E293B] hover:-translate-y-0.5 active:translate-y-0 transition-transform" type="button">Book Slot</button>
+</div>
+</div>
+<!-- Doctor 3 -->
+<div class="bg-surface-container-lowest p-space-md rounded-xl shadow-[4px_4px_0px_#1E293B] flex flex-col justify-between gap-space-md">
+<div class="flex items-start gap-space-sm">
+<div class="w-16 h-16 rounded-full overflow-hidden shadow-[2px_2px_0px_#1E293B] bg-primary-fixed flex-shrink-0">
+<img class="w-full h-full object-cover" data-alt="Warm studio photo of Dr. Julian Ramos, friendly pediatrician holding a colorful medical clipboard, high key lighting, modern neo-brutalist clinical style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCZtDEjhthP2pjJi7gcBrEd9tjfmaaO7j3r94w7-zkSRWc4Hcyk2C41fXuvKWwOVuPdYwPFG3C1DBzlmF3asCHelYlUvl52OCz19cV_Zb-ADYZYdedtBAZirDQfYmVgwCzRbPZWV8KEfaSKSfRhkXK-DBiu105RuOkSjnQ6V6UOeILPxhRz9j7VuXATZk5DJeUyW2B8KxlDrLtUB_ckEfT3Lp3-PEhOhoLPS-VpBhM"/>
+</div>
+<div>
+<span class="bg-tertiary-fixed text-on-tertiary-fixed text-label-sm font-label-sm px-2 py-0.5 rounded-full shadow-[1px_1px_0px_#1E293B]">Pediatrician</span>
+<h4 class="font-headline-sm text-headline-sm text-on-surface mt-1">Dr. Julian Ramos</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Sunrise Kids Clinic • 11 yrs exp</p>
+</div>
+</div>
+<div class="flex items-center justify-between border-t-0 pt-space-xs">
+<span class="font-label-md text-label-md text-tertiary font-bold">Next: Today, 5:15 PM</span>
+<button class="bg-primary text-on-primary px-space-md py-1.5 rounded-full font-label-sm text-label-sm shadow-[2px_2px_0px_#1E293B] hover:-translate-y-0.5 active:translate-y-0 transition-transform" type="button">Book Slot</button>
+</div>
+</div>
+</div>
+</div>
+</section>
+</div>
+<!-- CLIENT MICRO-INTERACTIONS -->
+<script>
+  function selectSlot(btn) {
+    const allSlots = document.querySelectorAll('.slot-btn');
+    allSlots.forEach(s => {
+      s.classList.remove('bg-primary', 'text-on-primary');
+      s.classList.add('bg-surface-container-low', 'text-on-surface');
+    });
+    btn.classList.remove('bg-surface-container-low', 'text-on-surface');
+    btn.classList.add('bg-primary', 'text-on-primary');
+  }
+
+  function setQuickSearch(term) {
+    const input = document.getElementById('doctor-query');
+    if (input) {
+      input.value = term;
+      input.focus();
+    }
+  }
+
+  function highlightSlots() {
+    const input = document.getElementById('doctor-query');
+    const toastText = input && input.value ? input.value : 'Specialist slots';
+    const status = document.getElementById('scanner-status');
+    if (status) {
+      status.innerText = 'Found 7 matches for "' + toastText + '"!';
+      setTimeout(() => {
+        status.innerText = 'Scanning 14 hospitals...';
+      }, 4000);
+    }
+  }
+
+  function triggerUrgentScan(btn) {
+    const status = document.getElementById('scanner-status');
+    if (status) {
+      status.innerText = 'Prioritizing queue... 2 slots released!';
+      btn.innerText = 'Urgent Alerts Armed ⚡';
+      btn.classList.remove('bg-secondary');
+      btn.classList.add('bg-primary');
+    }
+  }
+</script></main><footer class="w-full bg-[#FFFDF5] border-t-2 border-[#1E293B] py-space-xl mt-space-xl"><div class="w-full px-gutter flex flex-col md:flex-row items-center justify-between gap-space-md"><div class="flex items-center gap-space-sm"><img alt="MediSlot AI Brand Logo" class="h-6 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/ALJJyrDxGcr9a14B_ezYtZtT_zqUjLZxrpDfUsI7BaO1RbyJbU0ympuF9pCbRWA5-Bst3UUks9hd-19w413UvHsVRXEpSVCjLZdltH_j2ogQrjQFEZVr7GEZoo02HOHjx-CxThYPdgR1Bs__mqGmQb9v0-ABWDF2n7Y48gs5q35_pMcjF6wzXLCoSu4e4VUp-8PM2WOaEMaKc_QTZ6WO8vi-xjtzd_dx5ETEC7gXp-aAKdVa"/><span class="font-headline-sm text-headline-sm text-on-surface">MediSlot AI</span><span class="font-label-sm text-label-sm text-on-surface-variant">© 2025 MediSlot HealthTech Inc. Neo-Brutalist Scheduling Engine.</span></div><div class="flex items-center gap-space-md font-label-md text-label-md text-on-surface-variant"><a class="hover:text-primary transition-colors" href="#">Clinical Privacy</a><a class="hover:text-primary transition-colors" href="#">HIPAA Shield</a><a class="hover:text-primary transition-colors" href="#">API Docs</a><a class="hover:text-primary transition-colors" href="#">Emergency Protocols</a></div></div></footer></body></html>

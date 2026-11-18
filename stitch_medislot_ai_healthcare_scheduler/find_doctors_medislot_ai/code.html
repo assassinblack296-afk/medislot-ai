@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_standard" name="shell-type"/><title>MediSlot AI - Smart Medical Appointment Booking</title><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&amp;family=Plus+Jakarta+Sans:wght@400;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config={darkMode:"class",theme:{extend:{"colors":{"on-primary-container":"#fffbff","error-container":"#ffdad6","on-secondary-container":"#76014e","outline-variant":"#cbc3d7","surface-container-highest":"#d8e3fb","on-primary-fixed":"#23005c","surface-tint":"#6d3bd7","surface-variant":"#d8e3fb","surface-container-high":"#dee8ff","inverse-primary":"#d0bcff","on-tertiary-fixed-variant":"#5c4300","secondary":"#a43073","on-primary":"#ffffff","on-secondary":"#ffffff","error":"#ba1a1a","tertiary-fixed-dim":"#f9bd22","surface-container-lowest":"#ffffff","outline":"#7b7486","inverse-on-surface":"#ecf1ff","background":"#f9f9ff","primary-fixed":"#e9ddff","tertiary-fixed":"#ffdf9f","surface-dim":"#cfdaf2","secondary-container":"#fc79bd","tertiary-container":"#956e00","on-primary-fixed-variant":"#5516be","on-secondary-fixed":"#3d0026","on-background":"#111c2d","on-tertiary-fixed":"#261a00","on-error":"#ffffff","inverse-surface":"#263143","surface":"#f9f9ff","primary-fixed-dim":"#d0bcff","on-error-container":"#93000a","on-surface":"#111c2d","on-tertiary-container":"#fffbff","on-surface-variant":"#494454","on-tertiary":"#ffffff","surface-container-low":"#f0f3ff","tertiary":"#765700","secondary-fixed":"#ffd8e7","surface-bright":"#f9f9ff","surface-container":"#e7eeff","secondary-fixed-dim":"#ffafd3","primary":"#6b38d4","primary-container":"#8455ef","on-secondary-fixed-variant":"#85145a"},"borderRadius":{"DEFAULT":"1rem","lg":"2rem","xl":"3rem","full":"9999px"},"spacing":{"space-xs":"0.25rem","space-md":"1rem","margin":"2rem","space-lg":"1.5rem","gutter-mobile":"1rem","space-xl":"2.5rem","space-sm":"0.5rem","margin-mobile":"1rem","gutter":"1.5rem"},"fontFamily":{"headline-xl":["Outfit"],"label-md":["Plus Jakarta Sans"],"body-md":["Plus Jakarta Sans"],"headline-lg-mobile":["Outfit"],"headline-md":["Outfit"],"body-sm":["Plus Jakarta Sans"],"headline-xl-mobile":["Outfit"],"label-lg":["Plus Jakarta Sans"],"headline-sm":["Outfit"],"headline-lg":["Outfit"],"body-lg":["Plus Jakarta Sans"],"label-sm":["Plus Jakarta Sans"]},"fontSize":{"headline-xl":["48px",{"lineHeight":"56px","letterSpacing":"-0.02em","fontWeight":"800"}],"label-md":["12px",{"lineHeight":"16px","letterSpacing":"0.03em","fontWeight":"700"}],"body-md":["15px",{"lineHeight":"24px","fontWeight":"400"}],"headline-lg-mobile":["26px",{"lineHeight":"34px","letterSpacing":"-0.01em","fontWeight":"700"}],"headline-md":["24px",{"lineHeight":"32px","letterSpacing":"-0.01em","fontWeight":"700"}],"body-sm":["13px",{"lineHeight":"20px","fontWeight":"400"}],"headline-xl-mobile":["32px",{"lineHeight":"40px","letterSpacing":"-0.01em","fontWeight":"800"}],"label-lg":["14px",{"lineHeight":"20px","letterSpacing":"0.02em","fontWeight":"700"}],"headline-sm":["20px",{"lineHeight":"28px","fontWeight":"600"}],"headline-lg":["36px",{"lineHeight":"44px","letterSpacing":"-0.015em","fontWeight":"700"}],"body-lg":["18px",{"lineHeight":"28px","fontWeight":"400"}],"label-sm":["11px",{"lineHeight":"14px","letterSpacing":"0.04em","fontWeight":"800"}]}}}};</script></head><body class="bg-surface font-body-md text-on-surface antialiased"><header class="fixed top-0 left-0 right-0 z-50 bg-[#FFFDF5] border-b-2 border-[#1E293B] shadow-[0_4px_0_0_#1E293B]"><div class="h-20 w-full px-gutter flex items-center justify-between gap-space-md"><div class="flex items-center gap-space-md"><img alt="MediSlot AI Brand Logo" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/ALJJyrDxGcr9a14B_ezYtZtT_zqUjLZxrpDfUsI7BaO1RbyJbU0ympuF9pCbRWA5-Bst3UUks9hd-19w413UvHsVRXEpSVCjLZdltH_j2ogQrjQFEZVr7GEZoo02HOHjx-CxThYPdgR1Bs__mqGmQb9v0-ABWDF2n7Y48gs5q35_pMcjF6wzXLCoSu4e4VUp-8PM2WOaEMaKc_QTZ6WO8vi-xjtzd_dx5ETEC7gXp-aAKdVa"/><div class="flex flex-col"><span class="font-headline-sm text-headline-sm text-on-surface tracking-tight leading-none">MediSlot AI</span><span class="hidden lg:inline-block font-label-sm text-label-sm bg-tertiary-fixed text-on-tertiary-fixed border border-[#1E293B] px-space-sm py-0.5 rounded-full mt-1">Smart Booking. Better Healthcare.</span></div></div><nav class="hidden xl:flex items-center gap-space-sm bg-surface-container-low p-1.5 rounded-full border-2 border-[#1E293B] shadow-[2px_2px_0px_#1E293B]" data-active-classes="bg-primary text-on-primary font-bold shadow-[2px_2px_0px_#1E293B]"><a class="px-space-md py-1.5 rounded-full font-label-md text-label-md text-on-surface-variant hover:text-on-surface transition-all" data-path="landing" href="#">Landing</a><a class="px-space-md py-1.5 rounded-full font-label-md text-label-md text-on-surface-variant hover:text-on-surface transition-all" data-path="patient-portal" href="#">Patient Portal</a><a aria-current="page" class="px-space-md py-1.5 rounded-full transition-all bg-primary text-on-primary font-bold shadow-[2px_2px_0px_#1E293B]" data-path="find-doctors" href="#">Find Doctors</a><a class="px-space-md py-1.5 rounded-full font-label-md text-label-md text-on-surface-variant hover:text-on-surface transition-all" data-path="book-appointment" href="#">Book Appointment</a><a class="px-space-md py-1.5 rounded-full font-label-md text-label-md text-on-surface-variant hover:text-on-surface transition-all" data-path="doctor-console" href="#">Doctor Console</a><a class="px-space-md py-1.5 rounded-full font-label-md text-label-md text-on-surface-variant hover:text-on-surface transition-all" data-path="admin-hub" href="#">Admin Hub</a></nav><div class="flex items-center gap-space-sm"><button class="hidden sm:flex items-center gap-1.5 bg-secondary-fixed text-on-secondary-fixed border-2 border-[#1E293B] px-space-md py-1.5 rounded-full shadow-[2px_2px_0px_#1E293B] hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-[3px_3px_0px_#1E293B] active:translate-x-0.5 active:translate-y-0.5 active:shadow-none transition-transform font-label-md text-label-md" type="button"><span class="material-symbols-outlined text-secondary text-[18px]">smart_toy</span>Ask MediBot AI</button><a class="hidden md:flex items-center gap-1 bg-primary text-on-primary border-2 border-[#1E293B] px-space-md py-2 rounded-full shadow-[3px_3px_0px_#1E293B] hover:-translate-x-0.5 hover:-translate-y-0.5 active:translate-x-0.5 active:translate-y-0.5 active:shadow-none font-label-lg text-label-lg transition-transform" data-path="book-appointment" href="#">Book Slot</a><div class="flex items-center gap-space-xs pl-space-xs"><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div><span class="hidden lg:inline-flex bg-surface-container-highest border border-[#1E293B] text-on-surface font-label-sm text-label-sm px-space-sm py-0.5 rounded-full">Verified Patient</span></div></div></div></header><main class="w-full pt-20 bg-[#FFFDF5] min-h-screen"><div class="flex flex-col w-full">
+<div class="max-w-[1440px] mx-auto w-full px-gutter py-space-lg flex flex-col gap-space-lg">
+<!-- Top Breadcrumb & Live AI Radar Pill -->
+<div class="flex flex-wrap items-center justify-between gap-space-sm">
+<div class="inline-flex items-center gap-2 bg-surface-container-lowest px-space-md py-1.5 rounded-full shadow-[2px_2px_0px_#1E293B]">
+<span class="material-symbols-outlined text-[18px] text-primary">clinical_notes</span>
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant">Provider Discovery</span>
+<span class="text-outline-variant">•</span>
+<span class="font-label-sm text-label-sm text-secondary font-bold">148 Clinicians On Duty</span>
+</div>
+<div class="inline-flex items-center gap-2 bg-tertiary-fixed text-on-tertiary-fixed px-space-md py-1.5 rounded-full shadow-[2px_2px_0px_#1E293B]">
+<span class="relative flex h-2.5 w-2.5">
+<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-tertiary opacity-75"></span>
+<span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-tertiary"></span>
+</span>
+<span class="font-label-sm text-label-sm font-bold">AI Dynamic Slot Optimizer Active</span>
+</div>
+</div>
+<!-- Title & Search Hero Hub -->
+<div class="relative bg-surface-container-lowest p-space-lg md:p-space-xl rounded-xl shadow-[4px_4px_0px_#1E293B] overflow-hidden">
+<!-- Decorative Memphis Geometric Shapes -->
+<div class="absolute -right-8 -top-8 w-32 h-32 rounded-full bg-secondary-fixed opacity-70 pointer-events-none"></div>
+<div class="absolute right-24 top-12 w-8 h-8 rotate-12 bg-tertiary-fixed shadow-[2px_2px_0px_#1E293B] pointer-events-none"></div>
+<div class="absolute right-12 bottom-6 w-12 h-12 rounded-full bg-surface-container-highest shadow-[2px_2px_0px_#1E293B] pointer-events-none"></div>
+<div class="relative z-10 max-w-3xl flex flex-col gap-space-xs">
+<div class="inline-flex items-center gap-1.5 w-max bg-secondary-fixed text-on-secondary-fixed px-space-sm py-0.5 rounded-full font-label-sm text-label-sm uppercase tracking-wide">
+<span class="material-symbols-outlined text-[14px]">bolt</span> Real-time Schedule Sync
+        </div>
+<h1 class="font-headline-xl text-headline-xl text-on-surface">
+          Find &amp; Book Top Clinicians <span class="text-primary">✦</span>
+</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl">
+          AI-powered match score finds the ideal doctor in under 30 seconds based on your symptoms, insurance, and real-time clinic capacity.
+        </p>
+</div>
+<!-- Main Search & Smart Toggles -->
+<div class="relative z-10 mt-space-lg flex flex-col lg:flex-row gap-space-md items-stretch lg:items-center">
+<!-- Search Input with 2px borders and hard drop shadow -->
+<div class="flex-1 flex items-center bg-surface-container-lowest rounded-lg shadow-[4px_4px_0px_#1E293B] px-space-md py-2.5 focus-within:shadow-[4px_4px_0px_#8455ef] transition-all">
+<span class="material-symbols-outlined text-outline text-[24px] mr- space-sm">search</span>
+<input class="w-full bg-transparent font-body-md text-body-md text-on-surface placeholder:text-outline focus:outline-none" id="doctorSearchInput" placeholder="Search by doctor name, specialty, condition (e.g. Migraine, Dr. Sarah)..." type="text"/>
+<button class="hidden sm:flex items-center gap-1 bg-surface-container text-on-surface px-space-sm py-1 rounded-md font-label-sm text-label-sm hover:bg-surface-container-high transition-colors" type="button">
+<span class="material-symbols-outlined text-[14px]">my_location</span> Near Me
+          </button>
+</div>
+<!-- AI Smart Match Toggle -->
+<div class="flex items-center justify-between sm:justify-start gap-space-md bg-primary-fixed p-space-sm sm:px-space-md rounded-lg shadow-[4px_4px_0px_#1E293B]">
+<div class="flex items-center gap-2">
+<div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center text-on-primary">
+<span class="material-symbols-outlined text-[18px]">auto_awesome</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-lg text-label-lg text-on-primary-fixed leading-tight">AI Smart Match</span>
+<span class="font-label-sm text-label-sm text-on-primary-fixed-variant">Rank by optimal intake</span>
+</div>
+</div>
+<label class="relative inline-flex items-center cursor-pointer ml-space-sm">
+<input checked="" class="sr-only peer" id="aiMatchToggle" type="checkbox"/>
+<div class="w-12 h-6 bg-surface-container-highest peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[3px] after:left-[3px] after:bg-white after:rounded-full after:h-4.5 after:w-5 after:transition-all peer-checked:bg-primary shadow-[1px_1px_0px_#1E293B]"></div>
+</label>
+</div>
+</div>
+<!-- Filter Matrix Ribbon -->
+<div class="relative z-10 mt-space-md pt-space-md flex flex-col md:flex-row md:items-center justify-between gap-space-md">
+<!-- Scrollable Filter Chips -->
+<div class="flex items-center gap-space-xs overflow-x-auto pb-1 sm:pb-0 scrollbar-none" id="filterPillsContainer">
+<button class="filter-chip active flex items-center gap-1 bg-primary text-on-primary px-space-md py-1.5 rounded-full font-label-md text-label-md shadow-[2px_2px_0px_#1E293B] hover:-translate-y-0.5 transition-transform" data-specialty="all" type="button">
+            All Doctors
+          </button>
+<button class="filter-chip flex items-center gap-1 bg-surface-container-lowest text-on-surface px-space-md py-1.5 rounded-full font-label-md text-label-md shadow-[2px_2px_0px_#1E293B] hover:-translate-y-0.5 hover:bg-surface-container transition-transform" data-specialty="Cardiology" type="button">
+            Cardiology
+          </button>
+<button class="filter-chip flex items-center gap-1 bg-surface-container-lowest text-on-surface px-space-md py-1.5 rounded-full font-label-md text-label-md shadow-[2px_2px_0px_#1E293B] hover:-translate-y-0.5 hover:bg-surface-container transition-transform" data-specialty="Dermatology" type="button">
+            Dermatology
+          </button>
+<button class="filter-chip flex items-center gap-1 bg-surface-container-lowest text-on-surface px-space-md py-1.5 rounded-full font-label-md text-label-md shadow-[2px_2px_0px_#1E293B] hover:-translate-y-0.5 hover:bg-surface-container transition-transform" data-specialty="Pediatrics" type="button">
+            Pediatrics
+          </button>
+<button class="filter-chip flex items-center gap-1 bg-surface-container-lowest text-on-surface px-space-md py-1.5 rounded-full font-label-md text-label-md shadow-[2px_2px_0px_#1E293B] hover:-translate-y-0.5 hover:bg-surface-container transition-transform" data-specialty="Orthopedics" type="button">
+            Orthopedics
+          </button>
+<button class="filter-chip flex items-center gap-1 bg-surface-container-lowest text-on-surface px-space-md py-1.5 rounded-full font-label-md text-label-md shadow-[2px_2px_0px_#1E293B] hover:-translate-y-0.5 hover:bg-surface-container transition-transform" data-specialty="Neurology" type="button">
+            Neurology
+          </button>
+</div>
+<!-- Quick Constraints Badges -->
+<div class="flex items-center gap-space-xs flex-shrink-0 flex-wrap">
+<button class="flex items-center gap-1 bg-tertiary-fixed text-on-tertiary-fixed px-space-sm py-1 rounded-full font-label-sm text-label-sm shadow-[2px_2px_0px_#1E293B] hover:shadow-[3px_3px_0px_#1E293B] active:translate-x-0.5 active:translate-y-0.5 active:shadow-none transition-all" type="button">
+<span class="material-symbols-outlined text-[14px]">bolt</span> Today ⚡
+          </button>
+<button class="flex items-center gap-1 bg-surface-container-lowest text-on-surface px-space-sm py-1 rounded-full font-label-sm text-label-sm shadow-[2px_2px_0px_#1E293B] hover:bg-surface-container transition-all" type="button">
+<span class="material-symbols-outlined text-[14px]">videocam</span> Telehealth
+          </button>
+<button class="flex items-center gap-1 bg-secondary-fixed text-on-secondary-fixed px-space-sm py-1 rounded-full font-label-sm text-label-sm shadow-[2px_2px_0px_#1E293B] hover:shadow-[3px_3px_0px_#1E293B] active:translate-x-0.5 active:translate-y-0.5 active:shadow-none transition-all" type="button">
+            4.8+ ★
+          </button>
+</div>
+</div>
+</div>
+<!-- Doctor Grid Results Meta Info -->
+<div class="flex items-center justify-between px-space-xs">
+<div class="flex items-center gap-2">
+<span class="font-headline-sm text-headline-sm text-on-surface">Available Specialists</span>
+<span class="bg-primary text-on-primary font-label-md text-label-md px-space-sm py-0.5 rounded-full shadow-[1px_1px_0px_#1E293B]" id="resultCounter">6 Matches</span>
+</div>
+<div class="hidden sm:flex items-center gap-space-sm text-on-surface-variant font-label-md text-label-md">
+<span>Sort:</span>
+<button class="font-bold text-primary underline decoration-2 underline-offset-4">Earliest Available</button>
+<span class="text-outline-variant">•</span>
+<button class="hover:text-on-surface">Highest Rating</button>
+</div>
+</div>
+<!-- Doctor Cards Bento Grid (6 Cards, Alternating Pastel Accent Heads) -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-space-lg" id="doctorCardsGrid">
+<!-- CARD 1: Dr. Sarah Jenkins (Violet Header) -->
+<div class="doctor-card bg-surface-container-lowest rounded-xl shadow-[4px_4px_0px_#1E293B] overflow-hidden flex flex-col justify-between transition-all hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-[6px_6px_0px_#1E293B]" data-specialty="Cardiology">
+<!-- Colored Header Banner -->
+<div class="bg-primary-fixed p-space-md flex items-center justify-between">
+<div class="flex items-center gap-1 bg-surface-container-lowest text-on-surface px-space-sm py-0.5 rounded-full font-label-sm text-label-sm shadow-[1px_1px_0px_#1E293B]">
+<span class="material-symbols-outlined text-primary text-[14px]">psychology</span>
+<span>Cardiologist</span>
+</div>
+<div class="flex items-center gap-1 bg-primary text-on-primary px-space-sm py-0.5 rounded-full font-label-sm text-label-sm font-bold shadow-[1px_1px_0px_#1E293B]">
+<span class="material-symbols-outlined text-[13px]">bolt</span> 98% AI Match
+          </div>
+</div>
+<div class="p-space-lg flex flex-col gap-space-md flex-grow">
+<!-- Profile Identity Header -->
+<div class="flex items-start gap-space-md">
+<div class="relative w-16 h-16 rounded-full overflow-hidden bg-primary-fixed flex-shrink-0 shadow-[2px_2px_0px_#1E293B]">
+<img class="w-full h-full object-cover" data-alt="Modern high key studio portrait of Dr Sarah Jenkins smiling warmly wearing a navy doctor jacket and modern stethoscope with vibrant soft lavender studio lighting and neo-brutalist punchy sharpness." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDS75Y3hTNWY5IwCstLJLUr6QZZlz6X102tQsUOIkf4-WdIakpQ4f1HaoJu85lNz5ZU6AXWOe2ROpbOOdZAoZsxU-ip90PZLOOjodjQv-wvKqcpMtLq7zUxyTmk9muJiHBM4DonV6gebg0bHowkgng0v9NoJ1r8IxyEwLy0DaiEtvjktdgdUtnTN1T96iv3k_fnD3V9MITq7OpUd_BPf0QHgGv51gZBMrN51AQu6bQ"/>
+<span class="absolute bottom-0 right-0 w-4 h-4 bg-tertiary-fixed rounded-full flex items-center justify-center shadow-[1px_1px_0px_#1E293B]">
+<span class="material-symbols-outlined text-on-tertiary-fixed text-[11px] font-bold">verified</span>
+</span>
+</div>
+<div class="flex flex-col min-w-0">
+<div class="flex items-center gap-1">
+<h3 class="font-headline-sm text-headline-sm text-on-surface truncate">Dr. Sarah Jenkins</h3>
+<span class="font-label-sm text-label-sm bg-surface-container text-on-surface px-1.5 py-0.2 rounded font-bold">MD</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant truncate">Stanford Medical Center</p>
+<div class="flex items-center gap-1 text-tertiary font-label-sm text-label-sm mt-0.5">
+<span class="material-symbols-outlined text-[15px] fill-1">star</span>
+<span class="font-bold">4.9</span>
+<span class="text-on-surface-variant">(320 reviews)</span>
+</div>
+</div>
+</div>
+<!-- Quick Stats Pills -->
+<div class="flex flex-wrap gap-space-xs">
+<span class="bg-surface-container-low text-on-surface px-space-sm py-1 rounded-full font-label-sm text-label-sm shadow-[1px_1px_0px_#1E293B]">
+              12 yrs exp
+            </span>
+<span class="bg-secondary-fixed text-on-secondary-fixed px-space-sm py-1 rounded-full font-label-sm text-label-sm shadow-[1px_1px_0px_#1E293B]">
+              Echo &amp; Holter
+            </span>
+<span class="bg-surface-container-highest text-on-surface px-space-sm py-1 rounded-full font-label-sm text-label-sm">
+              English, Spanish
+            </span>
+</div>
+<!-- Highlighted Next Slot Pill -->
+<div class="bg-surface-container-low p-space-sm rounded-lg shadow-[2px_2px_0px_#1E293B] flex items-center justify-between">
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-secondary text-[18px]">timer</span>
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Earliest Slot</span>
+<span class="font-label-md text-label-md text-on-surface font-bold">✦ Today, 2:15 PM</span>
+</div>
+</div>
+<div class="text-right">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Fee</span>
+<p class="font-headline-sm text-headline-sm text-primary leading-tight">$140</p>
+</div>
+</div>
+</div>
+<!-- Action Bar -->
+<div class="p-space-md bg-surface-container-low flex items-center gap-space-sm">
+<button class="flex-1 bg-surface-container-lowest text-on-surface px-space-sm py-2 rounded-full font-label-md text-label-md shadow-[2px_2px_0px_#1E293B] hover:-translate-y-0.5 hover:shadow-[3px_3px_0px_#1E293B] active:translate-y-0 active:shadow-none transition-all" type="button">
+            View Profile
+          </button>
+<a class="flex-1 flex items-center justify-center gap-1 bg-primary text-on-primary px-space-sm py-2 rounded-full font-label-md text-label-md font-bold shadow-[2px_2px_0px_#1E293B] hover:-translate-y-0.5 hover:shadow-[4px_4px_0px_#1E293B] active:translate-y-0 active:shadow-none transition-all" data-path="book-appointment" href="#">
+            Book Appt <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</a>
+</div>
+</div>
+<!-- CARD 2: Dr. Marcus Chen (Pink Header) -->
+<div class="doctor-card bg-surface-container-lowest rounded-xl shadow-[4px_4px_0px_#1E293B] overflow-hidden flex flex-col justify-between transition-all hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-[6px_6px_0px_#1E293B]" data-specialty="Orthopedics">
+<div class="bg-secondary-fixed p-space-md flex items-center justify-between">
+<div class="flex items-center gap-1 bg-surface-container-lowest text-on-surface px-space-sm py-0.5 rounded-full font-label-sm text-label-sm shadow-[1px_1px_0px_#1E293B]">
+<span class="material-symbols-outlined text-secondary text-[14px]">sports_martial_arts</span>
+<span>Orthopedic Surgeon</span>
+</div>
+<div class="flex items-center gap-1 bg-secondary text-on-secondary px-space-sm py-0.5 rounded-full font-label-sm text-label-sm font-bold shadow-[1px_1px_0px_#1E293B]">
+<span class="material-symbols-outlined text-[13px]">verified_user</span> 95% Match
+          </div>
+</div>
+<div class="p-space-lg flex flex-col gap-space-md flex-grow">
+<div class="flex items-start gap-space-md">
+<div class="relative w-16 h-16 rounded-full overflow-hidden bg-secondary-fixed flex-shrink-0 shadow-[2px_2px_0px_#1E293B]">
+<img class="w-full h-full object-cover" data-alt="Editorial portrait of Dr Marcus Chen smiling confident Asian orthopedic specialist in white clinical coat with crisp geometric lighting and vibrant blush pink accents." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBFaA4989VW8mOD9ewB9KvVNvgV8Eesi5sZ-sHP3ivtcwlq6VXKHKaWettYSzIbZmxGwcHsLkF2hO3PnnXb8DAUQL_qAZdx_5VxZtyJelt32WpxClTSeUBOXFW_tZ4BQqsyGAU0ZS-8RGRWz_B9Gvuiuweu-d9p6wBI6mMsJsJf6duvHE6j10T9yaI62hIGXcgRwTQaEGNwUnc4vPatfU8wwYxs_Of4E-CTTgLIT1g"/>
+<span class="absolute bottom-0 right-0 w-4 h-4 bg-tertiary-fixed rounded-full flex items-center justify-center shadow-[1px_1px_0px_#1E293B]">
+<span class="material-symbols-outlined text-on-tertiary-fixed text-[11px] font-bold">verified</span>
+</span>
+</div>
+<div class="flex flex-col min-w-0">
+<div class="flex items-center gap-1">
+<h3 class="font-headline-sm text-headline-sm text-on-surface truncate">Dr. Marcus Chen</h3>
+<span class="font-label-sm text-label-sm bg-surface-container text-on-surface px-1.5 py-0.2 rounded font-bold">MD, MS</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant truncate">Bay Health Ortho Center</p>
+<div class="flex items-center gap-1 text-tertiary font-label-sm text-label-sm mt-0.5">
+<span class="material-symbols-outlined text-[15px]">star</span>
+<span class="font-bold">4.95</span>
+<span class="text-on-surface-variant">(410 reviews)</span>
+</div>
+</div>
+</div>
+<div class="flex flex-wrap gap-space-xs">
+<span class="bg-surface-container-low text-on-surface px-space-sm py-1 rounded-full font-label-sm text-label-sm shadow-[1px_1px_0px_#1E293B]">
+              15 yrs exp
+            </span>
+<span class="bg-primary-fixed text-on-primary-fixed px-space-sm py-1 rounded-full font-label-sm text-label-sm shadow-[1px_1px_0px_#1E293B]">
+              Sports Trauma
+            </span>
+<span class="bg-surface-container-highest text-on-surface px-space-sm py-1 rounded-full font-label-sm text-label-sm">
+              English, Mandarin
+            </span>
+</div>
+<div class="bg-surface-container-low p-space-sm rounded-lg shadow-[2px_2px_0px_#1E293B] flex items-center justify-between">
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-secondary text-[18px]">bolt</span>
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Earliest Slot</span>
+<span class="font-label-md text-label-md text-on-surface font-bold">✦ Today, 4:45 PM</span>
+</div>
+</div>
+<div class="text-right">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Fee</span>
+<p class="font-headline-sm text-headline-sm text-secondary leading-tight">$160</p>
+</div>
+</div>
+</div>
+<div class="p-space-md bg-surface-container-low flex items-center gap-space-sm">
+<button class="flex-1 bg-surface-container-lowest text-on-surface px-space-sm py-2 rounded-full font-label-md text-label-md shadow-[2px_2px_0px_#1E293B] hover:-translate-y-0.5 hover:shadow-[3px_3px_0px_#1E293B] active:translate-y-0 active:shadow-none transition-all" type="button">
+            View Profile
+          </button>
+<a class="flex-1 flex items-center justify-center gap-1 bg-secondary text-on-secondary px-space-sm py-2 rounded-full font-label-md text-label-md font-bold shadow-[2px_2px_0px_#1E293B] hover:-translate-y-0.5 hover:shadow-[4px_4px_0px_#1E293B] active:translate-y-0 active:shadow-none transition-all" data-path="book-appointment" href="#">
+            Book Appt <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</a>
+</div>
+</div>
+<!-- CARD 3: Dr. Emily Rivera (Amber/Yellow Header) -->
+<div class="doctor-card bg-surface-container-lowest rounded-xl shadow-[4px_4px_0px_#1E293B] overflow-hidden flex flex-col justify-between transition-all hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-[6px_6px_0px_#1E293B]" data-specialty="Pediatrics">
+<div class="bg-tertiary-fixed p-space-md flex items-center justify-between">
+<div class="flex items-center gap-1 bg-surface-container-lowest text-on-surface px-space-sm py-0.5 rounded-full font-label-sm text-label-sm shadow-[1px_1px_0px_#1E293B]">
+<span class="material-symbols-outlined text-tertiary text-[14px]">child_care</span>
+<span>Pediatrician</span>
+</div>
+<div class="flex items-center gap-1 bg-tertiary text-on-tertiary px-space-sm py-0.5 rounded-full font-label-sm text-label-sm font-bold shadow-[1px_1px_0px_#1E293B]">
+<span class="material-symbols-outlined text-[13px]">favorite</span> 99% Parent Score
+          </div>
+</div>
+<div class="p-space-lg flex flex-col gap-space-md flex-grow">
+<div class="flex items-start gap-space-md">
+<div class="relative w-16 h-16 rounded-full overflow-hidden bg-tertiary-fixed flex-shrink-0 shadow-[2px_2px_0px_#1E293B]">
+<img class="w-full h-full object-cover" data-alt="Vibrant friendly portrait of Latina pediatrician Dr Emily Rivera wearing cute pediatric scrubs with playful sunny yellow ambient light and cheerful confident expression." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDdOr6XskqJpE6KoNolMLzAQf8cJWC9G5HGndE4QWjoF4jBoZRyJc-O9MZA1NwCxDnXfmBB0mX3by5dJ2-k77UOIMyZSKsaTeYcnfvxQXFP3tOEIqY-In0ndx2sN-PdalgOuWj7MbE4GF1QpM4KbygGiwv6dKaYniPuvo9RTewE_exmPrQ5MrFCVFqYODuWy6pDXtSN5sfhvtH52opGOA7oDjdhAUzZICHqeLGSTjI"/>
+<span class="absolute bottom-0 right-0 w-4 h-4 bg-tertiary-fixed rounded-full flex items-center justify-center shadow-[1px_1px_0px_#1E293B]">
+<span class="material-symbols-outlined text-on-tertiary-fixed text-[11px] font-bold">verified</span>
+</span>
+</div>
+<div class="flex flex-col min-w-0">
+<div class="flex items-center gap-1">
+<h3 class="font-headline-sm text-headline-sm text-on-surface truncate">Dr. Emily Rivera</h3>
+<span class="font-label-sm text-label-sm bg-surface-container text-on-surface px-1.5 py-0.2 rounded font-bold">MD, FAAP</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant truncate">Children's Memorial Clinic</p>
+<div class="flex items-center gap-1 text-tertiary font-label-sm text-label-sm mt-0.5">
+<span class="material-symbols-outlined text-[15px]">star</span>
+<span class="font-bold">4.98</span>
+<span class="text-on-surface-variant">(580 reviews)</span>
+</div>
+</div>
+</div>
+<div class="flex flex-wrap gap-space-xs">
+<span class="bg-surface-container-low text-on-surface px-space-sm py-1 rounded-full font-label-sm text-label-sm shadow-[1px_1px_0px_#1E293B]">
+              9 yrs exp
+            </span>
+<span class="bg-tertiary-fixed-dim text-on-tertiary-fixed px-space-sm py-1 rounded-full font-label-sm text-label-sm shadow-[1px_1px_0px_#1E293B]">
+              Infant Nutrition
+            </span>
+<span class="bg-surface-container-highest text-on-surface px-space-sm py-1 rounded-full font-label-sm text-label-sm">
+              In-Clinic &amp; Video
+            </span>
+</div>
+<div class="bg-surface-container-low p-space-sm rounded-lg shadow-[2px_2px_0px_#1E293B] flex items-center justify-between">
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-tertiary text-[18px]">calendar_today</span>
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Earliest Slot</span>
+<span class="font-label-md text-label-md text-on-surface font-bold">Tomorrow, 9:00 AM</span>
+</div>
+</div>
+<div class="text-right">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Fee</span>
+<p class="font-headline-sm text-headline-sm text-tertiary leading-tight">$95</p>
+</div>
+</div>
+</div>
+<div class="p-space-md bg-surface-container-low flex items-center gap-space-sm">
+<button class="flex-1 bg-surface-container-lowest text-on-surface px-space-sm py-2 rounded-full font-label-md text-label-md shadow-[2px_2px_0px_#1E293B] hover:-translate-y-0.5 hover:shadow-[3px_3px_0px_#1E293B] active:translate-y-0 active:shadow-none transition-all" type="button">
+            View Profile
+          </button>
+<a class="flex-1 flex items-center justify-center gap-1 bg-primary text-on-primary px-space-sm py-2 rounded-full font-label-md text-label-md font-bold shadow-[2px_2px_0px_#1E293B] hover:-translate-y-0.5 hover:shadow-[4px_4px_0px_#1E293B] active:translate-y-0 active:shadow-none transition-all" data-path="book-appointment" href="#">
+            Book Appt <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</a>
+</div>
+</div>
+<!-- CARD 4: Dr. Julian Thorne (Mint/Cyan Header) -->
+<div class="doctor-card bg-surface-container-lowest rounded-xl shadow-[4px_4px_0px_#1E293B] overflow-hidden flex flex-col justify-between transition-all hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-[6px_6px_0px_#1E293B]" data-specialty="Neurology">
+<div class="bg-surface-container-highest p-space-md flex items-center justify-between">
+<div class="flex items-center gap-1 bg-surface-container-lowest text-on-surface px-space-sm py-0.5 rounded-full font-label-sm text-label-sm shadow-[1px_1px_0px_#1E293B]">
+<span class="material-symbols-outlined text-primary text-[14px]">neurology</span>
+<span>Neurologist</span>
+</div>
+<div class="flex items-center gap-1 bg-primary-container text-on-primary-container px-space-sm py-0.5 rounded-full font-label-sm text-label-sm font-bold shadow-[1px_1px_0px_#1E293B]">
+<span class="material-symbols-outlined text-[13px]">bolt</span> 91% Match
+          </div>
+</div>
+<div class="p-space-lg flex flex-col gap-space-md flex-grow">
+<div class="flex items-start gap-space-md">
+<div class="relative w-16 h-16 rounded-full overflow-hidden bg-surface-container-highest flex-shrink-0 shadow-[2px_2px_0px_#1E293B]">
+<img class="w-full h-full object-cover" data-alt="Editorial portrait of Dr Julian Thorne distinguished male neurologist wearing spectacles and a smart charcoal blazer with clean graphic light and neo-brutalist clinical presence." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCEwd61GFf-0OHzZRcTus3joQsuV_twpH8Zwk50WLkS6CeIea9_71XlRGeofsV0COOYu0O0IX0Wj4GoOiaMmIu9jLMcnCdrKWsUtuJUWR7jvy5ztqqqm6FANA5itRFJ3XXh5Y9KVGLxRRBQLSVOX9XTSpqYcUip8ue_CJaiL8hvNMdJtdCfyhfk00V49j20nwhXlVTXOofgvBVwzC0A2KOuPLPJyuYxA3dp9WiHkq8"/>
+<span class="absolute bottom-0 right-0 w-4 h-4 bg-tertiary-fixed rounded-full flex items-center justify-center shadow-[1px_1px_0px_#1E293B]">
+<span class="material-symbols-outlined text-on-tertiary-fixed text-[11px] font-bold">verified</span>
+</span>
+</div>
+<div class="flex flex-col min-w-0">
+<div class="flex items-center gap-1">
+<h3 class="font-headline-sm text-headline-sm text-on-surface truncate">Dr. Julian Thorne</h3>
+<span class="font-label-sm text-label-sm bg-surface-container text-on-surface px-1.5 py-0.2 rounded font-bold">PhD, MD</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant truncate">NeuroVanguard Institute</p>
+<div class="flex items-center gap-1 text-tertiary font-label-sm text-label-sm mt-0.5">
+<span class="material-symbols-outlined text-[15px]">star</span>
+<span class="font-bold">4.88</span>
+<span class="text-on-surface-variant">(210 reviews)</span>
+</div>
+</div>
+</div>
+<div class="flex flex-wrap gap-space-xs">
+<span class="bg-surface-container-low text-on-surface px-space-sm py-1 rounded-full font-label-sm text-label-sm shadow-[1px_1px_0px_#1E293B]">
+              18 yrs exp
+            </span>
+<span class="bg-primary-fixed text-on-primary-fixed px-space-sm py-1 rounded-full font-label-sm text-label-sm shadow-[1px_1px_0px_#1E293B]">
+              Migraine &amp; Sleep
+            </span>
+<span class="bg-surface-container-highest text-on-surface px-space-sm py-1 rounded-full font-label-sm text-label-sm">
+              Telehealth Ready
+            </span>
+</div>
+<div class="bg-surface-container-low p-space-sm rounded-lg shadow-[2px_2px_0px_#1E293B] flex items-center justify-between">
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-primary text-[18px]">timer</span>
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Earliest Slot</span>
+<span class="font-label-md text-label-md text-on-surface font-bold">✦ Today, 5:30 PM</span>
+</div>
+</div>
+<div class="text-right">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Fee</span>
+<p class="font-headline-sm text-headline-sm text-primary leading-tight">$155</p>
+</div>
+</div>
+</div>
+<div class="p-space-md bg-surface-container-low flex items-center gap-space-sm">
+<button class="flex-1 bg-surface-container-lowest text-on-surface px-space-sm py-2 rounded-full font-label-md text-label-md shadow-[2px_2px_0px_#1E293B] hover:-translate-y-0.5 hover:shadow-[3px_3px_0px_#1E293B] active:translate-y-0 active:shadow-none transition-all" type="button">
+            View Profile
+          </button>
+<a class="flex-1 flex items-center justify-center gap-1 bg-primary text-on-primary px-space-sm py-2 rounded-full font-label-md text-label-md font-bold shadow-[2px_2px_0px_#1E293B] hover:-translate-y-0.5 hover:shadow-[4px_4px_0px_#1E293B] active:translate-y-0 active:shadow-none transition-all" data-path="book-appointment" href="#">
+            Book Appt <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</a>
+</div>
+</div>
+<!-- CARD 5: Dr. Aisha Patel (Violet Header) -->
+<div class="doctor-card bg-surface-container-lowest rounded-xl shadow-[4px_4px_0px_#1E293B] overflow-hidden flex flex-col justify-between transition-all hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-[6px_6px_0px_#1E293B]" data-specialty="Dermatology">
+<div class="bg-primary-fixed p-space-md flex items-center justify-between">
+<div class="flex items-center gap-1 bg-surface-container-lowest text-on-surface px-space-sm py-0.5 rounded-full font-label-sm text-label-sm shadow-[1px_1px_0px_#1E293B]">
+<span class="material-symbols-outlined text-primary text-[14px]">face</span>
+<span>Dermatologist</span>
+</div>
+<div class="flex items-center gap-1 bg-primary text-on-primary px-space-sm py-0.5 rounded-full font-label-sm text-label-sm font-bold shadow-[1px_1px_0px_#1E293B]">
+<span class="material-symbols-outlined text-[13px]">bolt</span> 97% Match
+          </div>
+</div>
+<div class="p-space-lg flex flex-col gap-space-md flex-grow">
+<div class="flex items-start gap-space-md">
+<div class="relative w-16 h-16 rounded-full overflow-hidden bg-primary-fixed flex-shrink-0 shadow-[2px_2px_0px_#1E293B]">
+<img class="w-full h-full object-cover" data-alt="Editorial portrait of Dr Aisha Patel young South Asian female dermatologist with glowing skin and pristine medical white coat against pastel lilac backdrop in high key neo brutalist style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD8YEAizW7d4BF6v0gtj8oY1o9SqYgLma9WIUH2b0PsVXEOuo_U9P_bl7VuxUo1_EgO7-OgSbMcObA5H3hL2jqVW6m2kN5bWNNk0jzL5fjnY_7-2j86Yn_1n2p4tOMFBto-l_g-eS_VwBEQtPxPNyTRqnD5e6zYsgaHQ8oyA_Ex5eWhn-GNDhJt-5_w6xzugwvgN9JrDesU-xoU8qllfapkjRdxXBc_si8FDVezurI"/>
+<span class="absolute bottom-0 right-0 w-4 h-4 bg-tertiary-fixed rounded-full flex items-center justify-center shadow-[1px_1px_0px_#1E293B]">
+<span class="material-symbols-outlined text-on-tertiary-fixed text-[11px] font-bold">verified</span>
+</span>
+</div>
+<div class="flex flex-col min-w-0">
+<div class="flex items-center gap-1">
+<h3 class="font-headline-sm text-headline-sm text-on-surface truncate">Dr. Aisha Patel</h3>
+<span class="font-label-sm text-label-sm bg-surface-container text-on-surface px-1.5 py-0.2 rounded font-bold">MD, FAAD</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant truncate">Metro Skin &amp; Laser Clinic</p>
+<div class="flex items-center gap-1 text-tertiary font-label-sm text-label-sm mt-0.5">
+<span class="material-symbols-outlined text-[15px]">star</span>
+<span class="font-bold">4.92</span>
+<span class="text-on-surface-variant">(490 reviews)</span>
+</div>
+</div>
+</div>
+<div class="flex flex-wrap gap-space-xs">
+<span class="bg-surface-container-low text-on-surface px-space-sm py-1 rounded-full font-label-sm text-label-sm shadow-[1px_1px_0px_#1E293B]">
+              11 yrs exp
+            </span>
+<span class="bg-secondary-fixed text-on-secondary-fixed px-space-sm py-1 rounded-full font-label-sm text-label-sm shadow-[1px_1px_0px_#1E293B]">
+              Cosmetic &amp; Clinical
+            </span>
+<span class="bg-surface-container-highest text-on-surface px-space-sm py-1 rounded-full font-label-sm text-label-sm">
+              Spanish, Hindi
+            </span>
+</div>
+<div class="bg-surface-container-low p-space-sm rounded-lg shadow-[2px_2px_0px_#1E293B] flex items-center justify-between">
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-primary text-[18px]">timer</span>
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Earliest Slot</span>
+<span class="font-label-md text-label-md text-on-surface font-bold">✦ Today, 3:00 PM</span>
+</div>
+</div>
+<div class="text-right">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Fee</span>
+<p class="font-headline-sm text-headline-sm text-primary leading-tight">$125</p>
+</div>
+</div>
+</div>
+<div class="p-space-md bg-surface-container-low flex items-center gap-space-sm">
+<button class="flex-1 bg-surface-container-lowest text-on-surface px-space-sm py-2 rounded-full font-label-md text-label-md shadow-[2px_2px_0px_#1E293B] hover:-translate-y-0.5 hover:shadow-[3px_3px_0px_#1E293B] active:translate-y-0 active:shadow-none transition-all" type="button">
+            View Profile
+          </button>
+<a class="flex-1 flex items-center justify-center gap-1 bg-primary text-on-primary px-space-sm py-2 rounded-full font-label-md text-label-md font-bold shadow-[2px_2px_0px_#1E293B] hover:-translate-y-0.5 hover:shadow-[4px_4px_0px_#1E293B] active:translate-y-0 active:shadow-none transition-all" data-path="book-appointment" href="#">
+            Book Appt <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</a>
+</div>
+</div>
+<!-- CARD 6: Dr. Robert Miller (Yellow Header) -->
+<div class="doctor-card bg-surface-container-lowest rounded-xl shadow-[4px_4px_0px_#1E293B] overflow-hidden flex flex-col justify-between transition-all hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-[6px_6px_0px_#1E293B]" data-specialty="Cardiology">
+<div class="bg-tertiary-fixed p-space-md flex items-center justify-between">
+<div class="flex items-center gap-1 bg-surface-container-lowest text-on-surface px-space-sm py-0.5 rounded-full font-label-sm text-label-sm shadow-[1px_1px_0px_#1E293B]">
+<span class="material-symbols-outlined text-tertiary text-[14px]">medication</span>
+<span>Internal Medicine</span>
+</div>
+<div class="flex items-center gap-1 bg-tertiary text-on-tertiary px-space-sm py-0.5 rounded-full font-label-sm text-label-sm font-bold shadow-[1px_1px_0px_#1E293B]">
+<span class="material-symbols-outlined text-[13px]">bolt</span> 94% Match
+          </div>
+</div>
+<div class="p-space-lg flex flex-col gap-space-md flex-grow">
+<div class="flex items-start gap-space-md">
+<div class="relative w-16 h-16 rounded-full overflow-hidden bg-tertiary-fixed flex-shrink-0 shadow-[2px_2px_0px_#1E293B]">
+<img class="w-full h-full object-cover" data-alt="Modern crisp studio portrait of Dr Robert Miller senior internist with warm kind expression wearing navy doctor scrub suit and stethoscope against clean graphic warm linen backdrop." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDdl4o2UtxL5Nn05tSw6Vw1OnQDeY-scRbEYhNOs-OTlZSW3r4pLTvobwli6d5NxRmXsmah3SGVAG8gsqNLzTGnlHUTM1dLtyD3iehTKuaEmxW18afKEebF3t21kO3JF-irgtjKv7RtizVNvpmhe3VSeUgu95M8iiyPOCAGoSjLztGEXSRbv5rGvv4fZBJw-mE5JeeETlgNVpYDVCBc4NzbomXB7Xjl9aeM2IaWl5Y"/>
+<span class="absolute bottom-0 right-0 w-4 h-4 bg-tertiary-fixed rounded-full flex items-center justify-center shadow-[1px_1px_0px_#1E293B]">
+<span class="material-symbols-outlined text-on-tertiary-fixed text-[11px] font-bold">verified</span>
+</span>
+</div>
+<div class="flex flex-col min-w-0">
+<div class="flex items-center gap-1">
+<h3 class="font-headline-sm text-headline-sm text-on-surface truncate">Dr. Robert Miller</h3>
+<span class="font-label-sm text-label-sm bg-surface-container text-on-surface px-1.5 py-0.2 rounded font-bold">MD, FACP</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant truncate">Downtown Health Pavilion</p>
+<div class="flex items-center gap-1 text-tertiary font-label-sm text-label-sm mt-0.5">
+<span class="material-symbols-outlined text-[15px]">star</span>
+<span class="font-bold">4.89</span>
+<span class="text-on-surface-variant">(640 reviews)</span>
+</div>
+</div>
+</div>
+<div class="flex flex-wrap gap-space-xs">
+<span class="bg-surface-container-low text-on-surface px-space-sm py-1 rounded-full font-label-sm text-label-sm shadow-[1px_1px_0px_#1E293B]">
+              22 yrs exp
+            </span>
+<span class="bg-tertiary-fixed-dim text-on-tertiary-fixed px-space-sm py-1 rounded-full font-label-sm text-label-sm shadow-[1px_1px_0px_#1E293B]">
+              Preventative Care
+            </span>
+<span class="bg-surface-container-highest text-on-surface px-space-sm py-1 rounded-full font-label-sm text-label-sm">
+              Senior Specialist
+            </span>
+</div>
+<div class="bg-surface-container-low p-space-sm rounded-lg shadow-[2px_2px_0px_#1E293B] flex items-center justify-between">
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-tertiary text-[18px]">calendar_today</span>
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Earliest Slot</span>
+<span class="font-label-md text-label-md text-on-surface font-bold">Tomorrow, 11:15 AM</span>
+</div>
+</div>
+<div class="text-right">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Fee</span>
+<p class="font-headline-sm text-headline-sm text-tertiary leading-tight">$110</p>
+</div>
+</div>
+</div>
+<div class="p-space-md bg-surface-container-low flex items-center gap-space-sm">
+<button class="flex-1 bg-surface-container-lowest text-on-surface px-space-sm py-2 rounded-full font-label-md text-label-md shadow-[2px_2px_0px_#1E293B] hover:-translate-y-0.5 hover:shadow-[3px_3px_0px_#1E293B] active:translate-y-0 active:shadow-none transition-all" type="button">
+            View Profile
+          </button>
+<a class="flex-1 flex items-center justify-center gap-1 bg-primary text-on-primary px-space-sm py-2 rounded-full font-label-md text-label-md font-bold shadow-[2px_2px_0px_#1E293B] hover:-translate-y-0.5 hover:shadow-[4px_4px_0px_#1E293B] active:translate-y-0 active:shadow-none transition-all" data-path="book-appointment" href="#">
+            Book Appt <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</a>
+</div>
+</div>
+</div>
+<!-- AI Live Waitlist Banner (Bottom Sticky Urgency Card) -->
+<div class="sticky bottom-4 z-40 bg-surface-container-lowest rounded-xl shadow-[4px_4px_0px_#1E293B] p-space-md md:p-space-lg flex flex-col md:flex-row items-center justify-between gap-space-md">
+<div class="flex items-center gap-space-md">
+<div class="w-12 h-12 rounded-full bg-secondary-fixed flex items-center justify-center text-on-secondary-fixed shadow-[2px_2px_0px_#1E293B] flex-shrink-0">
+<span class="material-symbols-outlined text-[26px]">radar</span>
+</div>
+<div class="flex flex-col">
+<div class="flex items-center gap-2">
+<h4 class="font-headline-sm text-headline-sm text-on-surface">Can't find your preferred doctor or slot?</h4>
+<span class="hidden sm:inline-block bg-tertiary-fixed text-on-tertiary-fixed font-label-sm text-label-sm px-2 py-0.5 rounded-full font-bold">Scanning Live</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+            MediBot AI auto-monitors hospital cancellations every 90 seconds and reserves them before public release.
+          </p>
+</div>
+</div>
+<div class="flex items-center gap-space-sm w-full md:w-auto">
+<button class="w-full md:w-auto flex items-center justify-center gap-2 bg-secondary text-on-secondary px-space-lg py-2.5 rounded-full shadow-[3px_3px_0px_#1E293B] hover:-translate-y-0.5 hover:shadow-[5px_5px_0px_#1E293B] active:translate-y-0.5 active:shadow-none font-label-lg text-label-lg font-bold transition-all" id="joinWaitlistBtn" type="button">
+<span class="material-symbols-outlined text-[18px]">notifications_active</span>
+          Join Smart Waitlist
+        </button>
+</div>
+</div>
+<!-- Waitlist Notification Modal (Hidden by default) -->
+<div class="fixed inset-0 z-50 bg-black/40 backdrop-blur-sm hidden flex items-center justify-center p-4" id="waitlistModal">
+<div class="bg-surface-container-lowest rounded-xl shadow-[6px_6px_0px_#1E293B] max-w-md w-full p-space-lg flex flex-col gap-space-md relative">
+<button class="absolute top-4 right-4 w-8 h-8 rounded-full bg-surface-container flex items-center justify-center text-on-surface hover:bg-surface-container-highest transition-colors" id="closeModalBtn" type="button">
+<span class="material-symbols-outlined text-[18px]">close</span>
+</button>
+<div class="w-12 h-12 rounded-full bg-primary-fixed flex items-center justify-center text-primary shadow-[2px_2px_0px_#1E293B]">
+<span class="material-symbols-outlined text-[28px]">smart_toy</span>
+</div>
+<div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface">MediBot Queue Tracker</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1">Enter your mobile or email to get instant SMS when an expedited slot frees up.</p>
+</div>
+<div class="flex flex-col gap-space-sm">
+<label class="font-label-sm text-label-sm uppercase font-bold text-on-surface-variant">Notify via Mobile</label>
+<input class="w-full bg-surface rounded-lg shadow-[2px_2px_0px_#1E293B] px-space-md py-2 text-on-surface font-body-md focus:outline-none focus:shadow-[2px_2px_0px_#8455ef]" placeholder="+1 (555) 019-2834" type="tel"/>
+</div>
+<button class="bg-primary text-on-primary py-2.5 rounded-full font-label-lg text-label-lg font-bold shadow-[3px_3px_0px_#1E293B] hover:-translate-y-0.5 active:translate-y-0.5 transition-all" id="confirmWaitlistBtn" type="button">
+          Activate Auto-Claim
+        </button>
+</div>
+</div>
+</div>
+<script>
+    (function initDoctorDiscovery() {
+      const searchInput = document.getElementById('doctorSearchInput');
+      const cards = document.querySelectorAll('.doctor-card');
+      const filterPills = document.querySelectorAll('.filter-chip');
+      const counter = document.getElementById('resultCounter');
+      const waitlistBtn = document.getElementById('joinWaitlistBtn');
+      const modal = document.getElementById('waitlistModal');
+      const closeModalBtn = document.getElementById('closeModalBtn');
+      const confirmWaitlistBtn = document.getElementById('confirmWaitlistBtn');
+
+      let currentSpecialty = 'all';
+      let searchQuery = '';
+
+      function filterDoctors() {
+        let visibleCount = 0;
+        cards.forEach(card => {
+          const cardSpecialty = card.getAttribute('data-specialty') || '';
+          const cardText = card.innerText.toLowerCase();
+          const matchesSpecialty = (currentSpecialty === 'all') || (cardSpecialty.toLowerCase() === currentSpecialty.toLowerCase());
+          const matchesSearch = !searchQuery || cardText.includes(searchQuery);
+
+          if (matchesSpecialty && matchesSearch) {
+            card.style.display = 'flex';
+            visibleCount++;
+          } else {
+            card.style.display = 'none';
+          }
+        });
+        if (counter) {
+          counter.textContent = visibleCount + ' Matches';
+        }
+      }
+
+      if (searchInput) {
+        searchInput.addEventListener('input', (e) => {
+          searchQuery = e.target.value.toLowerCase().trim();
+          filterDoctors();
+        });
+      }
+
+      filterPills.forEach(pill => {
+        pill.addEventListener('click', () => {
+          filterPills.forEach(p => {
+            p.classList.remove('bg-primary', 'text-on-primary', 'active');
+            p.classList.add('bg-surface-container-lowest', 'text-on-surface');
+          });
+          pill.classList.remove('bg-surface-container-lowest', 'text-on-surface');
+          pill.classList.add('bg-primary', 'text-on-primary', 'active');
+          currentSpecialty = pill.getAttribute('data-specialty') || 'all';
+          filterDoctors();
+        });
+      });
+
+      if (waitlistBtn && modal) {
+        waitlistBtn.addEventListener('click', () => {
+          modal.classList.remove('hidden');
+        });
+      }
+
+      if (closeModalBtn && modal) {
+        closeModalBtn.addEventListener('click', () => {
+          modal.classList.add('hidden');
+        });
+      }
+
+      if (confirmWaitlistBtn && modal) {
+        confirmWaitlistBtn.addEventListener('click', () => {
+          confirmWaitlistBtn.textContent = '✓ Subscribed & Active!';
+          confirmWaitlistBtn.classList.replace('bg-primary', 'bg-tertiary-container');
+          setTimeout(() => {
+            modal.classList.add('hidden');
+            confirmWaitlistBtn.textContent = 'Activate Auto-Claim';
+            confirmWaitlistBtn.classList.replace('bg-tertiary-container', 'bg-primary');
+          }, 1200);
+        });
+      }
+    })();
+  </script>
+</div></main><footer class="w-full bg-[#FFFDF5] border-t-2 border-[#1E293B] py-space-xl mt-space-xl"><div class="w-full px-gutter flex flex-col md:flex-row items-center justify-between gap-space-md"><div class="flex items-center gap-space-sm"><img alt="MediSlot AI Brand Logo" class="h-6 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/ALJJyrDxGcr9a14B_ezYtZtT_zqUjLZxrpDfUsI7BaO1RbyJbU0ympuF9pCbRWA5-Bst3UUks9hd-19w413UvHsVRXEpSVCjLZdltH_j2ogQrjQFEZVr7GEZoo02HOHjx-CxThYPdgR1Bs__mqGmQb9v0-ABWDF2n7Y48gs5q35_pMcjF6wzXLCoSu4e4VUp-8PM2WOaEMaKc_QTZ6WO8vi-xjtzd_dx5ETEC7gXp-aAKdVa"/><span class="font-headline-sm text-headline-sm text-on-surface">MediSlot AI</span><span class="font-label-sm text-label-sm text-on-surface-variant">© 2025 MediSlot HealthTech Inc. Neo-Brutalist Scheduling Engine.</span></div><div class="flex items-center gap-space-md font-label-md text-label-md text-on-surface-variant"><a class="hover:text-primary transition-colors" href="#">Clinical Privacy</a><a class="hover:text-primary transition-colors" href="#">HIPAA Shield</a><a class="hover:text-primary transition-colors" href="#">API Docs</a><a class="hover:text-primary transition-colors" href="#">Emergency Protocols</a></div></div></footer></body></html>

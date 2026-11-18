@@ -1,0 +1,89 @@
+/* Custom styles complementing Tailwind CDN */
+@layer base {
+  html, body {
+    margin: 0;
+    padding: 0;
+    background-color: #FFFDF5;
+    color: #111c2d;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Outfit', sans-serif;
+  }
+}
+
+/* Material Symbols fill variant helper */
+.fill-1 {
+  font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+}
+
+/* Neo-Brutalist mechanical button physics */
+.neo-btn {
+  border: 2px solid #1E293B;
+  box-shadow: 3px 3px 0px #1E293B;
+  transition: all 0.15s ease-in-out;
+}
+.neo-btn:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 5px 5px 0px #1E293B;
+}
+.neo-btn:active {
+  transform: translate(2px, 2px);
+  box-shadow: 0px 0px 0px #1E293B;
+}
+
+/* Neo-Brutalist cards */
+.neo-card {
+  border: 2px solid #1E293B;
+  box-shadow: 4px 4px 0px #1E293B;
+  transition: all 0.2s ease-in-out;
+}
+.neo-card-hover:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 6px 6px 0px #1E293B;
+}
+
+/* Smooth modal backdrop fade */
+.modal-backdrop {
+  background-color: rgba(30, 41, 59, 0.45);
+  backdrop-filter: blur(4px);
+}
+
+/* Hide scrollbars where needed */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Animated radar pulse */
+@keyframes pulse-radar {
+  0% { transform: scale(0.95); opacity: 0.8; }
+  50% { transform: scale(1.15); opacity: 0.3; }
+  100% { transform: scale(0.95); opacity: 0.8; }
+}
+
+.radar-pulse {
+  animation: pulse-radar 2s infinite ease-in-out;
+}
+
+/* Print Stylesheet for Patient Check-in Clinical Pass */
+@media print {
+  header, aside, footer, #medibot-drawer, #toast-container, .no-print {
+    display: none !important;
+  }
+  body, main {
+    background: white !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+  .printable-pass {
+    box-shadow: none !important;
+    border: 2px solid #000 !important;
+    width: 100% !important;
+    margin: 0 auto !important;
+  }
+}

@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_dashboard" name="shell-type"/><title>MediSlot AI - Clinical Operations Portal</title><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&amp;family=Plus+Jakarta+Sans:wght@400;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config={darkMode:"class",theme:{extend:{"colors":{"on-primary-container":"#fffbff","error-container":"#ffdad6","on-secondary-container":"#76014e","outline-variant":"#cbc3d7","surface-container-highest":"#d8e3fb","on-primary-fixed":"#23005c","surface-tint":"#6d3bd7","surface-variant":"#d8e3fb","surface-container-high":"#dee8ff","inverse-primary":"#d0bcff","on-tertiary-fixed-variant":"#5c4300","secondary":"#a43073","on-primary":"#ffffff","on-secondary":"#ffffff","error":"#ba1a1a","tertiary-fixed-dim":"#f9bd22","surface-container-lowest":"#ffffff","outline":"#7b7486","inverse-on-surface":"#ecf1ff","background":"#f9f9ff","primary-fixed":"#e9ddff","tertiary-fixed":"#ffdf9f","surface-dim":"#cfdaf2","secondary-container":"#fc79bd","tertiary-container":"#956e00","on-primary-fixed-variant":"#5516be","on-secondary-fixed":"#3d0026","on-background":"#111c2d","on-tertiary-fixed":"#261a00","on-error":"#ffffff","inverse-surface":"#263143","surface":"#f9f9ff","primary-fixed-dim":"#d0bcff","on-error-container":"#93000a","on-surface":"#111c2d","on-tertiary-container":"#fffbff","on-surface-variant":"#494454","on-tertiary":"#ffffff","surface-container-low":"#f0f3ff","tertiary":"#765700","secondary-fixed":"#ffd8e7","surface-bright":"#f9f9ff","surface-container":"#e7eeff","secondary-fixed-dim":"#ffafd3","primary":"#6b38d4","primary-container":"#8455ef","on-secondary-fixed-variant":"#85145a"},"borderRadius":{"DEFAULT":"1rem","lg":"2rem","xl":"3rem","full":"9999px"},"spacing":{"space-xs":"0.25rem","space-md":"1rem","margin":"2rem","space-lg":"1.5rem","gutter-mobile":"1rem","space-xl":"2.5rem","space-sm":"0.5rem","margin-mobile":"1rem","gutter":"1.5rem"},"fontFamily":{"headline-xl":["Outfit"],"label-md":["Plus Jakarta Sans"],"body-md":["Plus Jakarta Sans"],"headline-lg-mobile":["Outfit"],"headline-md":["Outfit"],"body-sm":["Plus Jakarta Sans"],"headline-xl-mobile":["Outfit"],"label-lg":["Plus Jakarta Sans"],"headline-sm":["Outfit"],"headline-lg":["Outfit"],"body-lg":["Plus Jakarta Sans"],"label-sm":["Plus Jakarta Sans"]},"fontSize":{"headline-xl":["48px",{"lineHeight":"56px","letterSpacing":"-0.02em","fontWeight":"800"}],"label-md":["12px",{"lineHeight":"16px","letterSpacing":"0.03em","fontWeight":"700"}],"body-md":["15px",{"lineHeight":"24px","fontWeight":"400"}],"headline-lg-mobile":["26px",{"lineHeight":"34px","letterSpacing":"-0.01em","fontWeight":"700"}],"headline-md":["24px",{"lineHeight":"32px","letterSpacing":"-0.01em","fontWeight":"700"}],"body-sm":["13px",{"lineHeight":"20px","fontWeight":"400"}],"headline-xl-mobile":["32px",{"lineHeight":"40px","letterSpacing":"-0.01em","fontWeight":"800"}],"label-lg":["14px",{"lineHeight":"20px","letterSpacing":"0.02em","fontWeight":"700"}],"headline-sm":["20px",{"lineHeight":"28px","fontWeight":"600"}],"headline-lg":["36px",{"lineHeight":"44px","letterSpacing":"-0.015em","fontWeight":"700"}],"body-lg":["18px",{"lineHeight":"28px","fontWeight":"400"}],"label-sm":["11px",{"lineHeight":"14px","letterSpacing":"0.04em","fontWeight":"800"}]}}}};</script></head><body class="bg-[#FFFDF5] font-body-md text-on-surface antialiased"><aside class="fixed left-0 top-0 h-full w-72 bg-[#FFFDF5] border-r-2 border-[#1E293B] shadow-[4px_0_0_0_#1E293B] z-50 flex flex-col justify-between p-space-md"><div class="flex flex-col gap-space-lg"><div class="flex items-center gap-space-sm pt-space-xs"><img alt="MediSlot AI Brand Logo" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/ALJJyrDxGcr9a14B_ezYtZtT_zqUjLZxrpDfUsI7BaO1RbyJbU0ympuF9pCbRWA5-Bst3UUks9hd-19w413UvHsVRXEpSVCjLZdltH_j2ogQrjQFEZVr7GEZoo02HOHjx-CxThYPdgR1Bs__mqGmQb9v0-ABWDF2n7Y48gs5q35_pMcjF6wzXLCoSu4e4VUp-8PM2WOaEMaKc_QTZ6WO8vi-xjtzd_dx5ETEC7gXp-aAKdVa"/><div class="flex flex-col"><span class="font-headline-sm text-headline-sm text-on-surface">MediSlot AI</span><span class="font-label-sm text-label-sm text-on-surface-variant font-bold uppercase tracking-wider">Clinical Matrix</span></div></div><div class="p-space-sm bg-tertiary-fixed border-2 border-[#1E293B] rounded-lg shadow-[3px_3px_0px_#1E293B] flex items-center justify-between"><span class="font-label-sm text-label-sm text-on-tertiary-fixed font-bold uppercase">Live Queue Sync</span><span class="material-symbols-outlined text-tertiary text-[18px]">bolt</span></div><nav class="flex flex-col gap-space-xs" data-active-classes="bg-primary text-on-primary font-bold shadow-[3px_3px_0px_#1E293B] translate-x-1"><a class="flex items-center gap-space-sm px-space-md py-2.5 rounded-lg border-2 border-[#1E293B] bg-surface-container-lowest text-on-surface font-label-md text-label-md hover:bg-surface-container hover:text-on-surface transition-all shadow-[2px_2px_0px_#1E293B]" data-path="patient-portal" href="#"><span class="material-symbols-outlined text-[20px]">grid_view</span>Patient Portal</a><a aria-current="page" class="flex items-center gap-space-sm px-space-md py-2.5 rounded-lg border-2 border-[#1E293B] transition-all bg-primary text-on-primary font-bold shadow-[3px_3px_0px_#1E293B] translate-x-1" data-path="book-appointment" href="#"><span class="material-symbols-outlined text-[20px]">calendar_add_on</span>Book Appointment</a><a class="flex items-center gap-space-sm px-space-md py-2.5 rounded-lg border-2 border-[#1E293B] bg-surface-container-lowest text-on-surface font-label-md text-label-md hover:bg-surface-container hover:text-on-surface transition-all shadow-[2px_2px_0px_#1E293B]" data-path="find-doctors" href="#"><span class="material-symbols-outlined text-[20px]">person_search</span>Find Doctors</a><a class="flex items-center gap-space-sm px-space-md py-2.5 rounded-lg border-2 border-[#1E293B] bg-surface-container-lowest text-on-surface font-label-md text-label-md hover:bg-surface-container hover:text-on-surface transition-all shadow-[2px_2px_0px_#1E293B]" data-path="doctor-console" href="#"><span class="material-symbols-outlined text-[20px]">stethoscope</span>Doctor Console</a><a class="flex items-center gap-space-sm px-space-md py-2.5 rounded-lg border-2 border-[#1E293B] bg-surface-container-lowest text-on-surface font-label-md text-label-md hover:bg-surface-container hover:text-on-surface transition-all shadow-[2px_2px_0px_#1E293B]" data-path="admin-hub" href="#"><span class="material-symbols-outlined text-[20px]">tune</span>Admin Hub</a></nav></div><div class="flex flex-col gap-space-sm"><div class="bg-secondary-fixed border-2 border-[#1E293B] rounded-lg p-space-sm shadow-[3px_3px_0px_#1E293B]"><div class="flex items-center gap-1.5 mb-1"><span class="material-symbols-outlined text-secondary text-[18px]">smart_toy</span><span class="font-label-md text-label-md text-on-secondary-fixed font-bold">MediBot AI</span></div><p class="font-body-sm text-body-sm text-on-secondary-fixed mb-space-sm">Slot optimizer detected 3 cancellation openings.</p><button class="w-full bg-[#1E293B] text-surface-container-lowest font-label-sm text-label-sm py-1.5 rounded-md hover:bg-on-surface-variant transition-colors" type="button">Auto-Fill Queue</button></div><a class="flex items-center justify-center gap-1.5 px-space-md py-2 rounded-lg border-2 border-[#1E293B] bg-surface-container-lowest text-on-surface-variant font-label-sm text-label-sm hover:text-on-surface" data-path="landing" href="#"><span class="material-symbols-outlined text-[16px]">arrow_back</span>Back to Home</a></div></aside><div class="pl-72"><header class="fixed top-0 left-72 right-0 h-20 bg-[#FFFDF5] border-b-2 border-[#1E293B] shadow-[0_4px_0_0_#1E293B] z-40 flex items-center justify-between px-gutter"><div class="flex items-center gap-space-md"><div class="hidden sm:flex items-center gap-2 bg-surface-container-lowest border-2 border-[#1E293B] px-space-md py-1.5 rounded-full shadow-[2px_2px_0px_#1E293B]"><span class="material-symbols-outlined text-outline text-[18px]">search</span><span class="font-body-sm text-body-sm text-on-surface-variant">Search doctors, slots, or MRN...</span></div></div><div class="flex items-center gap-space-sm"><button class="hidden sm:flex items-center gap-1.5 bg-secondary-fixed text-on-secondary-fixed border-2 border-[#1E293B] px-space-md py-1.5 rounded-full shadow-[2px_2px_0px_#1E293B] font-label-md text-label-md" type="button"><span class="material-symbols-outlined text-secondary text-[18px]">smart_toy</span>Ask MediBot AI</button><a class="flex items-center gap-1 bg-primary text-on-primary border-2 border-[#1E293B] px-space-md py-2 rounded-full shadow-[3px_3px_0px_#1E293B] font-label-lg text-label-lg hover:-translate-x-0.5 hover:-translate-y-0.5 active:translate-x-0.5 active:translate-y-0.5 active:shadow-none transition-transform" data-path="book-appointment" href="#">Book Slot</a><div class="flex items-center gap-space-xs pl-space-xs"><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div><span class="hidden md:inline-flex bg-surface-container-highest border border-[#1E293B] text-on-surface font-label-sm text-label-sm px-space-sm py-0.5 rounded-full">Verified Patient</span></div></div></header><main class="relative pt-20 bg-[#FFFDF5] min-h-screen"><div class="flex flex-col w-full pb-16">
+<!-- Top Stepper Bar -->
+<div class="px-gutter pt-space-lg pb-space-md border-b-2 border-[#1E293B] bg-[#FFFDF5]">
+<div class="max-w-7xl mx-auto">
+<div class="flex items-center justify-between overflow-x-auto py-2 no-scrollbar">
+<!-- Step 1 (Done) -->
+<div class="flex items-center gap-space-xs shrink-0">
+<div class="w-9 h-9 rounded-full bg-[#34D399] border-2 border-[#1E293B] flex items-center justify-center shadow-[2px_2px_0px_#1E293B] text-on-surface font-label-md text-label-md font-bold">
+<span class="material-symbols-outlined text-[18px]">check</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-outline">Step 1</span>
+<span class="font-label-md text-label-md text-on-surface font-bold">Doctor Selected</span>
+</div>
+</div>
+<div class="w-10 sm:w-16 h-0.5 bg-[#1E293B] shrink-0 mx-2"></div>
+<!-- Step 2 (Active) -->
+<div class="flex items-center gap-space-xs shrink-0">
+<div class="w-9 h-9 rounded-full bg-primary text-on-primary border-2 border-[#1E293B] flex items-center justify-center shadow-[4px_4px_0px_#1E293B] font-label-md text-label-md font-extrabold animate-pulse">
+            2
+          </div>
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-primary font-bold">Current</span>
+<span class="font-label-md text-label-md text-on-surface font-extrabold">Date &amp; Time</span>
+</div>
+</div>
+<div class="w-10 sm:w-16 h-0.5 bg-outline-variant shrink-0 mx-2"></div>
+<!-- Step 3 -->
+<div class="flex items-center gap-space-xs shrink-0 opacity-70">
+<div class="w-9 h-9 rounded-full bg-surface-container-lowest border-2 border-[#1E293B] flex items-center justify-center shadow-[2px_2px_0px_#1E293B] text-on-surface font-label-md text-label-md font-bold">
+            3
+          </div>
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-outline">Step 3</span>
+<span class="font-label-md text-label-md text-on-surface">Consult Mode</span>
+</div>
+</div>
+<div class="w-10 sm:w-16 h-0.5 bg-outline-variant shrink-0 mx-2"></div>
+<!-- Step 4 -->
+<div class="flex items-center gap-space-xs shrink-0 opacity-50">
+<div class="w-9 h-9 rounded-full bg-surface-container-lowest border-2 border-[#1E293B] flex items-center justify-center shadow-[2px_2px_0px_#1E293B] text-on-surface font-label-md text-label-md font-bold">
+            4
+          </div>
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-outline">Step 4</span>
+<span class="font-label-md text-label-md text-on-surface">Intake Details</span>
+</div>
+</div>
+<div class="w-10 sm:w-16 h-0.5 bg-outline-variant shrink-0 mx-2"></div>
+<!-- Step 5 -->
+<div class="flex items-center gap-space-xs shrink-0 opacity-40">
+<div class="w-9 h-9 rounded-full bg-surface-container-lowest border-2 border-[#1E293B] flex items-center justify-center shadow-[2px_2px_0px_#1E293B] text-on-surface font-label-md text-label-md font-bold">
+            5
+          </div>
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-outline">Step 5</span>
+<span class="font-label-md text-label-md text-on-surface">Review</span>
+</div>
+</div>
+<div class="w-10 sm:w-16 h-0.5 bg-outline-variant shrink-0 mx-2"></div>
+<!-- Step 6 -->
+<div class="flex items-center gap-space-xs shrink-0 opacity-40">
+<div class="w-9 h-9 rounded-full bg-surface-container-lowest border-2 border-[#1E293B] flex items-center justify-center shadow-[2px_2px_0px_#1E293B] text-on-surface font-label-md text-label-md font-bold">
+            6
+          </div>
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-outline">Step 6</span>
+<span class="font-label-md text-label-md text-on-surface">Confirm</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Doctor Summary & Shield Lock Banner -->
+<div class="px-gutter py-space-md bg-surface-container-low border-b-2 border-[#1E293B]">
+<div class="max-w-7xl mx-auto flex flex-col md:flex-row md:items-center justify-between gap-space-md">
+<div class="flex items-center gap-space-md">
+<div class="relative w-14 h-14 rounded-full border-2 border-[#1E293B] overflow-hidden bg-primary-fixed shadow-[3px_3px_0px_#1E293B] shrink-0">
+<img class="w-full h-full object-cover" data-alt="Warm and professional female cardiologist wearing modern medical coat and stethoscope in a bright playful clinic setting with pastel background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBwb0Ju8pqUPElote7vtFU_c_LgubjUJfVGIICiRpMmb4Q-DBqCHCCasCWhQG4NwsB8G2ua4-FQ-6S68xHxPxkQfYhPLuUqPFh4FRh4R8gEaw63hI4Rbbc9bJ_bWxTQZop7qN-C1AmACmesRQqIuJE6LsS5T9fUb-19gFGQi3_Wb8yKT0j7njyweFvK4zC66P3Ny9-R0pZ5YM9pUyW1t7RpmIiB5BQCn9DZgVKlPo8"/>
+<div class="absolute bottom-0 right-0 w-3.5 h-3.5 rounded-full bg-[#34D399] border-2 border-[#1E293B]"></div>
+</div>
+<div class="flex flex-col">
+<div class="flex items-center gap-space-xs flex-wrap">
+<h2 class="font-headline-sm text-headline-sm text-on-surface">Dr. Sarah Jenkins, MD</h2>
+<span class="bg-secondary-fixed text-on-secondary-fixed border-2 border-[#1E293B] text-label-sm font-label-sm px-2 py-0.5 rounded-full shadow-[2px_2px_0px_#1E293B] font-bold">Senior Cardiologist</span>
+</div>
+<span class="font-body-sm text-body-sm text-on-surface-variant flex items-center gap-2 mt-0.5">
+<span class="material-symbols-outlined text-[16px] text-tertiary">star</span> 4.98 (340+ reviews) • Stanford Medical Plaza, Suite 402 • <strong class="text-on-surface font-bold">$120.00 / visit</strong>
+</span>
+</div>
+</div>
+<!-- Shield Pill -->
+<div class="flex items-center gap-space-sm bg-tertiary-fixed border-2 border-[#1E293B] px-space-md py-2 rounded-full shadow-[4px_4px_0px_#1E293B] self-start md:self-auto">
+<span class="material-symbols-outlined text-tertiary text-[20px] animate-spin">shield</span>
+<div class="flex items-center gap-1.5 font-label-md text-label-md text-on-tertiary-fixed font-bold">
+<span>Double-Booking Shield Active:</span>
+<span class="bg-[#FFFDF5] border border-[#1E293B] px-2 py-0.5 rounded text-on-surface font-extrabold tracking-wider" id="shield-timer">09:45</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Main Interactive Booking Workspace -->
+<div class="px-gutter py-space-lg max-w-7xl mx-auto w-full">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-space-lg items-start">
+<!-- Left 8 Cols: Schedule Selection & Options -->
+<div class="lg:col-span-8 flex flex-col gap-space-lg">
+<!-- Neo-brutalist Interactive Calendar Container -->
+<div class="bg-surface-container-lowest border-2 border-[#1E293B] rounded-lg p-space-md shadow-[4px_4px_0px_#1E293B]">
+<div class="flex flex-col sm:flex-row sm:items-center justify-between pb-space-md border-b-2 border-[#1E293B] gap-space-sm">
+<div>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[24px]">event_note</span>
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Select Appointment Date</h3>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Real-time availability synced with Stanford Clinical Matrix</p>
+</div>
+<div class="flex items-center gap-2">
+<button class="w-9 h-9 rounded-full bg-surface-container border-2 border-[#1E293B] shadow-[2px_2px_0px_#1E293B] flex items-center justify-center hover:-translate-x-0.5 hover:-translate-y-0.5 active:translate-x-0.5 active:translate-y-0.5 active:shadow-none transition-transform" type="button">
+<span class="material-symbols-outlined text-[18px]">chevron_left</span>
+</button>
+<div class="bg-primary-fixed border-2 border-[#1E293B] px-space-md py-1 rounded-full shadow-[2px_2px_0px_#1E293B] font-headline-sm text-[16px] text-on-primary-fixed font-bold">
+                October 2024
+              </div>
+<button class="w-9 h-9 rounded-full bg-surface-container border-2 border-[#1E293B] shadow-[2px_2px_0px_#1E293B] flex items-center justify-center hover:-translate-x-0.5 hover:-translate-y-0.5 active:translate-x-0.5 active:translate-y-0.5 active:shadow-none transition-transform" type="button">
+<span class="material-symbols-outlined text-[18px]">chevron_right</span>
+</button>
+</div>
+</div>
+<!-- Calendar Subheading Legend -->
+<div class="flex items-center gap-space-md pt-space-sm pb-space-xs text-label-sm font-label-sm text-on-surface-variant">
+<div class="flex items-center gap-1.5">
+<span class="w-2.5 h-2.5 rounded-full bg-[#34D399] border border-[#1E293B]"></span>
+<span>AI Low-Wait Days</span>
+</div>
+<div class="flex items-center gap-1.5">
+<span class="w-2.5 h-2.5 rounded-full bg-primary border border-[#1E293B]"></span>
+<span>Selected Date</span>
+</div>
+<div class="flex items-center gap-1.5">
+<span class="w-2.5 h-2.5 rounded-full bg-surface-dim border border-[#1E293B]"></span>
+<span>Fully Booked</span>
+</div>
+</div>
+<!-- Day Headers -->
+<div class="grid grid-cols-7 gap-2 pt-space-sm pb-space-xs text-center font-label-md text-label-md text-outline uppercase font-extrabold">
+<div>Mon</div>
+<div>Tue</div>
+<div>Wed</div>
+<div>Thu</div>
+<div>Fri</div>
+<div>Sat</div>
+<div>Sun</div>
+</div>
+<!-- Date Matrix Grid -->
+<div class="grid grid-cols-7 gap-2">
+<!-- Row 1 -->
+<button class="h-14 rounded-lg bg-surface-container-low border border-dashed border-outline-variant flex flex-col items-center justify-center text-outline opacity-40 cursor-not-allowed" disabled="" type="button">
+<span class="font-label-md text-label-md">30</span>
+</button>
+<button class="h-14 rounded-lg bg-[#FFFDF5] border-2 border-[#1E293B] shadow-[2px_2px_0px_#1E293B] flex flex-col items-center justify-between p-1 hover:bg-surface-container transition-colors" type="button">
+<span class="font-label-md text-label-md font-bold">1</span>
+<span class="w-2 h-2 rounded-full bg-[#34D399]"></span>
+</button>
+<button class="h-14 rounded-lg bg-[#FFFDF5] border-2 border-[#1E293B] shadow-[2px_2px_0px_#1E293B] flex flex-col items-center justify-between p-1 hover:bg-surface-container transition-colors" type="button">
+<span class="font-label-md text-label-md font-bold">2</span>
+<span class="w-2 h-2 rounded-full bg-[#34D399]"></span>
+</button>
+<button class="h-14 rounded-lg bg-[#FFFDF5] border-2 border-[#1E293B] shadow-[2px_2px_0px_#1E293B] flex flex-col items-center justify-between p-1 hover:bg-surface-container transition-colors" type="button">
+<span class="font-label-md text-label-md font-bold">3</span>
+<span class="w-2 h-2"></span>
+</button>
+<button class="h-14 rounded-lg bg-[#FFFDF5] border-2 border-[#1E293B] shadow-[2px_2px_0px_#1E293B] flex flex-col items-center justify-between p-1 hover:bg-surface-container transition-colors" type="button">
+<span class="font-label-md text-label-md font-bold">4</span>
+<span class="w-2 h-2 rounded-full bg-[#34D399]"></span>
+</button>
+<button class="h-14 rounded-lg bg-surface-dim border-2 border-[#1E293B] flex flex-col items-center justify-center text-outline cursor-not-allowed" disabled="" type="button">
+<span class="font-label-md text-label-md">5</span>
+<span class="font-label-sm text-[9px] uppercase font-bold text-outline">Off</span>
+</button>
+<button class="h-14 rounded-lg bg-surface-dim border-2 border-[#1E293B] flex flex-col items-center justify-center text-outline cursor-not-allowed" disabled="" type="button">
+<span class="font-label-md text-label-md">6</span>
+<span class="font-label-sm text-[9px] uppercase font-bold text-outline">Off</span>
+</button>
+<!-- Row 2 -->
+<button class="h-14 rounded-lg bg-[#FFFDF5] border-2 border-[#1E293B] shadow-[2px_2px_0px_#1E293B] flex flex-col items-center justify-between p-1 hover:bg-surface-container transition-colors" type="button">
+<span class="font-label-md text-label-md font-bold">7</span>
+<span class="w-2 h-2"></span>
+</button>
+<button class="h-14 rounded-lg bg-[#FFFDF5] border-2 border-[#1E293B] shadow-[2px_2px_0px_#1E293B] flex flex-col items-center justify-between p-1 hover:bg-surface-container transition-colors" type="button">
+<span class="font-label-md text-label-md font-bold">8</span>
+<span class="w-2 h-2 rounded-full bg-[#34D399]"></span>
+</button>
+<button class="h-14 rounded-lg bg-[#FFFDF5] border-2 border-[#1E293B] shadow-[2px_2px_0px_#1E293B] flex flex-col items-center justify-between p-1 hover:bg-surface-container transition-colors" type="button">
+<span class="font-label-md text-label-md font-bold">9</span>
+<span class="w-2 h-2"></span>
+</button>
+<button class="h-14 rounded-lg bg-[#FFFDF5] border-2 border-[#1E293B] shadow-[2px_2px_0px_#1E293B] flex flex-col items-center justify-between p-1 hover:bg-surface-container transition-colors" type="button">
+<span class="font-label-md text-label-md font-bold">10</span>
+<span class="w-2 h-2 rounded-full bg-[#34D399]"></span>
+</button>
+<button class="h-14 rounded-lg bg-[#FFFDF5] border-2 border-[#1E293B] shadow-[2px_2px_0px_#1E293B] flex flex-col items-center justify-between p-1 hover:bg-surface-container transition-colors" type="button">
+<span class="font-label-md text-label-md font-bold">11</span>
+<span class="w-2 h-2"></span>
+</button>
+<button class="h-14 rounded-lg bg-surface-dim border-2 border-[#1E293B] flex flex-col items-center justify-center text-outline cursor-not-allowed" disabled="" type="button">
+<span class="font-label-md text-label-md">12</span>
+<span class="font-label-sm text-[9px] uppercase font-bold text-outline">Off</span>
+</button>
+<button class="h-14 rounded-lg bg-surface-dim border-2 border-[#1E293B] flex flex-col items-center justify-center text-outline cursor-not-allowed" disabled="" type="button">
+<span class="font-label-md text-label-md">13</span>
+<span class="font-label-sm text-[9px] uppercase font-bold text-outline">Off</span>
+</button>
+<!-- Row 3 -->
+<button class="h-14 rounded-lg bg-[#FFFDF5] border-2 border-[#1E293B] shadow-[2px_2px_0px_#1E293B] flex flex-col items-center justify-between p-1 hover:bg-surface-container transition-colors" type="button">
+<span class="font-label-md text-label-md font-bold">14</span>
+<span class="w-2 h-2"></span>
+</button>
+<button class="h-14 rounded-lg bg-[#FFFDF5] border-2 border-[#1E293B] shadow-[2px_2px_0px_#1E293B] flex flex-col items-center justify-between p-1 hover:bg-surface-container transition-colors" type="button">
+<span class="font-label-md text-label-md font-bold">15</span>
+<span class="w-2 h-2 rounded-full bg-[#34D399]"></span>
+</button>
+<button class="h-14 rounded-lg bg-[#FFFDF5] border-2 border-[#1E293B] shadow-[2px_2px_0px_#1E293B] flex flex-col items-center justify-between p-1 hover:bg-surface-container transition-colors" type="button">
+<span class="font-label-md text-label-md font-bold">16</span>
+<span class="w-2 h-2"></span>
+</button>
+<button class="h-14 rounded-lg bg-[#FFFDF5] border-2 border-[#1E293B] shadow-[2px_2px_0px_#1E293B] flex flex-col items-center justify-between p-1 hover:bg-surface-container transition-colors" type="button">
+<span class="font-label-md text-label-md font-bold">17</span>
+<span class="w-2 h-2 rounded-full bg-[#34D399]"></span>
+</button>
+<button class="h-14 rounded-lg bg-[#FFFDF5] border-2 border-[#1E293B] shadow-[2px_2px_0px_#1E293B] flex flex-col items-center justify-between p-1 hover:bg-surface-container transition-colors" type="button">
+<span class="font-label-md text-label-md font-bold">18</span>
+<span class="w-2 h-2"></span>
+</button>
+<button class="h-14 rounded-lg bg-surface-dim border-2 border-[#1E293B] flex flex-col items-center justify-center text-outline cursor-not-allowed" disabled="" type="button">
+<span class="font-label-md text-label-md">19</span>
+<span class="font-label-sm text-[9px] uppercase font-bold text-outline">Off</span>
+</button>
+<button class="h-14 rounded-lg bg-surface-dim border-2 border-[#1E293B] flex flex-col items-center justify-center text-outline cursor-not-allowed" disabled="" type="button">
+<span class="font-label-md text-label-md">20</span>
+<span class="font-label-sm text-[9px] uppercase font-bold text-outline">Off</span>
+</button>
+<!-- Row 4 -->
+<button class="h-14 rounded-lg bg-[#FFFDF5] border-2 border-[#1E293B] shadow-[2px_2px_0px_#1E293B] flex flex-col items-center justify-between p-1 hover:bg-surface-container transition-colors" type="button">
+<span class="font-label-md text-label-md font-bold">21</span>
+<span class="w-2 h-2"></span>
+</button>
+<button class="h-14 rounded-lg bg-[#FFFDF5] border-2 border-[#1E293B] shadow-[2px_2px_0px_#1E293B] flex flex-col items-center justify-between p-1 hover:bg-surface-container transition-colors" type="button">
+<span class="font-label-md text-label-md font-bold">22</span>
+<span class="w-2 h-2 rounded-full bg-[#34D399]"></span>
+</button>
+<button class="h-14 rounded-lg bg-[#FFFDF5] border-2 border-[#1E293B] shadow-[2px_2px_0px_#1E293B] flex flex-col items-center justify-between p-1 hover:bg-surface-container transition-colors" type="button">
+<span class="font-label-md text-label-md font-bold">23</span>
+<span class="w-2 h-2"></span>
+</button>
+<!-- 24th Selected (Bold Violet with hard shadow) -->
+<button class="h-14 rounded-lg bg-primary text-on-primary border-2 border-[#1E293B] shadow-[4px_4px_0px_#1E293B] -translate-x-0.5 -translate-y-0.5 flex flex-col items-center justify-between p-1 font-bold ring-2 ring-primary-container" type="button">
+<span class="font-headline-sm text-headline-sm">24</span>
+<span class="font-label-sm text-[9px] uppercase tracking-wider bg-[#FFFDF5] text-primary px-1 rounded-sm font-extrabold">Today</span>
+</button>
+<button class="h-14 rounded-lg bg-[#FFFDF5] border-2 border-[#1E293B] shadow-[2px_2px_0px_#1E293B] flex flex-col items-center justify-between p-1 hover:bg-surface-container transition-colors" type="button">
+<span class="font-label-md text-label-md font-bold">25</span>
+<span class="w-2 h-2 rounded-full bg-[#34D399]"></span>
+</button>
+<button class="h-14 rounded-lg bg-surface-dim border-2 border-[#1E293B] flex flex-col items-center justify-center text-outline cursor-not-allowed" disabled="" type="button">
+<span class="font-label-md text-label-md">26</span>
+<span class="font-label-sm text-[9px] uppercase font-bold text-outline">Off</span>
+</button>
+<button class="h-14 rounded-lg bg-surface-dim border-2 border-[#1E293B] flex flex-col items-center justify-center text-outline cursor-not-allowed" disabled="" type="button">
+<span class="font-label-md text-label-md">27</span>
+<span class="font-label-sm text-[9px] uppercase font-bold text-outline">Off</span>
+</button>
+<!-- Row 5 -->
+<button class="h-14 rounded-lg bg-[#FFFDF5] border-2 border-[#1E293B] shadow-[2px_2px_0px_#1E293B] flex flex-col items-center justify-between p-1 hover:bg-surface-container transition-colors" type="button">
+<span class="font-label-md text-label-md font-bold">28</span>
+<span class="w-2 h-2"></span>
+</button>
+<button class="h-14 rounded-lg bg-[#FFFDF5] border-2 border-[#1E293B] shadow-[2px_2px_0px_#1E293B] flex flex-col items-center justify-between p-1 hover:bg-surface-container transition-colors" type="button">
+<span class="font-label-md text-label-md font-bold">29</span>
+<span class="w-2 h-2 rounded-full bg-[#34D399]"></span>
+</button>
+<button class="h-14 rounded-lg bg-[#FFFDF5] border-2 border-[#1E293B] shadow-[2px_2px_0px_#1E293B] flex flex-col items-center justify-between p-1 hover:bg-surface-container transition-colors" type="button">
+<span class="font-label-md text-label-md font-bold">30</span>
+<span class="w-2 h-2"></span>
+</button>
+<button class="h-14 rounded-lg bg-[#FFFDF5] border-2 border-[#1E293B] shadow-[2px_2px_0px_#1E293B] flex flex-col items-center justify-between p-1 hover:bg-surface-container transition-colors" type="button">
+<span class="font-label-md text-label-md font-bold">31</span>
+<span class="w-2 h-2 rounded-full bg-[#34D399]"></span>
+</button>
+<button class="h-14 rounded-lg bg-surface-container-low border border-dashed border-outline-variant flex flex-col items-center justify-center text-outline opacity-40 cursor-not-allowed" disabled="" type="button">
+<span class="font-label-md text-label-md">1</span>
+</button>
+<button class="h-14 rounded-lg bg-surface-container-low border border-dashed border-outline-variant flex flex-col items-center justify-center text-outline opacity-40 cursor-not-allowed" disabled="" type="button">
+<span class="font-label-md text-label-md">2</span>
+</button>
+<button class="h-14 rounded-lg bg-surface-container-low border border-dashed border-outline-variant flex flex-col items-center justify-center text-outline opacity-40 cursor-not-allowed" disabled="" type="button">
+<span class="font-label-md text-label-md">3</span>
+</button>
+</div>
+</div>
+<!-- Available Time Slots Section -->
+<div class="bg-surface-container-lowest border-2 border-[#1E293B] rounded-lg p-space-md shadow-[4px_4px_0px_#1E293B]">
+<div class="flex items-center justify-between pb-space-md border-b-2 border-[#1E293B]">
+<div>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary text-[24px]">schedule</span>
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Available Time Slots</h3>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Thursday, October 24, 2024 • 45 Min Session</p>
+</div>
+<div class="bg-secondary-fixed border-2 border-[#1E293B] px-space-sm py-1 rounded-full shadow-[2px_2px_0px_#1E293B] flex items-center gap-1.5 font-label-sm text-label-sm text-on-secondary-fixed font-bold">
+<span class="material-symbols-outlined text-secondary text-[16px]">bolt</span>
+<span>8 Slots Open</span>
+</div>
+</div>
+<!-- Morning Slots -->
+<div class="pt-space-md">
+<span class="font-label-md text-label-md text-outline uppercase font-extrabold tracking-wider flex items-center gap-1.5 mb-space-sm">
+<span class="material-symbols-outlined text-[16px] text-tertiary">wb_sunny</span>
+              Morning Sessions
+            </span>
+<div class="grid grid-cols-2 sm:grid-cols-4 gap-space-sm">
+<!-- Slot 1 -->
+<button class="slot-button p-2.5 rounded-lg border-2 border-[#1E293B] bg-[#FFFDF5] shadow-[2px_2px_0px_#1E293B] hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-[4px_4px_0px_#1E293B] transition-all flex flex-col items-center" type="button">
+<span class="font-headline-sm text-[16px] text-on-surface font-bold">09:00 AM</span>
+<span class="font-label-sm text-[10px] text-outline mt-0.5">Regular Slot</span>
+</button>
+<!-- Slot 2 (AI Recommended) -->
+<button class="slot-button p-2.5 rounded-lg border-2 border-[#1E293B] bg-tertiary-fixed shadow-[2px_2px_0px_#1E293B] hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-[4px_4px_0px_#1E293B] transition-all flex flex-col items-center relative overflow-hidden" type="button">
+<div class="absolute top-0 right-0 bg-tertiary text-on-tertiary text-[9px] px-1.5 py-0.2 rounded-bl font-label-sm font-bold flex items-center gap-0.5">
+                  ✦ AI Pick
+                </div>
+<span class="font-headline-sm text-[16px] text-on-tertiary-fixed font-bold">09:45 AM</span>
+<span class="font-label-sm text-[10px] text-on-tertiary-fixed font-medium mt-0.5">Min wait time</span>
+</button>
+<!-- Slot 3 (Selected) -->
+<button class="slot-button p-2.5 rounded-lg border-2 border-[#1E293B] bg-primary text-on-primary shadow-[4px_4px_0px_#1E293B] -translate-x-0.5 -translate-y-0.5 flex flex-col items-center relative ring-2 ring-primary-container" type="button">
+<div class="absolute -top-1 -right-1 w-4 h-4 rounded-full bg-[#34D399] border border-[#1E293B] flex items-center justify-center">
+<span class="material-symbols-outlined text-[10px] text-on-surface">check</span>
+</div>
+<span class="font-headline-sm text-[16px] text-on-primary font-extrabold">10:30 AM</span>
+<span class="font-label-sm text-[10px] text-primary-fixed mt-0.5 font-bold">Selected</span>
+</button>
+<!-- Slot 4 -->
+<button class="slot-button p-2.5 rounded-lg border-2 border-[#1E293B] bg-[#FFFDF5] shadow-[2px_2px_0px_#1E293B] hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-[4px_4px_0px_#1E293B] transition-all flex flex-col items-center" type="button">
+<span class="font-headline-sm text-[16px] text-on-surface font-bold">11:15 AM</span>
+<span class="font-label-sm text-[10px] text-outline mt-0.5">Regular Slot</span>
+</button>
+</div>
+</div>
+<!-- Afternoon Slots -->
+<div class="pt-space-md">
+<span class="font-label-md text-label-md text-outline uppercase font-extrabold tracking-wider flex items-center gap-1.5 mb-space-sm">
+<span class="material-symbols-outlined text-[16px] text-secondary">light_mode</span>
+              Afternoon Sessions
+            </span>
+<div class="grid grid-cols-2 sm:grid-cols-4 gap-space-sm">
+<!-- Slot 5 -->
+<button class="slot-button p-2.5 rounded-lg border-2 border-[#1E293B] bg-[#FFFDF5] shadow-[2px_2px_0px_#1E293B] hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-[4px_4px_0px_#1E293B] transition-all flex flex-col items-center" type="button">
+<span class="font-headline-sm text-[16px] text-on-surface font-bold">02:00 PM</span>
+<span class="font-label-sm text-[10px] text-outline mt-0.5">Regular Slot</span>
+</button>
+<!-- Slot 6 (Fast Track) -->
+<button class="slot-button p-2.5 rounded-lg border-2 border-[#1E293B] bg-secondary-fixed text-on-secondary-fixed shadow-[2px_2px_0px_#1E293B] hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-[4px_4px_0px_#1E293B] transition-all flex flex-col items-center relative overflow-hidden" type="button">
+<div class="absolute top-0 right-0 bg-secondary text-on-secondary text-[9px] px-1.5 py-0.2 rounded-bl font-label-sm font-bold flex items-center gap-0.5">
+                  ⚡ Fast Track
+                </div>
+<span class="font-headline-sm text-[16px] text-on-secondary-fixed font-bold">02:45 PM</span>
+<span class="font-label-sm text-[10px] text-secondary mt-0.5 font-bold">Quick In-take</span>
+</button>
+<!-- Slot 7 -->
+<button class="slot-button p-2.5 rounded-lg border-2 border-[#1E293B] bg-[#FFFDF5] shadow-[2px_2px_0px_#1E293B] hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-[4px_4px_0px_#1E293B] transition-all flex flex-col items-center" type="button">
+<span class="font-headline-sm text-[16px] text-on-surface font-bold">03:30 PM</span>
+<span class="font-label-sm text-[10px] text-outline mt-0.5">Regular Slot</span>
+</button>
+<!-- Slot 8 -->
+<button class="slot-button p-2.5 rounded-lg border-2 border-[#1E293B] bg-[#FFFDF5] shadow-[2px_2px_0px_#1E293B] hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-[4px_4px_0px_#1E293B] transition-all flex flex-col items-center" type="button">
+<span class="font-headline-sm text-[16px] text-on-surface font-bold">04:15 PM</span>
+<span class="font-label-sm text-[10px] text-outline mt-0.5">Regular Slot</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Consultation Delivery Mode Selector -->
+<div class="bg-surface-container-lowest border-2 border-[#1E293B] rounded-lg p-space-md shadow-[4px_4px_0px_#1E293B]">
+<div class="flex items-center gap-2 mb-space-sm">
+<span class="material-symbols-outlined text-primary text-[24px]">devices</span>
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Consultation Delivery Mode</h3>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-space-md">Choose whether you wish to visit Stanford Clinic or speak via Telehealth</p>
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-space-md">
+<!-- Mode Option 1: In Person (Selected) -->
+<label class="relative flex flex-col p-space-md rounded-lg border-2 border-[#1E293B] bg-primary-fixed shadow-[4px_4px_0px_#1E293B] cursor-pointer -translate-x-0.5 -translate-y-0.5 transition-all">
+<div class="flex items-center justify-between mb-2">
+<div class="w-10 h-10 rounded-full bg-[#FFFDF5] border-2 border-[#1E293B] flex items-center justify-center shadow-[2px_2px_0px_#1E293B]">
+<span class="material-symbols-outlined text-primary text-[22px]">domain</span>
+</div>
+<div class="w-6 h-6 rounded-full border-2 border-[#1E293B] bg-[#FFFDF5] flex items-center justify-center">
+<div class="w-3.5 h-3.5 rounded-full bg-primary"></div>
+</div>
+</div>
+<span class="font-headline-sm text-[17px] text-on-primary-fixed font-bold">In-Person Clinic Visit</span>
+<span class="font-body-sm text-body-sm text-on-primary-fixed-variant mt-1">Stanford Health Suite 402, 300 Pasteur Dr, Palo Alto</span>
+<div class="mt-space-sm pt-space-xs border-t border-[#1E293B]/20 flex items-center gap-2">
+<span class="material-symbols-outlined text-[16px] text-primary">local_parking</span>
+<span class="font-label-sm text-label-sm text-on-primary-fixed font-bold">Complimentary Valet Parking</span>
+</div>
+</label>
+<!-- Mode Option 2: HD Video Call -->
+<label class="relative flex flex-col p-space-md rounded-lg border-2 border-[#1E293B] bg-[#FFFDF5] shadow-[2px_2px_0px_#1E293B] cursor-pointer hover:bg-surface-container transition-all">
+<div class="flex items-center justify-between mb-2">
+<div class="w-10 h-10 rounded-full bg-secondary-fixed border-2 border-[#1E293B] flex items-center justify-center shadow-[2px_2px_0px_#1E293B]">
+<span class="material-symbols-outlined text-secondary text-[22px]">videocam</span>
+</div>
+<div class="w-6 h-6 rounded-full border-2 border-[#1E293B] bg-[#FFFDF5] flex items-center justify-center">
+<div class="w-3.5 h-3.5 rounded-full bg-transparent"></div>
+</div>
+</div>
+<span class="font-headline-sm text-[17px] text-on-surface font-bold">Secure HD Video Call</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant mt-1">Join from smartphone or browser. Link sent via SMS/Email.</span>
+<div class="mt-space-sm pt-space-xs border-t border-[#1E293B]/20 flex items-center gap-2">
+<span class="material-symbols-outlined text-[16px] text-[#34D399]">enhanced_encryption</span>
+<span class="font-label-sm text-label-sm text-on-surface font-bold">WebRTC E2E Encrypted</span>
+</div>
+</label>
+</div>
+</div>
+<!-- Symptoms & Reason for Visit -->
+<div class="bg-surface-container-lowest border-2 border-[#1E293B] rounded-lg p-space-md shadow-[4px_4px_0px_#1E293B]">
+<div class="flex items-center gap-2 mb-space-xs">
+<span class="material-symbols-outlined text-tertiary text-[24px]">clinical_notes</span>
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Chief Concern &amp; Symptoms</h3>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-space-sm">Describe briefly what brings you in. Dr. Jenkins reviews this prior to examination.</p>
+<!-- Quick symptom tag pills -->
+<div class="flex items-center gap-2 flex-wrap mb-space-sm">
+<span class="font-label-sm text-label-sm text-outline font-bold uppercase">Quick Add:</span>
+<button class="tag-pill px-3 py-1 rounded-full border-2 border-[#1E293B] bg-[#FFFDF5] hover:bg-tertiary-fixed shadow-[2px_2px_0px_#1E293B] font-label-sm text-label-sm font-bold text-on-surface transition-all flex items-center gap-1" type="button">
+<span>Routine Checkup</span>
+<span class="material-symbols-outlined text-[14px]">add</span>
+</button>
+<button class="tag-pill px-3 py-1 rounded-full border-2 border-[#1E293B] bg-secondary-fixed text-on-secondary-fixed shadow-[2px_2px_0px_#1E293B] font-label-sm text-label-sm font-bold transition-all flex items-center gap-1" type="button">
+<span>Heart Fluttering</span>
+<span class="material-symbols-outlined text-[14px]">check</span>
+</button>
+<button class="tag-pill px-3 py-1 rounded-full border-2 border-[#1E293B] bg-[#FFFDF5] hover:bg-tertiary-fixed shadow-[2px_2px_0px_#1E293B] font-label-sm text-label-sm font-bold text-on-surface transition-all flex items-center gap-1" type="button">
+<span>Chest Discomfort</span>
+<span class="material-symbols-outlined text-[14px]">add</span>
+</button>
+<button class="tag-pill px-3 py-1 rounded-full border-2 border-[#1E293B] bg-[#FFFDF5] hover:bg-tertiary-fixed shadow-[2px_2px_0px_#1E293B] font-label-sm text-label-sm font-bold text-on-surface transition-all flex items-center gap-1" type="button">
+<span>Rx Refill</span>
+<span class="material-symbols-outlined text-[14px]">add</span>
+</button>
+</div>
+<textarea class="w-full bg-[#FFFDF5] border-2 border-[#1E293B] rounded-lg p-space-sm shadow-[2px_2px_0px_#1E293B] font-body-md text-body-md text-on-surface placeholder:text-outline focus:outline-none focus:border-primary focus:shadow-[4px_4px_0px_#6b38d4]" placeholder="E.g., Experiencing occasional palpitations after workouts over the past two weeks. Bringing recent ECG records from primary physician." rows="3">Occasional mild heart flutters observed during aerobic treadmill sessions. Would like to review ECG readings and adjust beta-blocker dosage.</textarea>
+</div>
+</div>
+<!-- Right 4 Cols: Sticky Booking Breakdown & Action Card -->
+<div class="lg:col-span-4 sticky top-28 flex flex-col gap-space-md">
+<!-- Main Checkout Ticket Card -->
+<div class="bg-[#FFFDF5] border-2 border-[#1E293B] rounded-lg p-space-md shadow-[6px_6px_0px_#1E293B] flex flex-col gap-space-md relative overflow-hidden">
+<!-- Memphis Graphic Accent in corner -->
+<div class="absolute -top-6 -right-6 w-16 h-16 rounded-full bg-secondary-fixed border-2 border-[#1E293B] flex items-end justify-start p-1 pointer-events-none">
+<span class="material-symbols-outlined text-secondary text-[16px]">stars</span>
+</div>
+<div class="border-b-2 border-dashed border-[#1E293B] pb-space-sm">
+<span class="font-label-sm text-label-sm uppercase font-extrabold tracking-wider text-outline">Reservation Summary</span>
+<h4 class="font-headline-sm text-headline-sm text-on-surface mt-1">Stanford Clinical Pass</h4>
+</div>
+<!-- Doctor & Service Row -->
+<div class="flex items-center gap-space-sm">
+<div class="w-12 h-12 rounded-lg bg-primary-fixed border-2 border-[#1E293B] flex items-center justify-center shadow-[2px_2px_0px_#1E293B] shrink-0">
+<span class="material-symbols-outlined text-primary text-[28px]">cardiology</span>
+</div>
+<div class="flex flex-col">
+<span class="font-headline-sm text-[16px] text-on-surface font-bold">Dr. Sarah Jenkins</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Cardiovascular Assessment</span>
+</div>
+</div>
+<!-- Scheduled Slot Box -->
+<div class="bg-surface-container-low border-2 border-[#1E293B] rounded-lg p-space-sm shadow-[2px_2px_0px_#1E293B] flex flex-col gap-2">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[18px]">calendar_month</span>
+<span class="font-label-md text-label-md text-on-surface font-bold">Thursday, Oct 24, 2024</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary text-[18px]">alarm</span>
+<span class="font-label-md text-label-md text-on-surface font-bold">10:30 AM – 11:15 AM (PDT)</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-tertiary text-[18px]">pin_drop</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Stanford Health • Suite 402</span>
+</div>
+</div>
+<!-- Fee Calculation Table -->
+<div class="flex flex-col gap-2 border-t-2 border-dashed border-[#1E293B] pt-space-sm font-body-sm text-body-sm">
+<div class="flex justify-between items-center text-on-surface">
+<span>Standard Specialist Fee</span>
+<span class="font-bold">$120.00</span>
+</div>
+<div class="flex justify-between items-center text-on-surface">
+<span class="flex items-center gap-1">
+                MediSlot AI Shield
+                <span class="material-symbols-outlined text-[14px] text-tertiary">info</span>
+</span>
+<span class="bg-[#34D399] border border-[#1E293B] px-1.5 rounded text-[11px] font-extrabold text-on-surface">WAIVED $0.00</span>
+</div>
+<div class="flex justify-between items-center text-outline">
+<span>Clinic Overhead / Facility Fee</span>
+<span>Included</span>
+</div>
+<div class="border-t-2 border-[#1E293B] pt-2 flex justify-between items-baseline mt-1">
+<div class="flex flex-col">
+<span class="font-headline-sm text-headline-sm text-on-surface">Total Due</span>
+<span class="font-label-sm text-[10px] text-outline font-bold">HSA / FSA Card Eligible</span>
+</div>
+<span class="font-headline-lg text-headline-lg text-primary font-extrabold">$120.00</span>
+</div>
+</div>
+<!-- Primary CTA Button -->
+<button class="w-full bg-primary text-on-primary border-2 border-[#1E293B] rounded-full py-3.5 px-space-md shadow-[4px_4px_0px_#1E293B] hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-[6px_6px_0px_#1E293B] active:translate-x-1 active:translate-y-1 active:shadow-none transition-all flex items-center justify-center gap-2 font-headline-sm text-[18px] font-bold group" type="button">
+<span>Proceed to Patient Details</span>
+<span class="material-symbols-outlined text-[20px] group-hover:translate-x-1 transition-transform">arrow_forward</span>
+</button>
+<!-- Security Badges Footer -->
+<div class="flex items-center justify-center gap-space-md pt-space-xs text-outline font-label-sm text-label-sm">
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[#34D399] text-[16px]">verified_user</span>
+<span>HIPAA Compliant</span>
+</div>
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-primary text-[16px]">lock</span>
+<span>256-Bit SSL Encrypted</span>
+</div>
+</div>
+</div>
+<!-- AI Assistant Helper Micro-Card -->
+<div class="bg-secondary-fixed border-2 border-[#1E293B] rounded-lg p-space-md shadow-[3px_3px_0px_#1E293B] flex items-start gap-space-sm">
+<div class="w-8 h-8 rounded-full bg-[#FFFDF5] border-2 border-[#1E293B] flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-secondary text-[18px]">smart_toy</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-on-secondary-fixed font-bold">Need a ride or translator?</span>
+<p class="font-body-sm text-body-sm text-on-secondary-fixed mt-0.5">
+              MediSlot AI can arrange wheelchair transit or certified ASL/Spanish medical interpreters in Step 4.
+            </p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<script>
+  // Countdown Timer Simulation for Double-Booking Shield
+  (function() {
+    let duration = 9 * 60 + 45; // 09:45 in seconds
+    const timerDisplay = document.getElementById('shield-timer');
+    if (!timerDisplay) return;
+
+    const timer = setInterval(() => {
+      duration--;
+      if (duration < 0) {
+        clearInterval(timer);
+        timerDisplay.innerText = "00:00";
+        return;
+      }
+      const minutes = Math.floor(duration / 60);
+      const seconds = duration % 60;
+      timerDisplay.innerText = 
+        (minutes < 10 ? "0" + minutes : minutes) + ":" + 
+        (seconds < 10 ? "0" + seconds : seconds);
+    }, 1000);
+
+    // Slot button selection click logic
+    const slotButtons = document.querySelectorAll('.slot-button');
+    slotButtons.forEach(btn => {
+      btn.addEventListener('click', function() {
+        slotButtons.forEach(b => {
+          b.classList.remove('bg-primary', 'text-on-primary', 'shadow-[4px_4px_0px_#1E293B]', '-translate-x-0.5', '-translate-y-0.5', 'ring-2', 'ring-primary-container');
+          b.classList.add('bg-[#FFFDF5]', 'shadow-[2px_2px_0px_#1E293B]');
+        });
+        this.classList.remove('bg-[#FFFDF5]', 'shadow-[2px_2px_0px_#1E293B]');
+        this.classList.add('bg-primary', 'text-on-primary', 'shadow-[4px_4px_0px_#1E293B]', '-translate-x-0.5', '-translate-y-0.5', 'ring-2', 'ring-primary-container');
+      });
+    });
+  })();
+</script></main></div></body></html>

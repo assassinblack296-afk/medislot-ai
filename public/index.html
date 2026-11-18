@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="shell-type" content="web_standard"/>
+  <title>MediSlot AI - Smart Medical Appointment Booking</title>
+  
+  <!-- Google Fonts: Material Symbols & Outfit & Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin=""/>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "on-primary-container": "#fffbff",
+            "error-container": "#ffdad6",
+            "on-secondary-container": "#76014e",
+            "outline-variant": "#cbc3d7",
+            "surface-container-highest": "#d8e3fb",
+            "on-primary-fixed": "#23005c",
+            "surface-tint": "#6d3bd7",
+            "surface-variant": "#d8e3fb",
+            "surface-container-high": "#dee8ff",
+            "inverse-primary": "#d0bcff",
+            "on-tertiary-fixed-variant": "#5c4300",
+            "secondary": "#a43073",
+            "on-primary": "#ffffff",
+            "on-secondary": "#ffffff",
+            "error": "#ba1a1a",
+            "tertiary-fixed-dim": "#f9bd22",
+            "surface-container-lowest": "#ffffff",
+            "outline": "#7b7486",
+            "inverse-on-surface": "#ecf1ff",
+            "background": "#f9f9ff",
+            "primary-fixed": "#e9ddff",
+            "tertiary-fixed": "#ffdf9f",
+            "surface-dim": "#cfdaf2",
+            "secondary-container": "#fc79bd",
+            "tertiary-container": "#956e00",
+            "on-primary-fixed-variant": "#5516be",
+            "on-secondary-fixed": "#3d0026",
+            "on-background": "#111c2d",
+            "on-tertiary-fixed": "#261a00",
+            "on-error": "#ffffff",
+            "inverse-surface": "#263143",
+            "surface": "#f9f9ff",
+            "primary-fixed-dim": "#d0bcff",
+            "on-error-container": "#93000a",
+            "on-surface": "#111c2d",
+            "on-tertiary-container": "#fffbff",
+            "on-surface-variant": "#494454",
+            "on-tertiary": "#ffffff",
+            "surface-container-low": "#f0f3ff",
+            "tertiary": "#765700",
+            "secondary-fixed": "#ffd8e7",
+            "surface-bright": "#f9f9ff",
+            "surface-container": "#e7eeff",
+            "secondary-fixed-dim": "#ffafd3",
+            "primary": "#6b38d4",
+            "primary-container": "#8455ef",
+            "on-secondary-fixed-variant": "#85145a"
+          },
+          borderRadius: {
+            "DEFAULT": "1rem",
+            "lg": "2rem",
+            "xl": "3rem",
+            "full": "9999px"
+          },
+          spacing: {
+            "space-xs": "0.25rem",
+            "space-sm": "0.5rem",
+            "space-md": "1rem",
+            "space-lg": "1.5rem",
+            "space-xl": "2.5rem",
+            "gutter": "1.5rem",
+            "gutter-mobile": "1rem",
+            "margin": "2rem",
+            "margin-mobile": "1rem"
+          },
+          fontFamily: {
+            "headline-xl": ["Outfit"],
+            "headline-lg": ["Outfit"],
+            "headline-md": ["Outfit"],
+            "headline-sm": ["Outfit"],
+            "body-lg": ["Plus Jakarta Sans"],
+            "body-md": ["Plus Jakarta Sans"],
+            "body-sm": ["Plus Jakarta Sans"],
+            "label-lg": ["Plus Jakarta Sans"],
+            "label-md": ["Plus Jakarta Sans"],
+            "label-sm": ["Plus Jakarta Sans"]
+          }
+        }
+      }
+    };
+  </script>
+
+  <link rel="stylesheet" href="/css/style.css"/>
+</head>
+<body class="bg-[#FFFDF5] font-body-md text-on-surface antialiased">
+  
+  <!-- MAIN FIXED HEADER -->
+  <header class="fixed top-0 left-0 right-0 z-50 bg-[#FFFDF5] border-b-2 border-[#1E293B] shadow-[0_4px_0_0_#1E293B]">
+    <div class="h-20 w-full px-4 sm:px-gutter flex items-center justify-between gap-space-md">
+      <!-- Left: Brand Logo & Title -->
+      <a href="#landing" class="flex items-center gap-space-sm sm:gap-space-md hover:opacity-90 transition-opacity">
+        <div class="w-10 h-10 rounded-xl bg-primary flex items-center justify-center border-2 border-[#1E293B] shadow-[2px_2px_0px_#1E293B]">
+          <span class="material-symbols-outlined text-white text-[24px]">medical_services</span>
+        </div>
+        <div class="flex flex-col">
+          <span class="font-headline-sm text-headline-sm text-on-surface tracking-tight leading-none">MediSlot AI</span>
+          <span class="hidden lg:inline-block font-label-sm text-label-sm bg-tertiary-fixed text-on-tertiary-fixed border border-[#1E293B] px-space-sm py-0.5 rounded-full mt-1">Smart Booking. Better Healthcare.</span>
+        </div>
+      </a>
+
+      <!-- Center: Navigation Pills (Desktop) -->
+      <nav id="desktop-nav" class="hidden xl:flex items-center gap-1.5 bg-surface-container-low p-1.5 rounded-full border-2 border-[#1E293B] shadow-[2px_2px_0px_#1E293B]">
+        <a href="#landing" data-nav="landing" class="nav-link px-space-md py-1.5 rounded-full font-label-md text-label-md transition-all">Landing</a>
+        <a href="#patient-portal" data-nav="patient-portal" class="nav-link px-space-md py-1.5 rounded-full font-label-md text-label-md transition-all">Patient Portal</a>
+        <a href="#find-doctors" data-nav="find-doctors" class="nav-link px-space-md py-1.5 rounded-full font-label-md text-label-md transition-all">Find Doctors</a>
+        <a href="#book-appointment" data-nav="book-appointment" class="nav-link px-space-md py-1.5 rounded-full font-label-md text-label-md transition-all">Book Appointment</a>
+        <a href="#doctor-console" data-nav="doctor-console" class="nav-link px-space-md py-1.5 rounded-full font-label-md text-label-md transition-all">Doctor Console</a>
+        <a href="#admin-hub" data-nav="admin-hub" class="nav-link px-space-md py-1.5 rounded-full font-label-md text-label-md transition-all">Admin Hub</a>
+      </nav>
+
+      <!-- Right: Action Buttons & Patient Badge -->
+      <div class="flex items-center gap-space-xs sm:gap-space-sm">
+        <!-- MediBot Launcher -->
+        <button id="header-medibot-btn" class="flex items-center gap-1.5 bg-secondary-fixed text-on-secondary-fixed border-2 border-[#1E293B] px-3 sm:px-space-md py-1.5 rounded-full shadow-[2px_2px_0px_#1E293B] hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-[3px_3px_0px_#1E293B] active:translate-x-0.5 active:translate-y-0.5 active:shadow-none transition-transform font-label-md text-label-md" type="button">
+          <span class="material-symbols-outlined text-secondary text-[18px]">smart_toy</span>
+          <span class="hidden sm:inline">Ask</span> MediBot AI
+        </button>
+
+        <!-- Book Slot Direct Link -->
+        <a href="#book-appointment" class="hidden md:flex items-center gap-1 bg-primary text-on-primary border-2 border-[#1E293B] px-space-md py-2 rounded-full shadow-[3px_3px_0px_#1E293B] hover:-translate-x-0.5 hover:-translate-y-0.5 active:translate-x-0.5 active:translate-y-0.5 active:shadow-none font-label-lg text-label-lg transition-transform">
+          <span>Book Slot</span>
+          <span class="material-symbols-outlined text-[16px]">bolt</span>
+        </a>
+
+        <!-- Dynamic Auth Header Badge -->
+        <div id="header-user-badge-container" class="flex items-center">
+          <!-- Dynamically populated by MediSlotStore.updateHeaderAuthUI() -->
+          <button onclick="Modals.openAuthModal()" class="flex items-center gap-1 bg-[#FFFDF5] text-on-surface border-2 border-[#1E293B] px-3 py-1.5 rounded-full shadow-[2px_2px_0px_#1E293B] hover:-translate-x-0.5 hover:-translate-y-0.5 font-label-md text-xs font-bold transition-all" type="button">
+            <span class="material-symbols-outlined text-[18px] text-primary">login</span>
+            <span class="hidden sm:inline">Sign In</span>
+          </button>
+        </div>
+
+        <!-- Mobile Menu Toggle Button -->
+        <button id="mobile-menu-toggle" class="xl:hidden w-10 h-10 rounded-lg bg-surface-container-lowest border-2 border-[#1E293B] shadow-[2px_2px_0px_#1E293B] flex items-center justify-center hover:bg-surface-container active:shadow-none" type="button">
+          <span class="material-symbols-outlined text-[24px]">menu</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- MOBILE NAVIGATION DRAWER -->
+  <div id="mobile-menu-drawer" class="fixed inset-0 z-50 bg-black/50 backdrop-blur-sm hidden">
+    <div class="fixed top-0 right-0 bottom-0 w-72 bg-[#FFFDF5] border-l-2 border-[#1E293B] shadow-[-4px_0_0_0_#1E293B] flex flex-col justify-between p-space-md">
+      <div class="flex flex-col gap-space-md">
+        <div class="flex items-center justify-between pb-space-sm border-b-2 border-[#1E293B]">
+          <div class="flex items-center gap-2">
+            <span class="material-symbols-outlined text-primary text-[24px]">medical_services</span>
+            <span class="font-headline-sm text-headline-sm text-on-surface">MediSlot Menu</span>
+          </div>
+          <button id="mobile-menu-close" class="w-8 h-8 rounded-full bg-surface-container border-2 border-[#1E293B] flex items-center justify-center">
+            <span class="material-symbols-outlined text-[18px]">close</span>
+          </button>
+        </div>
+        <nav class="flex flex-col gap-2">
+          <a href="#landing" class="mobile-nav-link flex items-center gap-2 p-2.5 rounded-lg border-2 border-[#1E293B] bg-surface-container-lowest font-label-md shadow-[2px_2px_0px_#1E293B]">
+            <span class="material-symbols-outlined text-[20px]">home</span> Landing Page
+          </a>
+          <a href="#patient-portal" class="mobile-nav-link flex items-center gap-2 p-2.5 rounded-lg border-2 border-[#1E293B] bg-surface-container-lowest font-label-md shadow-[2px_2px_0px_#1E293B]">
+            <span class="material-symbols-outlined text-[20px]">grid_view</span> Patient Portal
+          </a>
+          <a href="#find-doctors" class="mobile-nav-link flex items-center gap-2 p-2.5 rounded-lg border-2 border-[#1E293B] bg-surface-container-lowest font-label-md shadow-[2px_2px_0px_#1E293B]">
+            <span class="material-symbols-outlined text-[20px]">person_search</span> Find Doctors
+          </a>
+          <a href="#book-appointment" class="mobile-nav-link flex items-center gap-2 p-2.5 rounded-lg border-2 border-[#1E293B] bg-primary text-white font-label-md shadow-[2px_2px_0px_#1E293B]">
+            <span class="material-symbols-outlined text-[20px]">calendar_add_on</span> Book Appointment
+          </a>
+          <a href="#doctor-console" class="mobile-nav-link flex items-center gap-2 p-2.5 rounded-lg border-2 border-[#1E293B] bg-surface-container-lowest font-label-md shadow-[2px_2px_0px_#1E293B]">
+            <span class="material-symbols-outlined text-[20px]">stethoscope</span> Doctor Console
+          </a>
+          <a href="#admin-hub" class="mobile-nav-link flex items-center gap-2 p-2.5 rounded-lg border-2 border-[#1E293B] bg-surface-container-lowest font-label-md shadow-[2px_2px_0px_#1E293B]">
+            <span class="material-symbols-outlined text-[20px]">tune</span> Admin Hub
+          </a>
+        </nav>
+      </div>
+      <div class="flex flex-col gap-2 pt-space-md border-t-2 border-[#1E293B]">
+        <div class="p-3 bg-tertiary-fixed border-2 border-[#1E293B] rounded-lg shadow-[2px_2px_0px_#1E293B]">
+          <span class="font-label-sm text-label-sm font-bold block text-on-tertiary-fixed">Alex Morgan (MRN-90214)</span>
+          <span class="text-xs text-on-tertiary-fixed-variant">Verified Patient • Palo Alto</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MAIN APP ROUTE CONTAINER -->
+  <main id="app-root" class="w-full pt-20 bg-[#FFFDF5] min-h-screen">
+    <!-- Dynamic page components render here -->
+  </main>
+
+  <!-- GLOBAL MEDIBOT AI CHAT DRAWER -->
+  <aside id="medibot-drawer" class="fixed right-0 top-0 bottom-0 w-full sm:w-[420px] bg-[#FFFDF5] border-l-2 border-[#1E293B] shadow-[-6px_0_0_0_#1E293B] z-50 transform translate-x-full transition-transform duration-300 flex flex-col justify-between">
+    <!-- Header -->
+    <div class="p-space-md bg-secondary-fixed border-b-2 border-[#1E293B] flex items-center justify-between">
+      <div class="flex items-center gap-space-sm">
+        <div class="w-10 h-10 rounded-full bg-[#FFFDF5] border-2 border-[#1E293B] flex items-center justify-center shadow-[2px_2px_0px_#1E293B]">
+          <span class="material-symbols-outlined text-secondary text-[24px]">smart_toy</span>
+        </div>
+        <div class="flex flex-col">
+          <div class="flex items-center gap-1.5">
+            <span class="font-headline-sm text-headline-sm text-on-surface">MediBot AI</span>
+            <span class="w-2.5 h-2.5 rounded-full bg-[#10B981] animate-ping"></span>
+          </div>
+          <span class="font-label-sm text-label-sm text-on-secondary-fixed font-bold">Clinical Triage & Concierge</span>
+        </div>
+      </div>
+      <button id="close-medibot-drawer" class="w-8 h-8 rounded-full bg-[#FFFDF5] border-2 border-[#1E293B] flex items-center justify-center hover:bg-surface-container shadow-[1px_1px_0px_#1E293B]">
+        <span class="material-symbols-outlined text-[18px]">close</span>
+      </button>
+    </div>
+
+    <!-- Messages Body -->
+    <div id="medibot-messages" class="flex-1 p-space-md overflow-y-auto flex flex-col gap-space-sm bg-[#FFFDF5]">
+      <!-- Greeting from MediBot -->
+      <div class="flex items-start gap-2 max-w-[85%] self-start">
+        <div class="w-7 h-7 rounded-full bg-secondary-fixed border border-[#1E293B] flex items-center justify-center shrink-0">
+          <span class="material-symbols-outlined text-secondary text-[16px]">smart_toy</span>
+        </div>
+        <div class="bg-surface-container-lowest border-2 border-[#1E293B] p-space-sm rounded-xl shadow-[2px_2px_0px_#1E293B] font-body-sm text-body-sm text-on-surface">
+          Hello Alex! I'm your MediSlot AI Clinical Concierge. I can help triage symptoms, recommend specialized clinicians, check pre-consultation fasting requirements, or track real-time queue openings.
+        </div>
+      </div>
+    </div>
+
+    <!-- Quick Prompt Suggestions -->
+    <div class="px-space-md py-2 bg-surface-container-low border-t-2 border-[#1E293B] flex items-center gap-1.5 overflow-x-auto no-scrollbar">
+      <button class="medibot-quick-chip shrink-0 bg-surface-container-lowest border border-[#1E293B] px-2.5 py-1 rounded-full text-xs font-label-sm shadow-[1px_1px_0px_#1E293B] hover:bg-surface-container" data-prompt="What should I bring tomorrow?">
+        📋 What to carry
+      </button>
+      <button class="medibot-quick-chip shrink-0 bg-surface-container-lowest border border-[#1E293B] px-2.5 py-1 rounded-full text-xs font-label-sm shadow-[1px_1px_0px_#1E293B] hover:bg-surface-container" data-prompt="Can I eat before bloodwork?">
+        🩸 Fasting rules
+      </button>
+      <button class="medibot-quick-chip shrink-0 bg-surface-container-lowest border border-[#1E293B] px-2.5 py-1 rounded-full text-xs font-label-sm shadow-[1px_1px_0px_#1E293B] hover:bg-surface-container" data-prompt="I have sudden heart flutters.">
+        💓 Heart flutters
+      </button>
+      <button class="medibot-quick-chip shrink-0 bg-surface-container-lowest border border-[#1E293B] px-2.5 py-1 rounded-full text-xs font-label-sm shadow-[1px_1px_0px_#1E293B] hover:bg-surface-container" data-prompt="Scan for urgent slot openings.">
+        ⚡ Urgent slot radar
+      </button>
+    </div>
+
+    <!-- Input Footer -->
+    <div class="p-space-md bg-[#FFFDF5] border-t-2 border-[#1E293B]">
+      <form id="medibot-form" class="flex items-center gap-2">
+        <input id="medibot-input-field" class="flex-1 bg-surface-container-lowest border-2 border-[#1E293B] rounded-lg px-space-md py-2.5 text-body-sm font-body-sm placeholder:text-outline focus:outline-none focus:shadow-[2px_2px_0px_#6b38d4]" placeholder="Ask MediBot clinical questions..." type="text" autocomplete="off"/>
+        <button class="bg-primary text-on-primary border-2 border-[#1E293B] p-2.5 rounded-lg shadow-[2px_2px_0px_#1E293B] hover:-translate-y-0.5 active:translate-y-0 active:shadow-none flex items-center justify-center" type="submit">
+          <span class="material-symbols-outlined text-[18px]">send</span>
+        </button>
+      </form>
+    </div>
+  </aside>
+
+  <!-- REUSABLE MODAL CONTAINER -->
+  <div id="modal-container" class="fixed inset-0 z-50 hidden flex items-center justify-center p-4 modal-backdrop">
+    <!-- Modal content dynamically injected -->
+  </div>
+
+  <!-- TOAST NOTIFICATIONS CONTAINER -->
+  <div id="toast-container" class="fixed bottom-5 right-5 z-50 flex flex-col gap-2 pointer-events-none"></div>
+
+  <!-- GLOBAL FOOTER -->
+  <footer class="w-full bg-[#FFFDF5] border-t-2 border-[#1E293B] py-space-xl mt-space-xl">
+    <div class="w-full px-gutter max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-space-md">
+      <div class="flex items-center gap-space-sm">
+        <div class="w-8 h-8 rounded-lg bg-primary flex items-center justify-center border-2 border-[#1E293B]">
+          <span class="material-symbols-outlined text-white text-[18px]">medical_services</span>
+        </div>
+        <span class="font-headline-sm text-headline-sm text-on-surface">MediSlot AI</span>
+        <span class="font-label-sm text-label-sm text-on-surface-variant">© 2025 MediSlot HealthTech Inc. Neo-Brutalist Scheduling Engine.</span>
+      </div>
+      <div class="flex items-center gap-space-md font-label-md text-label-md text-on-surface-variant flex-wrap justify-center">
+        <a class="hover:text-primary transition-colors cursor-pointer" onclick="alert('HIPAA Shield active: End-to-end 256-bit encryption for patient intake data.')">Clinical Privacy</a>
+        <a class="hover:text-primary transition-colors cursor-pointer" onclick="alert('SOC2 Type II & HIPAA certified clinical architecture.')">HIPAA Shield</a>
+        <a class="hover:text-primary transition-colors" href="/api/doctors" target="_blank">REST API Docs</a>
+        <a class="hover:text-primary transition-colors cursor-pointer" onclick="alert('In event of severe chest pain, shortness of breath, or immediate stroke symptoms, dial 911 immediately.')">Emergency Protocols</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <!-- Supabase JS SDK (CDN) - loaded before our auth client -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+  <script src="/js/supabaseClient.js"></script>
+  <script src="/js/store.js"></script>
+  <script src="/js/components/toasts.js"></script>
+  <script src="/js/components/modals.js"></script>
+  <script src="/js/components/medibot.js"></script>
+  <script src="/js/pages/landing.js"></script>
+  <script src="/js/pages/findDoctors.js"></script>
+  <script src="/js/pages/bookAppointment.js"></script>
+  <script src="/js/pages/patientDashboard.js"></script>
+  <script src="/js/pages/doctorConsole.js"></script>
+  <script src="/js/pages/adminHub.js"></script>
+  <script src="/js/router.js"></script>
+  <script src="/js/app.js"></script>
+</body>
+</html>

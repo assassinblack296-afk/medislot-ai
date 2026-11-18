@@ -1,0 +1,32 @@
+# Dependencies
+node_modules/
+
+# Environment secrets — NEVER commit these
+.env
+
+# SQLite database files
+data/
+*.db
+*.db-shm
+*.db-wal
+
+# OS junk
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# IDE
+.vscode/
+.idea/
+
+# Build artifacts
+dist/
+build/
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+
+# Original Stitch prototype (large static folder, exclude if not needed)
+# stitch_medislot_ai_healthcare_scheduler/
