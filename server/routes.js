@@ -12,6 +12,99 @@ function cleanupLocks() {
 }
 
 // -------------------------------------------------------------
+// AUTHENTICATION (Database-backed credential validation)
+// -------------------------------------------------------------
+
+router.post('/auth/login', (req, res) => {
+  try {
+    const { email, password } = req.body;
+    if (!email || !password) {
+      return res.status(400).json({ success: false, error: 'Email and password are required' });
+    }
+
+    const user = db.prepare('SELECT * FROM users WHERE LOWER(email) = LOWER(?)').get(email.trim());
+    if (!user) {
+      return res.status(401).json({ success: false, error: 'Account not found with this email.' });
+    }
+
+    if (user.password !== password) {
+      return res.status(401).json({ success: false, error: 'Incorrect password for this account.' });
+    }
+
+    res.json({
+      success: true,
+      message: 'Authentication successful',
+      user: {
+        id: user.id,
+        email: user.email,
+        name: user.name,
+        role: user.role,
+        phone: user.phone || '',
+        mrn: user.mrn || `MRN-${user.id.toString().padStart(5, '0')}`
+      }
+    });
+  } catch (err) {
+    res.status(500).json({ success: false, error: err.message });
+  }
+});
+
+router.post('/auth/signup', (req, res) => {
+  try {
+    const { email, password, name, role = 'patient', phone = '' } = req.body;
+    if (!email || !password || !name) {
+      return res.status(400).json({ success: false, error: 'Name, email, and password are required' });
+    }
+
+    const cleanEmail = email.trim().toLowerCase();
+    const existing = db.prepare('SELECT id FROM users WHERE LOWER(email) = ?').get(cleanEmail);
+    if (existing) {
+      return res.status(400).json({ success: false, error: 'An account with this email already exists.' });
+    }
+
+    const mrn = role === 'patient' ? `MRN-${Math.floor(10000 + Math.random() * 90000)}` : null;
+    const now = new Date().toISOString();
+
+    const insertResult = db.prepare(`
+      INSERT INTO users (email, password, name, role, phone, mrn, created_at)
+      VALUES (?, ?, ?, ?, ?, ?, ?)
+    `).run(cleanEmail, password, name.trim(), role, phone, mrn, now);
+
+    const newUserId = insertResult.lastInsertRowid;
+
+    // If patient, also insert into patients table
+    if (role === 'patient') {
+      db.prepare(`
+        INSERT INTO patients (mrn, name, email, phone, dob, insurance_provider, insurance_id)
+        VALUES (?, ?, ?, ?, ?, ?, ?)
+      `).run(
+        mrn,
+        name.trim(),
+        cleanEmail,
+        phone || '+1 (555) 000-0000',
+        '1995-01-01',
+        'Standard Healthcare PPO',
+        `HLTH-${Math.floor(100000 + Math.random() * 900000)}`
+      );
+    }
+
+    res.status(201).json({
+      success: true,
+      message: 'Account registered successfully',
+      user: {
+        id: newUserId,
+        email: cleanEmail,
+        name: name.trim(),
+        role: role,
+        phone: phone,
+        mrn: mrn
+      }
+    });
+  } catch (err) {
+    res.status(500).json({ success: false, error: err.message });
+  }
+});
+
+// -------------------------------------------------------------
 // DOCTORS
 // -------------------------------------------------------------
 

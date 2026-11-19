@@ -106,9 +106,31 @@ function initDatabase() {
       status TEXT NOT NULL DEFAULT 'active',
       created_at TEXT NOT NULL
     );
+
+    CREATE TABLE IF NOT EXISTS users (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      email TEXT UNIQUE NOT NULL,
+      password TEXT NOT NULL,
+      name TEXT NOT NULL,
+      role TEXT NOT NULL DEFAULT 'patient',
+      phone TEXT,
+      mrn TEXT,
+      created_at TEXT NOT NULL
+    );
   `);
 
-  // Seed default patient if not exists
+  // Seed default users if not exists
+  const existingUsers = db.prepare('SELECT count(*) as count FROM users').get();
+  if (existingUsers.count === 0) {
+    const insertUser = db.prepare(`
+      INSERT INTO users (email, password, name, role, phone, mrn, created_at)
+      VALUES (?, ?, ?, ?, ?, ?, ?)
+    `);
+    const now = new Date().toISOString();
+    insertUser.run('alex.morgan@healthmail.com', 'Password123!', 'Alex Morgan', 'patient', '+1 (555) 019-2834', 'MRN-90214', now);
+    insertUser.run('sarah.jenkins@stanfordhealth.org', 'DoctorSecure2025!', 'Dr. Sarah Jenkins, MD', 'doctor', '+1 (650) 723-4000', null, now);
+    insertUser.run('admin@medislot.ai', 'AdminMaster2025!', 'System Administrator', 'admin', '+1 (800) 555-SLOT', null, now);
+  }
   const existingPatient = db.prepare('SELECT count(*) as count FROM patients').get();
   if (existingPatient.count === 0) {
     db.prepare(`

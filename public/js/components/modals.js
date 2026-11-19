@@ -628,7 +628,7 @@ window.MediSlotModals = {
   // ============================================================
   // AUTH MODAL - Sign In / Create Account with Role Switcher
   // ============================================================
-  openAuthModal(defaultRole = 'patient', defaultTab = 'signin') {
+  openAuthModal(defaultRole = 'patient', defaultTab = 'signin', prefill = null) {
     const demoAccounts = window.SupabaseService
       ? window.SupabaseService.getDemoAccounts()
       : {
@@ -706,7 +706,7 @@ window.MediSlotModals = {
           ${!isSignIn ? `
           <div class="flex flex-col gap-1">
             <label class="font-label-sm text-label-sm uppercase tracking-wider font-bold text-outline">Full Name</label>
-            <input id="auth-fullname" type="text" placeholder="Alex Morgan"
+            <input id="auth-fullname" type="text" value="${prefill?.name || ''}" placeholder="Alex Morgan"
               class="w-full bg-[#FFFDF5] border-2 border-[#1E293B] rounded-lg px-space-sm py-2.5 font-body-md text-on-surface placeholder:text-outline focus:outline-none focus:shadow-[3px_3px_0px_#6b38d4] transition-shadow"
               required />
           </div>
@@ -714,7 +714,7 @@ window.MediSlotModals = {
 
           <div class="flex flex-col gap-1">
             <label class="font-label-sm text-label-sm uppercase tracking-wider font-bold text-outline">Email Address</label>
-            <input id="auth-email" type="email" placeholder="${demoAccounts[role].email}"
+            <input id="auth-email" type="email" value="${prefill?.email || ''}" placeholder="${demoAccounts[role].email}"
               class="w-full bg-[#FFFDF5] border-2 border-[#1E293B] rounded-lg px-space-sm py-2.5 font-body-md text-on-surface placeholder:text-outline focus:outline-none focus:shadow-[3px_3px_0px_#6b38d4] transition-shadow"
               required />
           </div>
@@ -722,7 +722,7 @@ window.MediSlotModals = {
           <div class="flex flex-col gap-1">
             <label class="font-label-sm text-label-sm uppercase tracking-wider font-bold text-outline">Password</label>
             <div class="relative">
-              <input id="auth-password" type="password" placeholder="••••••••••"
+              <input id="auth-password" type="password" value="${prefill?.password || ''}" placeholder="••••••••••"
                 class="w-full bg-[#FFFDF5] border-2 border-[#1E293B] rounded-lg px-space-sm py-2.5 pr-10 font-body-md text-on-surface placeholder:text-outline focus:outline-none focus:shadow-[3px_3px_0px_#6b38d4] transition-shadow"
                 required minlength="8" />
               <button type="button" onclick="const i=document.getElementById('auth-password'); i.type=(i.type==='password'?'text':'password'); this.querySelector('span').textContent=(i.type==='password'?'visibility_off':'visibility');"
@@ -735,7 +735,7 @@ window.MediSlotModals = {
           ${!isSignIn ? `
           <div class="flex flex-col gap-1">
             <label class="font-label-sm text-label-sm uppercase tracking-wider font-bold text-outline">Phone (Optional)</label>
-            <input id="auth-phone" type="tel" placeholder="+1 (555) 000-0000"
+            <input id="auth-phone" type="tel" value="${prefill?.phone || ''}" placeholder="+1 (555) 000-0000"
               class="w-full bg-[#FFFDF5] border-2 border-[#1E293B] rounded-lg px-space-sm py-2.5 font-body-md text-on-surface placeholder:text-outline focus:outline-none focus:shadow-[3px_3px_0px_#6b38d4] transition-shadow" />
           </div>
           ` : ''}
@@ -799,14 +799,7 @@ window.MediSlotModals = {
       admin:   { email: 'admin@medislot.ai', password: 'AdminMaster2025!', name: 'Chief Administrator' }
     };
     const d = demos[role];
-    const emailField = document.getElementById('auth-email');
-    const passField  = document.getElementById('auth-password');
-    const nameField  = document.getElementById('auth-fullname');
-    if (emailField) emailField.value = d.email;
-    if (passField)  passField.value  = d.password;
-    if (nameField)  nameField.value  = d.name;
-    // Auto-switch role tabs
-    this.openAuthModal(role, isSignIn ? 'signin' : 'signup');
+    this.openAuthModal(role, isSignIn ? 'signin' : 'signup', d);
   },
 
   async handleAuthSubmit(role, isSignIn) {

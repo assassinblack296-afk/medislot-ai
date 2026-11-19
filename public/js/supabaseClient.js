@@ -105,7 +105,32 @@
     async signIn(email, password) {
       await this.init();
 
-      // If Supabase Cloud Client is configured, authenticate via Supabase Auth
+      // 1. Authenticate with real database endpoint
+      try {
+        const res = await fetch('/api/auth/login', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email, password })
+        });
+        const data = await res.json();
+        if (data.success && data.user) {
+          localStorage.setItem('medislot_auth_user', JSON.stringify(data.user));
+          if (window.MediSlotStore) window.MediSlotStore.setCurrentUser(data.user);
+
+          // Sync with Supabase Cloud if configured
+          if (this.client) {
+            this.client.auth.signInWithPassword({ email, password }).catch(() => {});
+          }
+
+          return { success: true, user: data.user, mode: 'database' };
+        } else if (res.status === 401 || (data && data.error)) {
+          return { success: false, error: data.error || 'Invalid email or password.' };
+        }
+      } catch (err) {
+        console.warn('[SupabaseService] Database login request failed, checking client fallback:', err.message);
+      }
+
+      // 2. If Supabase Cloud Client is configured, authenticate via Supabase Auth
       if (this.client) {
         try {
           const { data, error } = await this.client.auth.signInWithPassword({
@@ -114,35 +139,22 @@
           });
           if (error) throw error;
 
-          // Fetch profile details
-          let profile = null;
-          const { data: profData } = await this.client
-            .from('profiles')
-            .select('*')
-            .eq('id', data.user.id)
-            .single();
-
-          if (profData) {
-            profile = profData;
-          } else {
-            profile = {
-              id: data.user.id,
-              email: data.user.email,
-              name: data.user.user_metadata?.full_name || email.split('@')[0],
-              role: data.user.user_metadata?.role || 'patient'
-            };
-          }
+          const profile = {
+            id: data.user.id,
+            email: data.user.email,
+            name: data.user.user_metadata?.full_name || email.split('@')[0],
+            role: data.user.user_metadata?.role || 'patient'
+          };
 
           localStorage.setItem('medislot_auth_user', JSON.stringify(profile));
           if (window.MediSlotStore) window.MediSlotStore.setCurrentUser(profile);
           return { success: true, user: profile, mode: 'supabase' };
         } catch (err) {
-          console.warn('[SupabaseService] Cloud login failed, checking local credentials:', err.message);
-          return this.fallbackSignIn(email, password, err.message);
+          console.warn('[SupabaseService] Cloud login failed:', err.message);
         }
       }
 
-      // Default / Local mode
+      // 3. Fallback to demo local accounts
       return this.fallbackSignIn(email, password);
     }
 
@@ -185,38 +197,48 @@
     async signUp(email, password, meta = {}) {
       await this.init();
 
-      if (this.client) {
-        try {
-          const { data, error } = await this.client.auth.signUp({
+      // 1. Create account directly in backend SQLite database
+      try {
+        const res = await fetch('/api/auth/signup', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
             email,
             password,
-            options: {
-              data: {
-                full_name: meta.full_name || email.split('@')[0],
-                role: meta.role || 'patient',
-                phone: meta.phone || ''
-              }
-            }
-          });
-          if (error) throw error;
-
-          const user = {
-            id: data.user ? data.user.id : `usr_${Date.now()}`,
-            email,
             name: meta.full_name || email.split('@')[0],
             role: meta.role || 'patient',
             phone: meta.phone || ''
-          };
+          })
+        });
+        const data = await res.json();
+        if (data.success && data.user) {
+          localStorage.setItem('medislot_auth_user', JSON.stringify(data.user));
+          if (window.MediSlotStore) window.MediSlotStore.setCurrentUser(data.user);
 
-          localStorage.setItem('medislot_auth_user', JSON.stringify(user));
-          if (window.MediSlotStore) window.MediSlotStore.setCurrentUser(user);
-          return { success: true, user, mode: 'supabase' };
-        } catch (err) {
-          console.warn('[SupabaseService] Cloud registration failed, saving locally:', err.message);
+          // Sync with Supabase cloud if active
+          if (this.client) {
+            this.client.auth.signUp({
+              email,
+              password,
+              options: {
+                data: {
+                  full_name: meta.full_name || email.split('@')[0],
+                  role: meta.role || 'patient',
+                  phone: meta.phone || ''
+                }
+              }
+            }).catch(() => {});
+          }
+
+          return { success: true, user: data.user, mode: 'database' };
+        } else if (data && data.error) {
+          return { success: false, error: data.error };
         }
+      } catch (err) {
+        console.warn('[SupabaseService] Database signup failed, falling back to local:', err.message);
       }
 
-      // Local Registration
+      // 2. Local Registration fallback
       const newUser = {
         id: `usr_${Date.now()}`,
         role: meta.role || 'patient',

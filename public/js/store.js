@@ -1,14 +1,7 @@
 // MediSlot AI Global Reactive Store & API Client
 window.MediSlotStore = {
-  // Current active authenticated user
-  currentUser: {
-    id: 'usr_pat_90214',
-    role: 'patient',
-    name: 'Alex Morgan',
-    email: 'alex.morgan@healthmail.com',
-    phone: '+1 (555) 019-2834',
-    mrn: 'MRN-90214'
-  },
+  // Current active authenticated user (null = Guest)
+  currentUser: null,
 
   setCurrentUser(user) {
     this.currentUser = user;
@@ -22,6 +15,17 @@ window.MediSlotStore = {
         dob: user.dob || '1992-05-14',
         insuranceProvider: user.insuranceProvider || 'Blue Cross Blue Shield Gold PPO',
         insuranceId: user.insuranceId || 'BCBS-889104-Z'
+      };
+    } else if (!user) {
+      this.patient = {
+        id: 0,
+        mrn: 'MRN-GUEST',
+        name: 'Guest User',
+        email: 'guest@medislot.ai',
+        phone: '',
+        dob: '',
+        insuranceProvider: 'None',
+        insuranceId: 'N/A'
       };
     }
     this.notify('user_changed', user);
@@ -37,7 +41,7 @@ window.MediSlotStore = {
       const roleBadge = user.role === 'admin' ? 'Admin' : user.role === 'doctor' ? 'Doctor' : 'Patient';
       container.innerHTML = `
         <div class="relative flex items-center">
-          <button onclick="MediSlotStore.toggleUserMenu()" class="flex items-center gap-space-xs bg-[#FFFDF5] border-2 border-[#1E293B] rounded-full p-1 pr-2.5 shadow-[2px_2px_0px_#1E293B] hover:-translate-x-0.5 hover:-translate-y-0.5 transition-transform" type="button">
+          <button onclick="MediSlotStore.toggleUserMenu()" class="flex items-center gap-space-xs bg-[#FFFDF5] border-2 border-[#1E293B] rounded-full p-1 pr-2.5 shadow-[2px_2px_0px_#1E293B] hover:-translate-x-0.5 hover:-translate-y-0.5 transition-transform cursor-pointer" type="button">
             <div class="w-7 h-7 rounded-full ${roleColor} flex items-center justify-center font-bold text-xs border border-[#1E293B] shrink-0">
               ${user.name ? user.name.charAt(0).toUpperCase() : 'U'}
             </div>
@@ -56,7 +60,7 @@ window.MediSlotStore = {
             ${user.role === 'patient' ? '<a href="#patient-portal" class="px-2 py-1.5 rounded-lg hover:bg-surface-container text-xs font-bold flex items-center gap-1.5"><span class="material-symbols-outlined text-[16px] text-primary">person</span> Patient Portal</a>' : ''}
             ${user.role === 'doctor' ? '<a href="#doctor-console" class="px-2 py-1.5 rounded-lg hover:bg-surface-container text-xs font-bold flex items-center gap-1.5"><span class="material-symbols-outlined text-[16px] text-secondary">stethoscope</span> Doctor Console</a>' : ''}
             ${user.role === 'admin' ? '<a href="#admin-hub" class="px-2 py-1.5 rounded-lg hover:bg-surface-container text-xs font-bold flex items-center gap-1.5"><span class="material-symbols-outlined text-[16px] text-red-500">admin_panel_settings</span> Admin Hub</a>' : ''}
-            <button onclick="MediSlotStore.handleSignOut()" class="w-full text-left px-2 py-1.5 rounded-lg hover:bg-red-50 text-xs font-bold text-red-600 flex items-center gap-1.5" type="button">
+            <button onclick="MediSlotStore.handleSignOut()" class="w-full text-left px-2 py-1.5 rounded-lg hover:bg-red-50 text-xs font-bold text-red-600 flex items-center gap-1.5 cursor-pointer" type="button">
               <span class="material-symbols-outlined text-[16px]">logout</span> Sign Out
             </button>
           </div>
@@ -64,10 +68,37 @@ window.MediSlotStore = {
       `;
     } else {
       container.innerHTML = `
-        <button onclick="Modals.openAuthModal()" class="flex items-center gap-1 bg-[#FFFDF5] text-on-surface border-2 border-[#1E293B] px-3 py-1.5 rounded-full shadow-[2px_2px_0px_#1E293B] hover:-translate-x-0.5 hover:-translate-y-0.5 active:translate-x-0.5 active:translate-y-0.5 font-label-md text-xs font-bold transition-all" type="button">
-          <span class="material-symbols-outlined text-[18px] text-primary">login</span>
-          <span>Sign In</span>
-        </button>
+        <div class="relative flex items-center gap-1.5">
+          <button onclick="MediSlotStore.toggleUserMenu()" class="flex items-center gap-space-xs bg-[#FFFDF5] border-2 border-[#1E293B] rounded-full p-1 pr-2 shadow-[2px_2px_0px_#1E293B] hover:-translate-x-0.5 hover:-translate-y-0.5 transition-transform cursor-pointer" type="button" title="Browsing as Guest">
+            <div class="w-7 h-7 rounded-full bg-slate-400 text-white flex items-center justify-center font-bold text-xs border border-[#1E293B] shrink-0">
+              G
+            </div>
+            <div class="flex flex-col text-left">
+              <span class="font-headline-sm text-xs font-bold text-on-surface leading-tight">Guest User</span>
+              <span class="text-[9px] font-extrabold uppercase tracking-wider text-slate-500">GUEST</span>
+            </div>
+            <span class="material-symbols-outlined text-[16px]">expand_more</span>
+          </button>
+
+          <div id="header-user-dropdown" class="hidden absolute top-full right-0 mt-2 w-56 bg-[#FFFDF5] border-2 border-[#1E293B] rounded-xl shadow-[4px_4px_0px_#1E293B] p-2 flex flex-col gap-1 z-50">
+            <div class="px-2 py-1.5 border-b border-[#1E293B]/20">
+              <span class="text-[10px] text-outline font-bold uppercase tracking-wider">Browsing as</span>
+              <p class="text-xs font-extrabold text-on-surface">Guest User</p>
+              <p class="text-[10px] text-on-surface-variant mt-0.5">Sign in to book and manage appointments.</p>
+            </div>
+            <button onclick="Modals.openAuthModal('patient', 'signin')" class="w-full text-left px-2 py-1.5 rounded-lg bg-primary text-white text-xs font-bold flex items-center gap-1.5 hover:bg-primary/90 mt-1 cursor-pointer" type="button">
+              <span class="material-symbols-outlined text-[16px]">login</span> Sign In
+            </button>
+            <button onclick="Modals.openAuthModal('patient', 'signup')" class="w-full text-left px-2 py-1.5 rounded-lg hover:bg-surface-container text-xs font-bold text-on-surface flex items-center gap-1.5 cursor-pointer" type="button">
+              <span class="material-symbols-outlined text-[16px]">person_add</span> Create Account
+            </button>
+          </div>
+
+          <button onclick="Modals.openAuthModal('patient', 'signin')" class="flex items-center gap-1 bg-primary text-white border-2 border-[#1E293B] px-3 py-1.5 rounded-full shadow-[2px_2px_0px_#1E293B] hover:-translate-x-0.5 hover:-translate-y-0.5 active:translate-x-0.5 active:translate-y-0.5 font-label-md text-xs font-bold transition-all cursor-pointer" type="button">
+            <span class="material-symbols-outlined text-[16px]">login</span>
+            <span class="hidden sm:inline">Sign In</span>
+          </button>
+        </div>
       `;
     }
   },

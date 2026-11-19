@@ -8,18 +8,28 @@ document.addEventListener('DOMContentLoaded', async () => {
   }
 
   // Initialize Supabase Auth Service (restore session if any)
+  let restoredUser = null;
   if (window.SupabaseService) {
     await window.SupabaseService.init();
     // Restore logged-in user from localStorage if previously signed in
-    const restoredUser = window.SupabaseService.getCurrentUser();
+    restoredUser = window.SupabaseService.getCurrentUser();
     if (restoredUser && window.MediSlotStore) {
-      window.MediSlotStore.currentUser = restoredUser;
+      window.MediSlotStore.setCurrentUser(restoredUser);
+    } else if (window.MediSlotStore) {
+      window.MediSlotStore.setCurrentUser(null);
     }
   }
 
   // Update header auth badge based on current user state
   if (window.MediSlotStore) {
     window.MediSlotStore.updateHeaderAuthUI();
+  }
+
+  // If user is not logged in, show Guest and pop up Login / Sign Up modal first
+  if (!restoredUser && window.MediSlotModals) {
+    setTimeout(() => {
+      window.MediSlotModals.openAuthModal('patient', 'signin');
+    }, 350);
   }
 
   // Close user dropdown when clicking outside
