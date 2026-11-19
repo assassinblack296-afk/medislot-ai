@@ -4,8 +4,10 @@ window.MediBot = {
   messagesContainer: null,
   inputField: null,
   form: null,
+  initialized: false,
 
   init() {
+    if (this.initialized) return;
     this.drawer = document.getElementById('medibot-drawer');
     this.messagesContainer = document.getElementById('medibot-messages');
     this.inputField = document.getElementById('medibot-input-field');
@@ -14,19 +16,32 @@ window.MediBot = {
     // Header trigger button
     const launcherBtn = document.getElementById('header-medibot-btn');
     if (launcherBtn) {
-      launcherBtn.addEventListener('click', () => this.toggle());
+      launcherBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        this.toggle();
+      });
     }
 
     // Close button
     const closeBtn = document.getElementById('close-medibot-drawer');
     if (closeBtn) {
-      closeBtn.addEventListener('click', () => this.close());
+      closeBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        this.close();
+      });
     }
+
+    // Close on Escape key
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && this.drawer && !this.drawer.classList.contains('translate-x-full')) {
+        this.close();
+      }
+    });
 
     // Quick prompt chips
     document.querySelectorAll('.medibot-quick-chip').forEach(chip => {
       chip.addEventListener('click', () => {
-        const text = chip.getAttribute('data-prompt');
+        const text = chip.getAttribute('data-prompt') || chip.innerText.trim();
         if (text) {
           this.sendMessage(text);
         }
@@ -37,13 +52,17 @@ window.MediBot = {
     if (this.form) {
       this.form.addEventListener('submit', (e) => {
         e.preventDefault();
-        const msg = this.inputField.value.trim();
-        if (msg) {
-          this.sendMessage(msg);
-          this.inputField.value = '';
+        if (this.inputField) {
+          const msg = this.inputField.value.trim();
+          if (msg) {
+            this.sendMessage(msg);
+            this.inputField.value = '';
+          }
         }
       });
     }
+
+    this.initialized = true;
   },
 
   open() {

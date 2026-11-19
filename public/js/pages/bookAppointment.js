@@ -41,7 +41,10 @@ window.BookAppointmentPage = {
                   <span class="bg-secondary-fixed text-on-secondary-fixed border-2 border-[#1E293B] text-label-sm font-label-sm px-2 py-0.5 rounded-full shadow-[2px_2px_0px_#1E293B] font-bold">
                     ${doc.title || doc.specialty}
                   </span>
-                  <button onclick="BookAppointmentPage.goToStep(1)" class="text-xs text-primary underline font-bold ml-1 hover:text-secondary">Switch Clinician</button>
+                  <button onclick="MediSlotModals.showSwitchClinicianModal()" class="text-xs text-primary underline font-bold ml-1 hover:text-secondary flex items-center gap-0.5" type="button">
+                    <span class="material-symbols-outlined text-[14px]">swap_horiz</span>
+                    Switch Clinician
+                  </button>
                 </div>
                 <span class="font-body-sm text-body-sm text-on-surface-variant flex items-center gap-2 mt-0.5 flex-wrap">
                   <span class="material-symbols-outlined text-[16px] text-tertiary">star</span> ${doc.rating || 4.98} (${doc.review_count || 340}+ reviews) • ${doc.clinic} • <strong class="text-on-surface font-bold">$${(doc.fee || 120).toFixed(2)} / visit</strong>
@@ -86,11 +89,14 @@ window.BookAppointmentPage = {
                 <!-- Doctor & Service Row -->
                 <div class="flex items-center gap-space-sm">
                   <div class="w-12 h-12 rounded-lg bg-primary-fixed border-2 border-[#1E293B] flex items-center justify-center shadow-[2px_2px_0px_#1E293B] shrink-0">
-                    <span class="material-symbols-outlined text-primary text-[28px]">cardiology</span>
+                    <span class="material-symbols-outlined text-primary text-[28px]">medical_services</span>
                   </div>
-                  <div class="flex flex-col">
-                    <span class="font-headline-sm text-[16px] text-on-surface font-bold">${doc.name}</span>
-                    <span class="font-body-sm text-body-sm text-on-surface-variant">${doc.specialty} Consultation</span>
+                  <div class="flex flex-col flex-1 min-w-0">
+                    <div class="flex items-center justify-between gap-1">
+                      <span class="font-headline-sm text-[15px] text-on-surface font-bold truncate">${doc.name}</span>
+                      <button onclick="MediSlotModals.showSwitchClinicianModal()" class="text-[11px] text-primary underline font-bold hover:text-secondary shrink-0" type="button">Switch</button>
+                    </div>
+                    <span class="font-body-sm text-body-sm text-on-surface-variant truncate">${doc.specialty} Consultation</span>
                   </div>
                 </div>
 
@@ -271,36 +277,57 @@ window.BookAppointmentPage = {
 
   // STEP 1: DOCTOR SELECTION
   renderStep1DoctorSelection() {
-    const docs = MediSlotStore.doctors.length > 0 ? MediSlotStore.doctors : [
-      { id: 1, name: 'Dr. Sarah Jenkins', specialty: 'Cardiology', clinic: 'Stanford Medical Center', rating: 4.98, fee: 120 },
-      { id: 2, name: 'Dr. Sarah Chen', specialty: 'Dermatology', clinic: 'St. Jude Pavilion', rating: 4.98, fee: 130 },
-      { id: 4, name: 'Dr. Elena Rostova', specialty: 'Neurology', clinic: 'Cerebral Center', rating: 4.90, fee: 120 }
+    const docs = (MediSlotStore.doctors && MediSlotStore.doctors.length > 0) ? MediSlotStore.doctors : [
+      { id: 1, name: 'Dr. Sarah Jenkins', specialty: 'Cardiology', clinic: 'Stanford Medical Center', rating: 4.98, fee: 120, avatar_url: 'https://images.unsplash.com/photo-1559839734-2b71ea197ec2?auto=format&fit=crop&q=80&w=300' },
+      { id: 2, name: 'Dr. Sarah Chen', specialty: 'Dermatology', clinic: 'St. Jude Pavilion', rating: 4.98, fee: 130, avatar_url: 'https://images.unsplash.com/photo-1594824813627-2c9c223c2a63?auto=format&fit=crop&q=80&w=300' },
+      { id: 3, name: 'Dr. Marcus Vance', specialty: 'Cardiology', clinic: 'Metro Heart Institute', rating: 4.92, fee: 145, avatar_url: 'https://images.unsplash.com/photo-1622253692010-333f2da6031d?auto=format&fit=crop&q=80&w=300' },
+      { id: 4, name: 'Dr. Elena Rostova', specialty: 'Neurology', clinic: 'Cerebral Center & UCSF', rating: 4.90, fee: 120, avatar_url: 'https://images.unsplash.com/photo-1527613426441-4da17471b66d?auto=format&fit=crop&q=80&w=300' },
+      { id: 5, name: 'Dr. Marcus Chen', specialty: 'Orthopedics', clinic: 'Stanford Health Pavilion', rating: 4.85, fee: 110, avatar_url: 'https://images.unsplash.com/photo-1537368910025-700350fe46c7?auto=format&fit=crop&q=80&w=300' },
+      { id: 6, name: 'Dr. Julian Ramos', specialty: 'Pediatrics', clinic: 'Sunrise Kids Clinic', rating: 4.95, fee: 115, avatar_url: 'https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?auto=format&fit=crop&q=80&w=300' },
+      { id: 7, name: 'Dr. Priya Patel', specialty: 'Endocrinology', clinic: 'Palo Alto Endocrine Center', rating: 4.93, fee: 135, avatar_url: 'https://images.unsplash.com/photo-1559839734-2b71ea197ec2?auto=format&fit=crop&q=80&w=300' }
     ];
+
+    const currentDocId = MediSlotStore.bookingState.doctorId || (MediSlotStore.bookingState.doctor && MediSlotStore.bookingState.doctor.id) || 1;
 
     return `
       <div class="bg-surface-container-lowest border-2 border-[#1E293B] rounded-xl p-space-md shadow-[4px_4px_0px_#1E293B] flex flex-col gap-space-md">
-        <div>
-          <h3 class="font-headline-sm text-headline-sm text-on-surface font-bold">Select Your Specialist</h3>
-          <p class="font-body-sm text-body-sm text-on-surface-variant">Choose the clinician best suited for your symptoms or continue with Dr. Sarah Jenkins.</p>
+        <div class="flex items-center justify-between flex-wrap gap-2">
+          <div>
+            <h3 class="font-headline-sm text-headline-sm text-on-surface font-bold">Select Your Specialist</h3>
+            <p class="font-body-sm text-body-sm text-on-surface-variant">Choose a clinician best suited for your symptoms to view their live calendar slots.</p>
+          </div>
+          <button onclick="MediBot.open()" class="text-xs font-bold text-secondary flex items-center gap-1 hover:underline" type="button">
+            <span class="material-symbols-outlined text-[16px]">smart_toy</span>
+            Ask MediBot to Match Symptoms
+          </button>
         </div>
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-space-sm">
-          ${docs.map(d => `
-            <div onclick="BookAppointmentPage.pickDoctor(${d.id})" class="p-space-md rounded-xl border-2 border-[#1E293B] ${MediSlotStore.bookingState.doctorId === d.id ? 'bg-primary-fixed shadow-[4px_4px_0px_#1E293B]' : 'bg-surface-container-lowest shadow-[2px_2px_0px_#1E293B] hover:bg-surface-container'} cursor-pointer transition-all flex flex-col justify-between gap-2">
-              <div class="flex items-center gap-space-sm">
-                <div class="w-12 h-12 rounded-full border-2 border-[#1E293B] overflow-hidden shrink-0">
-                  <img src="${d.avatar_url}" class="w-full h-full object-cover"/>
+          ${docs.map(d => {
+            const isSelected = d.id === currentDocId;
+            return `
+              <div onclick="BookAppointmentPage.pickDoctor(${d.id})" class="p-space-md rounded-xl border-2 border-[#1E293B] ${isSelected ? 'bg-primary-fixed shadow-[4px_4px_0px_#1E293B] ring-2 ring-primary' : 'bg-surface-container-lowest shadow-[2px_2px_0px_#1E293B] hover:bg-surface-container hover:-translate-y-0.5'} cursor-pointer transition-all flex flex-col justify-between gap-2">
+                <div class="flex items-center gap-space-sm">
+                  <div class="w-12 h-12 rounded-full border-2 border-[#1E293B] overflow-hidden shrink-0 bg-primary-fixed">
+                    <img src="${d.avatar_url || 'https://images.unsplash.com/photo-1559839734-2b71ea197ec2?auto=format&fit=crop&q=80&w=300'}" class="w-full h-full object-cover" alt="${d.name}"/>
+                  </div>
+                  <div class="flex flex-col min-w-0">
+                    <div class="flex items-center gap-1.5 flex-wrap">
+                      <h4 class="font-headline-sm text-[16px] font-bold text-on-surface truncate">${d.name}</h4>
+                      ${isSelected ? `<span class="bg-primary text-white text-[10px] font-extrabold px-1.5 py-0.2 rounded-full">SELECTED</span>` : ''}
+                    </div>
+                    <span class="text-xs font-bold text-secondary truncate">${d.specialty} • ${d.clinic}</span>
+                  </div>
                 </div>
-                <div>
-                  <h4 class="font-headline-sm text-[16px] font-bold text-on-surface">${d.name}</h4>
-                  <span class="text-xs font-bold text-secondary">${d.specialty} • ${d.clinic}</span>
+                <div class="flex justify-between items-center text-xs font-bold border-t border-[#1E293B]/20 pt-1.5">
+                  <span class="text-tertiary flex items-center gap-0.5">
+                    <span class="material-symbols-outlined text-[14px]">star</span>
+                    ${d.rating}
+                  </span>
+                  <span class="text-primary font-extrabold">$${d.fee} / consult</span>
                 </div>
               </div>
-              <div class="flex justify-between items-center text-xs font-bold border-t border-[#1E293B]/20 pt-1">
-                <span class="text-tertiary">★ ${d.rating}</span>
-                <span class="text-primary font-extrabold">$${d.fee} / consult</span>
-              </div>
-            </div>
-          `).join('')}
+            `;
+          }).join('')}
         </div>
       </div>
     `;
@@ -852,11 +879,18 @@ window.BookAppointmentPage = {
     if (window.renderCurrentPage) window.renderCurrentPage();
   },
 
-  pickDoctor(doctorId) {
-    const doc = MediSlotStore.doctors.find(d => d.id === doctorId);
+  async pickDoctor(doctorId) {
+    let doc = MediSlotStore.doctors.find(d => d.id === doctorId);
+    if (!doc && MediSlotStore.fetchDoctor) {
+      const res = await MediSlotStore.fetchDoctor(doctorId);
+      if (res && res.doctor) doc = res.doctor;
+    }
     if (doc) {
       MediSlotStore.setBookingDoctor(doc);
-      showToast(`Selected ${doc.name}. Advancing to Date & Time slot selection.`, 'info');
+      // Reset selected slot for new doctor so slots refresh cleanly
+      MediSlotStore.bookingState.selectedSlotTime = null;
+      MediSlotStore.bookingState.selectedSlotId = null;
+      showToast(`Selected ${doc.name} (${doc.specialty}). Advancing to Date & Time.`, 'info');
       this.goToStep(2);
     }
   },

@@ -133,7 +133,7 @@
       <!-- Right: Action Buttons & Patient Badge -->
       <div class="flex items-center gap-space-xs sm:gap-space-sm">
         <!-- MediBot Launcher -->
-        <button id="header-medibot-btn" class="flex items-center gap-1.5 bg-secondary-fixed text-on-secondary-fixed border-2 border-[#1E293B] px-3 sm:px-space-md py-1.5 rounded-full shadow-[2px_2px_0px_#1E293B] hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-[3px_3px_0px_#1E293B] active:translate-x-0.5 active:translate-y-0.5 active:shadow-none transition-transform font-label-md text-label-md" type="button">
+        <button id="header-medibot-btn" onclick="MediBot.toggle()" class="flex items-center gap-1.5 bg-secondary-fixed text-on-secondary-fixed border-2 border-[#1E293B] px-3 sm:px-space-md py-1.5 rounded-full shadow-[2px_2px_0px_#1E293B] hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-[3px_3px_0px_#1E293B] active:translate-x-0.5 active:translate-y-0.5 active:shadow-none transition-transform font-label-md text-label-md cursor-pointer font-bold" type="button">
           <span class="material-symbols-outlined text-secondary text-[18px]">smart_toy</span>
           <span class="hidden sm:inline">Ask</span> MediBot AI
         </button>
@@ -193,6 +193,10 @@
           <a href="#admin-hub" class="mobile-nav-link flex items-center gap-2 p-2.5 rounded-lg border-2 border-[#1E293B] bg-surface-container-lowest font-label-md shadow-[2px_2px_0px_#1E293B]">
             <span class="material-symbols-outlined text-[20px]">tune</span> Admin Hub
           </a>
+          <!-- Mobile MediBot Trigger -->
+          <button onclick="MediBot.open(); document.getElementById('mobile-menu-drawer').classList.add('hidden');" class="flex items-center gap-2 p-2.5 rounded-lg border-2 border-[#1E293B] bg-secondary-fixed text-on-secondary-fixed font-label-md shadow-[2px_2px_0px_#1E293B] font-bold text-left w-full mt-1">
+            <span class="material-symbols-outlined text-secondary text-[20px]">smart_toy</span> Ask MediBot AI
+          </button>
         </nav>
       </div>
       <div class="flex flex-col gap-2 pt-space-md border-t-2 border-[#1E293B]">

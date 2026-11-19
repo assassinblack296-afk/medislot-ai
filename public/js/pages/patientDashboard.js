@@ -479,6 +479,16 @@ window.PatientDashboardPage = {
         </tr>
       `).join('');
     }
+
+    const dashboardInput = document.getElementById('dashboard-medibot-input');
+    if (dashboardInput) {
+      dashboardInput.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') {
+          e.preventDefault();
+          this.submitInlineMediBot();
+        }
+      });
+    }
   },
 
   submitInlineMediBot() {
