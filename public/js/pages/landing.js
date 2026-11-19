@@ -4,24 +4,17 @@ window.LandingPage = {
     return `
       <div class="flex flex-col w-full pb-16">
         <!-- Top Geometric Ambient Accents -->
-        <div class="relative w-full overflow-hidden px-4 sm:px-gutter pb-space-xl">
-          <!-- Floating Memphis Geometric Confetti / Stickers -->
-          <div class="absolute top-6 left-12 w-6 h-6 rounded-full bg-secondary-fixed rotate-12 pointer-events-none hidden sm:block border border-[#1E293B]"></div>
-          <div class="absolute top-20 right-24 text-tertiary-fixed-dim text-2xl font-black pointer-events-none select-none rotate-6">✦</div>
-          <div class="absolute top-64 right-10 w-10 h-10 rounded-lg bg-surface-container rotate-45 pointer-events-none hidden lg:block border border-[#1E293B]"></div>
-          <div class="absolute top-80 left-6 text-secondary text-3xl font-black pointer-events-none select-none -rotate-12">★</div>
-
-          <!-- HERO SECTION -->
-          <div class="max-w-7xl mx-auto w-full pt-space-lg lg:pt-space-xl">
-            <div class="grid grid-cols-1 lg:grid-cols-12 gap-space-lg items-center">
-              
-              <!-- Left Hero Column: Copy & Search Console -->
-              <div class="lg:col-span-7 flex flex-col items-start gap-space-md">
-                <!-- Category Sticker Badge -->
-                <div class="inline-flex items-center gap-space-xs bg-tertiary-fixed text-on-tertiary-fixed px-space-md py-1.5 rounded-full border-2 border-[#1E293B] shadow-[2px_2px_0px_#1E293B] -rotate-1 hover:rotate-0 transition-transform">
-                  <span class="text-tertiary font-headline-sm leading-none">✦</span>
-                  <span class="font-label-md text-label-md tracking-wider uppercase font-bold">Next-Gen Healthcare Scheduling</span>
-                </div>
+        <!-- HERO SECTION -->
+        <div class="max-w-7xl mx-auto w-full pt-space-lg lg:pt-space-xl">
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-space-lg items-center">
+            
+            <!-- Left Hero Column: Copy & Search Console -->
+            <div class="lg:col-span-7 flex flex-col items-start gap-space-md">
+              <!-- Category Badge -->
+              <div class="inline-flex items-center gap-space-xs bg-tertiary-fixed text-on-tertiary-fixed px-space-md py-1.5 rounded-full border-2 border-[#1E293B] shadow-[2px_2px_0px_#1E293B]">
+                <span class="material-symbols-outlined text-[18px] text-tertiary">health_and_safety</span>
+                <span class="font-label-md text-label-md tracking-wider uppercase font-bold">Smart Healthcare Scheduling</span>
+              </div>
 
                 <!-- Expressive Headline -->
                 <h1 class="font-headline-xl text-4xl sm:text-headline-xl text-on-surface tracking-tight leading-tight">
@@ -103,9 +96,9 @@ window.LandingPage = {
                   <div class="flex items-center justify-between bg-primary-fixed text-on-primary-fixed p-space-sm rounded-lg border border-[#1E293B] shadow-[2px_2px_0px_#1E293B]">
                     <div class="flex items-center gap-space-xs">
                       <span class="inline-flex w-3 h-3 rounded-full bg-secondary"></span>
-                      <span class="font-label-md text-label-md font-bold">LIVE CLINICAL RADAR</span>
+                      <span class="font-label-md text-label-md font-bold">TODAY'S FEATURED CLINICIAN</span>
                     </div>
-                    <span class="bg-surface-container-lowest text-on-surface font-label-sm text-label-sm px-space-xs py-0.5 rounded-full border border-[#1E293B] shadow-[1px_1px_0px_#1E293B] font-bold">AI Matched</span>
+                    <span class="bg-surface-container-lowest text-on-surface font-label-sm text-label-sm px-space-xs py-0.5 rounded-full border border-[#1E293B] shadow-[1px_1px_0px_#1E293B] font-bold">Top Match</span>
                   </div>
 
                   <!-- Doctor Profile Highlight -->
@@ -139,7 +132,7 @@ window.LandingPage = {
 
                   <!-- Visual Slot Matrix -->
                   <div class="flex flex-col gap-space-xs">
-                    <span class="font-label-sm text-label-sm text-on-surface-variant uppercase font-bold tracking-wider">Predictive Queue Slot Matrix</span>
+                    <span class="font-label-sm text-label-sm text-on-surface-variant uppercase font-bold tracking-wider">Available Time Slots</span>
                     <div class="grid grid-cols-3 gap-space-xs" id="hero-slot-matrix">
                       <button onclick="LandingPage.selectHeroSlot(this, 2, '09:15 AM')" class="hero-slot-btn py-2 px-space-xs text-center rounded-lg border-2 border-[#1E293B] bg-surface-container-low font-label-md text-label-md text-on-surface shadow-[2px_2px_0px_#1E293B] hover:-translate-y-0.5 active:translate-y-0 transition-all" type="button">
                         09:15 AM
@@ -236,9 +229,9 @@ window.LandingPage = {
                   <div class="inline-flex items-center self-start bg-primary-fixed text-on-primary-fixed px-space-sm py-0.5 rounded-full font-label-sm text-label-sm border border-[#1E293B] shadow-[1px_1px_0px_#1E293B] font-bold">
                     Predictive Optimization
                   </div>
-                  <h3 class="font-headline-md text-headline-md text-on-surface font-bold">AI Smart Scheduling</h3>
+                  <h3 class="font-headline-md text-headline-md text-on-surface font-bold">Smart Appointment Scheduling</h3>
                   <p class="font-body-md text-body-md text-on-surface-variant">
-                    Proprietary neural scheduling dynamically levels clinical load, prevents doctor burnout, and aligns complex multi-department appointments smoothly.
+                    Intelligent scheduling dynamically levels clinical load, avoids double-booking, and coordinates specialist appointments smoothly.
                   </p>
                 </div>
                 <div class="mt-space-md p-space-sm bg-surface-container-low rounded-lg border border-[#1E293B] shadow-[2px_2px_0px_#1E293B] flex items-center justify-between">
@@ -299,39 +292,30 @@ window.LandingPage = {
           </div>
         </section>
 
-        <!-- INTERACTIVE AI ASSISTANT BANNER (MEDIBOT SCANNER) -->
+        <!-- CLINICAL CONCIERGE & MEDIBOT ASSISTANT -->
         <section class="w-full px-4 sm:px-gutter pb-space-xl">
           <div class="max-w-7xl mx-auto">
-            <div class="relative bg-surface-container-highest p-space-md md:p-space-lg rounded-xl border-2 border-[#1E293B] shadow-[4px_4px_0px_#1E293B] flex flex-col md:flex-row items-center justify-between gap-space-md overflow-hidden">
-              <div class="flex items-center gap-space-md z-10">
-                <div class="w-16 h-16 rounded-full bg-secondary-fixed text-on-secondary-fixed border-2 border-[#1E293B] flex items-center justify-center shadow-[3px_3px_0px_#1E293B] flex-shrink-0">
-                  <span class="material-symbols-outlined text-[32px] text-secondary">smart_toy</span>
+            <div class="bg-surface-container-highest p-space-md md:p-space-lg rounded-xl border-2 border-[#1E293B] shadow-[4px_4px_0px_#1E293B] flex flex-col md:flex-row items-center justify-between gap-space-md">
+              <div class="flex items-center gap-space-md">
+                <div class="w-14 h-14 rounded-full bg-secondary-fixed text-on-secondary-fixed border-2 border-[#1E293B] flex items-center justify-center shadow-[2px_2px_0px_#1E293B] shrink-0">
+                  <span class="material-symbols-outlined text-[28px] text-secondary">smart_toy</span>
                 </div>
                 <div class="flex flex-col">
                   <div class="flex items-center gap-2">
-                    <span class="font-headline-sm text-headline-sm text-on-surface font-bold">Need an Urgent Slot?</span>
-                    <span class="bg-secondary text-on-secondary font-label-sm text-label-sm px-2 py-0.5 rounded-full border border-[#1E293B] shadow-[1px_1px_0px_#1E293B] font-bold">Live Pulse</span>
+                    <span class="font-headline-sm text-headline-sm text-on-surface font-bold">Need Guidance on Specialist Care?</span>
+                    <span class="bg-primary text-white font-label-sm text-xs px-2.5 py-0.5 rounded-full border border-[#1E293B] font-bold">MediBot Concierge</span>
                   </div>
-                  <p class="font-body-md text-body-md text-on-surface-variant max-w-xl">
-                    MediBot AI scans real-time cancellations every 60 seconds across regional clinics. Jump ahead in line safely when urgent vacancies open.
+                  <p class="font-body-md text-body-md text-on-surface-variant max-w-xl mt-1">
+                    Ask questions about appointment preparation, find the right medical department for your symptoms, or get matched directly with on-duty specialists.
                   </p>
                 </div>
               </div>
 
-              <div class="flex flex-col sm:flex-row items-center gap-space-sm z-10 w-full md:w-auto">
-                <div class="flex items-center gap-2 bg-surface-container-lowest border-2 border-[#1E293B] px-space-md py-2.5 rounded-full shadow-[2px_2px_0px_#1E293B] w-full sm:w-auto justify-center">
-                  <span class="w-2.5 h-2.5 rounded-full bg-primary animate-ping"></span>
-                  <span class="font-label-md text-label-md text-on-surface font-bold" id="scanner-status">Scanning 14 hospitals...</span>
-                </div>
-                <button onclick="LandingPage.triggerUrgentScan(this)" class="w-full sm:w-auto flex items-center justify-center gap-2 bg-secondary text-on-secondary border-2 border-[#1E293B] px-space-lg py-2.5 rounded-full font-label-lg text-label-lg font-bold shadow-[3px_3px_0px_#1E293B] hover:-translate-y-0.5 hover:shadow-[4px_4px_0px_#1E293B] active:translate-y-0.5 active:shadow-none transition-all" type="button">
-                  <span>Activate Priority Watch</span>
-                  <span class="material-symbols-outlined text-[18px]">emergency</span>
+              <div class="flex items-center gap-space-sm w-full md:w-auto shrink-0">
+                <button onclick="MediBot.open()" class="w-full md:w-auto flex items-center justify-center gap-2 bg-primary text-white border-2 border-[#1E293B] px-space-lg py-2.5 rounded-full font-label-lg text-sm font-bold shadow-[3px_3px_0px_#1E293B] hover:-translate-y-0.5 active:translate-y-0 transition-all" type="button">
+                  <span class="material-symbols-outlined text-[18px]">chat</span>
+                  <span>Ask MediBot AI</span>
                 </button>
-              </div>
-
-              <!-- Decorative star -->
-              <div class="absolute -right-6 -bottom-8 text-surface-container-high text-8xl font-black select-none pointer-events-none opacity-40">
-                ✦
               </div>
             </div>
           </div>
@@ -425,19 +409,5 @@ window.LandingPage = {
     setTimeout(() => {
       MediSlotModals.selectSlotAndBook(docId, new Date().toISOString().split('T')[0], slotTime);
     }, 800);
-  },
-
-  triggerUrgentScan(btn) {
-    const status = document.getElementById('scanner-status');
-    if (status) {
-      status.innerText = 'Prioritizing queue... 2 slots released!';
-      btn.innerText = 'Urgent Alerts Armed ⚡';
-      btn.classList.remove('bg-secondary');
-      btn.classList.add('bg-primary');
-      showToast('Live Radar identified 2 released slots at St. Jude Pavilion & Stanford!', 'success');
-      setTimeout(() => {
-        MediSlotModals.showWaitlistModal('Urgent Specialist Claim', 1);
-      }, 700);
-    }
   }
 };

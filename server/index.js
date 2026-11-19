@@ -31,10 +31,15 @@ app.use(express.urlencoded({ extended: true }));
 
 // Config route for frontend to read public keys
 app.get('/api/config', (req, res) => {
+  const rawUrl = process.env.SUPABASE_URL || '';
+  const rawKey = process.env.SUPABASE_ANON_KEY || '';
+  const cleanUrl = rawUrl.split('\n')[0].trim();
+  const cleanKey = rawKey.split('\n')[0].trim();
+
   res.json({
-    supabaseUrl: process.env.SUPABASE_URL || '',
-    supabaseAnonKey: process.env.SUPABASE_ANON_KEY || '',
-    mode: (process.env.SUPABASE_URL && process.env.SUPABASE_ANON_KEY) ? 'supabase' : 'local'
+    supabaseUrl: cleanUrl,
+    supabaseAnonKey: cleanKey,
+    mode: (cleanUrl && cleanKey) ? 'supabase' : 'local'
   });
 });
 

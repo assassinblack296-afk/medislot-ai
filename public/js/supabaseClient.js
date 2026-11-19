@@ -62,8 +62,8 @@
         const res = await fetch('/api/config');
         if (res.ok) {
           this.config = await res.json();
-          if (this.config.supabaseUrl) url = this.config.supabaseUrl;
-          if (this.config.supabaseAnonKey) key = this.config.supabaseAnonKey;
+          if (this.config.supabaseUrl) url = String(this.config.supabaseUrl).split('\n')[0].trim();
+          if (this.config.supabaseAnonKey) key = String(this.config.supabaseAnonKey).split('\n')[0].trim();
         }
       } catch (err) {
         console.warn('[SupabaseService] Config endpoint unreachable, using default credentials');

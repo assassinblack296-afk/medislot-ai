@@ -395,7 +395,7 @@ window.MediSlotStore = {
     } else if (lower.includes('urgent') || lower.includes('scan') || lower.includes('cancellation')) {
       return {
         success: true,
-        reply: "⚡ **Live Clinical Radar**: MediBot AI is monitoring real-time cancellations across 14 hospital networks. 2 urgent slots were released in the last 4 minutes!",
+        reply: "Several top specialists currently have open appointment slots today and tomorrow. You can view all real-time openings directly in our clinician directory.",
         actionType: 'slot_scan'
       };
     }
@@ -417,13 +417,32 @@ window.MediSlotStore = {
     }
   },
 
-  async fetchDoctorConsole() {
+  async fetchDoctorConsole(doctorId = 1, date = '') {
     try {
-      const res = await fetch('/api/doctor-console/schedule');
+      const q = date ? `?doctorId=${doctorId}&date=${date}` : `?doctorId=${doctorId}`;
+      const res = await fetch(`/api/doctor-console/schedule${q}`);
       return await res.json();
     } catch (err) {
       console.error('Failed to fetch doctor console schedule:', err);
       return { success: false };
+    }
+  },
+
+  async updateAppointmentStatus(id, status) {
+    try {
+      const res = await fetch(`/api/appointments/${id}/status`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ status })
+      });
+      const data = await res.json();
+      if (data.success) {
+        this.notify('appointment_updated', data.appointment);
+      }
+      return data;
+    } catch (err) {
+      console.error('Failed to update appointment status:', err);
+      return { success: false, error: err.message };
     }
   },
 
@@ -448,6 +467,36 @@ window.MediSlotStore = {
     } catch (err) {
       console.error('Failed to fetch admin metrics:', err);
       return { success: false };
+    }
+  },
+
+  async fetchAdminAppointments() {
+    try {
+      const res = await fetch('/api/admin/appointments');
+      return await res.json();
+    } catch (err) {
+      console.error('Failed to fetch admin appointments:', err);
+      return { success: false, appointments: [] };
+    }
+  },
+
+  async fetchAdminPatients() {
+    try {
+      const res = await fetch('/api/admin/patients');
+      return await res.json();
+    } catch (err) {
+      console.error('Failed to fetch admin patients:', err);
+      return { success: false, patients: [] };
+    }
+  },
+
+  async fetchAdminDoctors() {
+    try {
+      const res = await fetch('/api/admin/doctors');
+      return await res.json();
+    } catch (err) {
+      console.error('Failed to fetch admin doctors:', err);
+      return { success: false, doctors: [] };
     }
   },
 

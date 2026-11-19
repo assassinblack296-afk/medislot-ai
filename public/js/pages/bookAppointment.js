@@ -52,11 +52,11 @@ window.BookAppointmentPage = {
               </div>
             </div>
 
-            <!-- Double Booking Shield Active Pill -->
-            <div class="flex items-center gap-space-sm bg-tertiary-fixed border-2 border-[#1E293B] px-space-md py-2 rounded-full shadow-[4px_4px_0px_#1E293B] self-start md:self-auto">
-              <span class="material-symbols-outlined text-tertiary text-[20px] animate-spin">shield</span>
-              <div class="flex items-center gap-1.5 font-label-md text-label-md text-on-tertiary-fixed font-bold">
-                <span>Double-Booking Shield Active:</span>
+            <!-- Slot Reservation Hold Indicator -->
+            <div class="flex items-center gap-space-sm bg-tertiary-fixed border-2 border-[#1E293B] px-space-md py-2 rounded-full shadow-[3px_3px_0px_#1E293B] self-start md:self-auto">
+              <span class="material-symbols-outlined text-tertiary text-[18px]">lock_clock</span>
+              <div class="flex items-center gap-1.5 font-label-md text-xs sm:text-sm text-on-tertiary-fixed font-bold">
+                <span>Slot Reserved:</span>
                 <span id="shield-timer-display" class="bg-[#FFFDF5] border border-[#1E293B] px-2 py-0.5 rounded text-on-surface font-extrabold tracking-wider font-mono">09:45</span>
               </div>
             </div>
@@ -75,12 +75,7 @@ window.BookAppointmentPage = {
             <!-- Right 4 Columns: Sticky Booking Breakdown & Ticket Card -->
             <div class="lg:col-span-4 sticky top-28 flex flex-col gap-space-md">
               <!-- Main Checkout Ticket Card -->
-              <div class="bg-[#FFFDF5] border-2 border-[#1E293B] rounded-xl p-space-md shadow-[6px_6px_0px_#1E293B] flex flex-col gap-space-md relative overflow-hidden">
-                <!-- Memphis Graphic Accent in corner -->
-                <div class="absolute -top-6 -right-6 w-16 h-16 rounded-full bg-secondary-fixed border-2 border-[#1E293B] flex items-end justify-start p-1 pointer-events-none">
-                  <span class="material-symbols-outlined text-secondary text-[16px]">stars</span>
-                </div>
-
+              <div class="bg-[#FFFDF5] border-2 border-[#1E293B] rounded-xl p-space-md shadow-[4px_4px_0px_#1E293B] flex flex-col gap-space-md relative overflow-hidden">
                 <div class="border-b-2 border-dashed border-[#1E293B] pb-space-sm">
                   <span class="font-label-sm text-label-sm uppercase font-extrabold tracking-wider text-outline">Reservation Summary</span>
                   <h4 class="font-headline-sm text-headline-sm text-on-surface mt-1 font-bold">Stanford Clinical Pass</h4>
@@ -125,11 +120,8 @@ window.BookAppointmentPage = {
                     <span class="font-bold">$${(doc.fee || 120).toFixed(2)}</span>
                   </div>
                   <div class="flex justify-between items-center text-on-surface">
-                    <span class="flex items-center gap-1">
-                      MediSlot AI Shield
-                      <span class="material-symbols-outlined text-[14px] text-tertiary">info</span>
-                    </span>
-                    <span class="bg-[#34D399] border border-[#1E293B] px-1.5 rounded text-[11px] font-extrabold text-on-surface">WAIVED $0.00</span>
+                    <span>Clinical Intake & Triage</span>
+                    <span class="font-bold text-[#10B981]">Included</span>
                   </div>
                   <div class="flex justify-between items-center text-outline">
                     <span>Clinic Overhead / Facility Fee</span>
@@ -768,10 +760,10 @@ window.BookAppointmentPage = {
 
         <div class="p-space-sm bg-tertiary-fixed border-2 border-[#1E293B] rounded-lg shadow-[2px_2px_0px_#1E293B] flex items-center justify-between">
           <div class="flex items-center gap-2">
-            <span class="material-symbols-outlined text-tertiary text-[20px]">shield_with_heart</span>
-            <span class="font-label-sm text-on-tertiary-fixed font-bold">Double-Booking Shield Waiver Applied: $0.00</span>
+            <span class="material-symbols-outlined text-tertiary text-[20px]">verified</span>
+            <span class="font-label-sm text-on-tertiary-fixed font-bold">Online Platform Fee: $0.00 (Waived)</span>
           </div>
-          <span class="font-headline-sm text-[16px] text-on-tertiary-fixed font-extrabold">$120.00 Total</span>
+          <span class="font-headline-sm text-[16px] text-on-tertiary-fixed font-extrabold">$${(doc.fee || 120).toFixed(2)} Total</span>
         </div>
       </div>
     `;
@@ -1025,7 +1017,7 @@ window.BookAppointmentPage = {
 
     // 3. Lock slot via API for 10 minutes under Double-Booking Shield
     MediSlotStore.lockSlot(slotId || 1);
-    showToast(`Time slot ${time} reserved under Double-Booking Shield.`, 'success');
+    showToast(`Time slot ${time} reserved for 10 minutes.`, 'success');
   },
 
   setConsultMode(mode) {

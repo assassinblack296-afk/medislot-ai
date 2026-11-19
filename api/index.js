@@ -14,9 +14,14 @@ app.use(express.urlencoded({ extended: true }));
 
 // Config endpoint returning Supabase credentials
 app.get('/api/config', (req, res) => {
+  const rawKey = process.env.SUPABASE_ANON_KEY || 'sb_publishable_p4sz-WuWH9kqHYaKT-03gw_1CnDmtYJ';
+  const cleanKey = rawKey.split('\n')[0].trim();
+  const rawUrl = process.env.SUPABASE_URL || 'https://ktijkefbnjbhphfelwvd.supabase.co';
+  const cleanUrl = rawUrl.split('\n')[0].trim();
+
   res.json({
-    supabaseUrl: process.env.SUPABASE_URL || 'https://ktijkefbnjbhphfelwvd.supabase.co',
-    supabaseAnonKey: process.env.SUPABASE_ANON_KEY || 'sb_publishable_p4sz-WuWH9kqHYaKT-03gw_1CnDmtYJ',
+    supabaseUrl: cleanUrl,
+    supabaseAnonKey: cleanKey,
     mode: 'supabase'
   });
 });

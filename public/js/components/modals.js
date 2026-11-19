@@ -42,6 +42,23 @@ window.MediSlotModals = {
     document.body.style.overflow = '';
   },
 
+  showInfoModal(title, message, icon = 'info') {
+    this.open(`
+      <div class="flex flex-col gap-space-md text-center items-center">
+        <div class="w-14 h-14 rounded-full bg-primary-fixed border-2 border-[#1E293B] flex items-center justify-center text-primary shadow-[2px_2px_0px_#1E293B]">
+          <span class="material-symbols-outlined text-[28px]">${icon}</span>
+        </div>
+        <div>
+          <h3 class="font-headline-sm text-lg font-bold">${title}</h3>
+          <p class="font-body-sm text-xs sm:text-sm text-on-surface-variant mt-2 leading-relaxed">${message}</p>
+        </div>
+        <button onclick="MediSlotModals.close()" class="mt-2 w-full bg-primary text-white py-2 rounded-full font-bold text-xs border-2 border-[#1E293B] shadow-[2px_2px_0px_#1E293B]">
+          Understood
+        </button>
+      </div>
+    `);
+  },
+
   // 1. Doctor Profile Modal
   async showDoctorProfile(doctorId) {
     const data = await MediSlotStore.fetchDoctor(doctorId);
@@ -235,12 +252,12 @@ window.MediSlotModals = {
   showWaitlistModal(specialty = 'General Cardiology', doctorId = null) {
     const content = `
       <div class="w-12 h-12 rounded-full bg-secondary-fixed border-2 border-[#1E293B] flex items-center justify-center text-secondary shadow-[2px_2px_0px_#1E293B]">
-        <span class="material-symbols-outlined text-[28px]">radar</span>
+        <span class="material-symbols-outlined text-[28px]">notifications_active</span>
       </div>
       <div>
-        <h3 class="font-headline-sm text-headline-sm text-on-surface">MediBot Queue Tracker</h3>
+        <h3 class="font-headline-sm text-headline-sm text-on-surface">Specialist Availability Alert</h3>
         <p class="font-body-sm text-body-sm text-on-surface-variant mt-1">
-          MediBot AI monitors cancellations across 14 hospital clinics every 90 seconds. Enter your phone or email to get instant auto-claim alerts.
+          Receive an automated SMS or phone notification if an earlier appointment slot opens for this specialty.
         </p>
       </div>
 
@@ -257,9 +274,9 @@ window.MediSlotModals = {
           <label class="font-label-sm text-label-sm uppercase font-bold text-on-surface-variant">Target Specialty</label>
           <input id="waitlist-specialty" value="${specialty}" class="w-full bg-surface-container-lowest border-2 border-[#1E293B] rounded-lg px-space-md py-2 text-on-surface font-body-sm shadow-[2px_2px_0px_#1E293B] focus:outline-none"/>
         </div>
-        <button id="waitlist-submit-btn" type="submit" class="mt-2 bg-secondary text-white py-3 rounded-full font-label-md text-label-md font-bold border-2 border-[#1E293B] shadow-[3px_3px_0px_#1E293B] hover:-translate-y-0.5 active:translate-y-0 transition-all flex items-center justify-center gap-2">
-          <span class="material-symbols-outlined text-[18px]">bolt</span>
-          <span>Activate Auto-Claim Watch</span>
+        <button id="waitlist-submit-btn" type="submit" class="mt-2 bg-primary text-white py-3 rounded-full font-label-md text-label-md font-bold border-2 border-[#1E293B] shadow-[3px_3px_0px_#1E293B] hover:-translate-y-0.5 active:translate-y-0 transition-all flex items-center justify-center gap-2">
+          <span class="material-symbols-outlined text-[18px]">notifications</span>
+          <span>Notify Me When Slot Opens</span>
         </button>
       </form>
     `;

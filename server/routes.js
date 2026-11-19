@@ -342,7 +342,9 @@ router.post('/appointments', (req, res) => {
 
 router.post('/appointments/:id/reschedule', (req, res) => {
   try {
-    const { newDate, newTime, newSlotId } = req.body;
+    const newDate = req.body.newDate || req.body.appointmentDate;
+    const newTime = req.body.newTime || req.body.appointmentTime;
+    const newSlotId = req.body.newSlotId || req.body.slotId;
     if (!newDate || !newTime) {
       return res.status(400).json({ success: false, error: 'New date and time are required' });
     }
@@ -578,7 +580,7 @@ router.post('/medibot/chat', (req, res) => {
       reply = "✦ **What to bring tomorrow**:\n1. Government photo ID\n2. Blue Cross Blue Shield insurance card (ID: BCBS-889104-Z)\n3. Recent ECG printouts or previous cardiology discharge files\n4. Your MediSlot Check-in Code: **MED-8491**";
       actionType = 'prep_guidance';
     } else if (lower.includes('urgent') || lower.includes('scan') || lower.includes('cancellation') || lower.includes('emergency')) {
-      reply = "⚡ **Live Clinical Radar Update**: I scanned 14 regional clinics. 2 priority slots were released in the last 4 minutes: Dr. Sarah Jenkins (Today, 2:15 PM) and Dr. Sarah Chen (Today, 10:30 AM). You can claim them with one tap!";
+      reply = "Several top specialists currently have open appointment slots today and tomorrow, including **Dr. Sarah Jenkins** (Cardiology) and **Dr. Sarah Chen** (Dermatology). You can view all real-time openings directly in our clinician directory.";
       actionType = 'slot_scan';
     } else if (lower.includes('valet') || lower.includes('parking') || lower.includes('address') || lower.includes('directions')) {
       reply = "Stanford Health Plaza is located at **300 Pasteur Dr, Palo Alto, Suite 402**. Complimentary patient valet parking is available at the East Pavilion entrance with your MediSlot booking confirmation.";
@@ -594,6 +596,7 @@ router.post('/medibot/chat', (req, res) => {
       actionType,
       suggestedDoctorId,
       suggestedSpecialty,
+      disclaimer: "Medical Disclaimer: MediBot provides general informational guidance and appointment routing only. It does not provide medical diagnoses, treatment plans, or prescriptions. For medical emergencies, call 911 immediately.",
       timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
     });
   } catch (err) {
@@ -640,9 +643,9 @@ router.get('/stats/dashboard', (req, res) => {
     res.json({
       success: true,
       stats: {
-        total: appts.length + 9, // reflecting total lifetime visits
+        total: appts.length,
         upcoming: upcoming.length,
-        completed: completed.length + 8,
+        completed: completed.length,
         cancelled: cancelled.length
       },
       nextAppointment: nextAppt || null,
@@ -653,27 +656,87 @@ router.get('/stats/dashboard', (req, res) => {
   }
 });
 
+// Update appointment status (for doctor and admin management)
+router.post('/appointments/:id/status', (req, res) => {
+  try {
+    const { status } = req.body;
+    const validStatuses = ['confirmed', 'checked_in', 'completed', 'cancelled'];
+    if (!validStatuses.includes(status)) {
+      return res.status(400).json({ success: false, error: `Invalid status: ${status}. Must be one of ${validStatuses.join(', ')}` });
+    }
+
+    const appt = db.prepare('SELECT * FROM appointments WHERE id = ?').get(req.params.id);
+    if (!appt) {
+      return res.status(404).json({ success: false, error: 'Appointment not found' });
+    }
+
+    // If cancelling, free up the slot
+    if (status === 'cancelled' && appt.slot_id) {
+      db.prepare("UPDATE slots SET status = 'available' WHERE id = ?").run(appt.slot_id);
+    }
+
+    db.prepare('UPDATE appointments SET status = ? WHERE id = ?').run(status, req.params.id);
+    const updated = db.prepare('SELECT * FROM appointments WHERE id = ?').get(req.params.id);
+
+    res.json({
+      success: true,
+      message: `Appointment status updated to ${status}`,
+      appointment: updated
+    });
+  } catch (err) {
+    res.status(500).json({ success: false, error: err.message });
+  }
+});
+
 // DOCTOR CONSOLE API
 router.get('/doctor-console/schedule', (req, res) => {
   try {
-    const doctorId = 1; // Dr. Sarah Jenkins
+    cleanupLocks();
+    const doctorId = Number(req.query.doctorId) || 1; // Default: Dr. Sarah Jenkins
     const doctor = db.prepare('SELECT * FROM doctors WHERE id = ?').get(doctorId);
-    const todayStr = new Date().toISOString().split('T')[0];
+    if (!doctor) {
+      return res.status(404).json({ success: false, error: 'Doctor not found' });
+    }
 
-    const todayAppointments = db.prepare(`
-      SELECT a.*, p.name as patient_name, p.mrn as patient_mrn, p.phone as patient_phone
+    const todayStr = new Date().toISOString().split('T')[0];
+    const targetDate = req.query.date || todayStr;
+
+    // Fetch all appointments for this doctor with patient details
+    const allDoctorAppts = db.prepare(`
+      SELECT a.*, p.name as patient_name, p.mrn as patient_mrn, p.phone as patient_phone, p.email as patient_email
       FROM appointments a
       JOIN patients p ON a.patient_id = p.id
       WHERE a.doctor_id = ?
-      ORDER BY a.appointment_time ASC
+      ORDER BY a.appointment_date ASC, a.appointment_time ASC
     `).all(doctorId);
+
+    // Filter today's appointments
+    const todayAppointments = allDoctorAppts.filter(a => a.appointment_date === targetDate);
+
+    // Fetch today's slots for this doctor
+    const slots = db.prepare(`
+      SELECT * FROM slots
+      WHERE doctor_id = ? AND slot_date = ?
+      ORDER BY id ASC
+    `).all(doctorId, targetDate);
+
+    const counts = {
+      total: allDoctorAppts.length,
+      todayTotal: todayAppointments.length,
+      confirmed: allDoctorAppts.filter(a => a.status === 'confirmed').length,
+      checked_in: allDoctorAppts.filter(a => a.status === 'checked_in').length,
+      completed: allDoctorAppts.filter(a => a.status === 'completed').length,
+      cancelled: allDoctorAppts.filter(a => a.status === 'cancelled').length
+    };
 
     res.json({
       success: true,
       doctor,
-      todayDate: todayStr,
-      queueCount: todayAppointments.length,
-      appointments: todayAppointments
+      todayDate: targetDate,
+      counts,
+      todayAppointments,
+      allAppointments: allDoctorAppts,
+      slots
     });
   } catch (err) {
     res.status(500).json({ success: false, error: err.message });
@@ -697,32 +760,89 @@ router.post('/doctor-console/slots', (req, res) => {
 router.get('/admin/metrics', (req, res) => {
   try {
     const totalDoctors = db.prepare('SELECT count(*) as c FROM doctors').get().c;
+    const totalPatients = db.prepare('SELECT count(*) as c FROM patients').get().c;
     const totalAppts = db.prepare('SELECT count(*) as c FROM appointments').get().c;
+    const confirmedAppts = db.prepare("SELECT count(*) as c FROM appointments WHERE status = 'confirmed'").get().c;
+    const completedAppts = db.prepare("SELECT count(*) as c FROM appointments WHERE status = 'completed' OR status = 'checked_in'").get().c;
+    const cancelledAppts = db.prepare("SELECT count(*) as c FROM appointments WHERE status = 'cancelled'").get().c;
     const waitlistCount = db.prepare('SELECT count(*) as c FROM waitlist').get().c;
     const totalSlots = db.prepare('SELECT count(*) as c FROM slots').get().c;
     const bookedSlots = db.prepare("SELECT count(*) as c FROM slots WHERE status = 'booked'").get().c;
 
-    const utilization = totalSlots > 0 ? Math.round((bookedSlots / totalSlots) * 100) : 78;
+    const utilization = totalSlots > 0 ? Math.round((bookedSlots / totalSlots) * 100) : 0;
 
     res.json({
       success: true,
       metrics: {
         totalClinicians: totalDoctors,
-        totalBookings: totalAppts + 1240,
-        activeWaitlist: waitlistCount + 18,
-        hospitalsConnected: 14,
-        averageTriageTime: '18 seconds',
-        capacityUtilization: `${utilization}%`,
-        aiMatchAccuracy: '99.4%'
-      },
-      departments: [
-        { name: 'Cardiology', load: 88, status: 'High Demand', onDuty: 14 },
-        { name: 'Dermatology', load: 64, status: 'Optimal', onDuty: 8 },
-        { name: 'Neurology', load: 92, status: 'Critical Surge', onDuty: 9 },
-        { name: 'Pediatrics', load: 45, status: 'Available', onDuty: 11 },
-        { name: 'Orthopedics', load: 72, status: 'Moderate', onDuty: 7 }
-      ]
+        totalPatients,
+        totalBookings: totalAppts,
+        confirmedBookings: confirmedAppts,
+        completedBookings: completedAppts,
+        cancelledBookings: cancelledAppts,
+        activeWaitlist: waitlistCount,
+        capacityUtilization: `${utilization}%`
+      }
     });
+  } catch (err) {
+    res.status(500).json({ success: false, error: err.message });
+  }
+});
+
+// Admin: Get all appointments across all doctors
+router.get('/admin/appointments', (req, res) => {
+  try {
+    const appts = db.prepare(`
+      SELECT 
+        a.*,
+        d.name as doctor_name,
+        d.specialty as doctor_specialty,
+        d.clinic as doctor_clinic,
+        p.name as patient_name,
+        p.mrn as patient_mrn,
+        p.email as patient_email,
+        p.phone as patient_phone
+      FROM appointments a
+      JOIN doctors d ON a.doctor_id = d.id
+      JOIN patients p ON a.patient_id = p.id
+      ORDER BY a.appointment_date DESC, a.appointment_time ASC
+    `).all();
+
+    res.json({ success: true, count: appts.length, appointments: appts });
+  } catch (err) {
+    res.status(500).json({ success: false, error: err.message });
+  }
+});
+
+// Admin: Get all patients
+router.get('/admin/patients', (req, res) => {
+  try {
+    const patients = db.prepare(`
+      SELECT 
+        p.*,
+        (SELECT count(*) FROM appointments WHERE patient_id = p.id) as appointment_count
+      FROM patients p
+      ORDER BY p.id ASC
+    `).all();
+
+    res.json({ success: true, count: patients.length, patients });
+  } catch (err) {
+    res.status(500).json({ success: false, error: err.message });
+  }
+});
+
+// Admin: Get all doctors with appointment counts
+router.get('/admin/doctors', (req, res) => {
+  try {
+    const doctors = db.prepare(`
+      SELECT 
+        d.*,
+        (SELECT count(*) FROM appointments WHERE doctor_id = d.id) as appointment_count
+      FROM doctors d
+      ORDER BY d.id ASC
+    `).all();
+
+    res.json({ success: true, count: doctors.length, doctors });
   } catch (err) {
     res.status(500).json({ success: false, error: err.message });
   }

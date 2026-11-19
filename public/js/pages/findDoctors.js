@@ -21,31 +21,23 @@ window.FindDoctorsPage = {
               <span class="text-outline-variant">•</span>
               <span class="font-label-sm text-label-sm text-secondary font-bold" id="radar-clinician-count">7 Clinicians Available Today</span>
             </div>
-            <div class="inline-flex items-center gap-2 bg-tertiary-fixed text-on-tertiary-fixed px-space-md py-1.5 rounded-full border-2 border-[#1E293B] shadow-[2px_2px_0px_#1E293B]">
-              <span class="relative flex h-2.5 w-2.5">
-                <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-tertiary opacity-75"></span>
-                <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-tertiary"></span>
-              </span>
-              <span class="font-label-sm text-label-sm font-bold">AI Dynamic Slot Optimizer Active</span>
+            <div class="inline-flex items-center gap-2 bg-surface-container-lowest text-on-surface px-space-md py-1.5 rounded-full border-2 border-[#1E293B] shadow-[2px_2px_0px_#1E293B]">
+              <span class="w-2.5 h-2.5 rounded-full bg-[#10B981]"></span>
+              <span class="font-label-sm text-label-sm font-bold">Live Schedules Synchronized</span>
             </div>
           </div>
 
           <!-- Title & Search Hero Hub -->
           <div class="relative bg-surface-container-lowest p-space-lg md:p-space-xl rounded-xl border-2 border-[#1E293B] shadow-[4px_4px_0px_#1E293B] overflow-hidden">
-            <!-- Decorative Memphis Geometric Shapes -->
-            <div class="absolute -right-8 -top-8 w-32 h-32 rounded-full bg-secondary-fixed opacity-70 pointer-events-none border border-[#1E293B]"></div>
-            <div class="absolute right-24 top-12 w-8 h-8 rotate-12 bg-tertiary-fixed border border-[#1E293B] shadow-[2px_2px_0px_#1E293B] pointer-events-none"></div>
-            <div class="absolute right-12 bottom-6 w-12 h-12 rounded-full bg-surface-container-highest border border-[#1E293B] shadow-[2px_2px_0px_#1E293B] pointer-events-none"></div>
-
             <div class="relative z-10 max-w-3xl flex flex-col gap-space-xs">
               <div class="inline-flex items-center gap-1.5 w-max bg-secondary-fixed text-on-secondary-fixed px-space-sm py-0.5 rounded-full border border-[#1E293B] font-label-sm text-label-sm uppercase tracking-wide font-bold">
                 <span class="material-symbols-outlined text-[14px]">bolt</span> Real-time Schedule Sync
               </div>
               <h1 class="font-headline-xl text-3xl sm:text-headline-xl text-on-surface font-extrabold">
-                Find &amp; Book Top Clinicians <span class="text-primary">✦</span>
+                Find &amp; Book Top Clinicians
               </h1>
               <p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl">
-                AI-powered match score finds the ideal doctor in under 30 seconds based on your symptoms, insurance, and real-time clinic capacity.
+                Browse verified specialist physicians by specialty, clinical focus, patient ratings, and immediate appointment availability.
               </p>
             </div>
 

@@ -143,6 +143,13 @@ window.MediBot = {
 
     const botMsgEl = document.createElement('div');
     botMsgEl.className = 'flex items-start gap-2 max-w-[88%] self-start';
+    const disclaimerHtml = res.disclaimer ? `
+      <div class="mt-2 pt-2 border-t border-[#1E293B]/20 text-[10px] text-on-surface-variant flex items-start gap-1 font-medium">
+        <span class="material-symbols-outlined text-[13px] text-amber-600 shrink-0 mt-0.5">info</span>
+        <span>${res.disclaimer}</span>
+      </div>
+    ` : '';
+
     botMsgEl.innerHTML = `
       <div class="w-7 h-7 rounded-full bg-secondary-fixed border border-[#1E293B] flex items-center justify-center shrink-0">
         <span class="material-symbols-outlined text-secondary text-[16px]">smart_toy</span>
@@ -150,6 +157,7 @@ window.MediBot = {
       <div class="bg-surface-container-lowest border-2 border-[#1E293B] p-space-sm rounded-xl shadow-[2px_2px_0px_#1E293B] font-body-sm text-body-sm text-on-surface">
         <div class="whitespace-pre-line">${res.reply.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')}</div>
         ${actionBtnHtml}
+        ${disclaimerHtml}
       </div>
     `;
     this.messagesContainer.appendChild(botMsgEl);
