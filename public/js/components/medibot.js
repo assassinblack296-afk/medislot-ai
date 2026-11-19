@@ -13,15 +13,6 @@ window.MediBot = {
     this.inputField = document.getElementById('medibot-input-field');
     this.form = document.getElementById('medibot-form');
 
-    // Header trigger button
-    const launcherBtn = document.getElementById('header-medibot-btn');
-    if (launcherBtn) {
-      launcherBtn.addEventListener('click', (e) => {
-        e.preventDefault();
-        this.toggle();
-      });
-    }
-
     // Close button
     const closeBtn = document.getElementById('close-medibot-drawer');
     if (closeBtn) {
@@ -33,8 +24,11 @@ window.MediBot = {
 
     // Close on Escape key
     window.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape' && this.drawer && !this.drawer.classList.contains('translate-x-full')) {
-        this.close();
+      if (e.key === 'Escape') {
+        const d = this.drawer || document.getElementById('medibot-drawer');
+        if (d && !d.classList.contains('translate-x-full')) {
+          this.close();
+        }
       }
     });
 
@@ -66,19 +60,34 @@ window.MediBot = {
   },
 
   open() {
-    if (!this.drawer) this.init();
-    this.drawer.classList.remove('translate-x-full');
-    if (this.inputField) this.inputField.focus();
+    if (!this.drawer) this.drawer = document.getElementById('medibot-drawer');
+    if (!this.initialized) this.init();
+    if (this.drawer) {
+      this.drawer.classList.remove('translate-x-full');
+    }
+    const backdrop = document.getElementById('medibot-backdrop');
+    if (backdrop) backdrop.classList.remove('hidden');
+    if (this.inputField) {
+      setTimeout(() => this.inputField.focus(), 150);
+    }
   },
 
   close() {
-    if (!this.drawer) return;
-    this.drawer.classList.add('translate-x-full');
+    if (!this.drawer) this.drawer = document.getElementById('medibot-drawer');
+    if (this.drawer) {
+      this.drawer.classList.add('translate-x-full');
+    }
+    const backdrop = document.getElementById('medibot-backdrop');
+    if (backdrop) backdrop.classList.add('hidden');
   },
 
   toggle() {
-    if (!this.drawer) this.init();
-    if (this.drawer.classList.contains('translate-x-full')) {
+    if (!this.drawer) this.drawer = document.getElementById('medibot-drawer');
+    if (!this.drawer) {
+      this.init();
+      this.drawer = document.getElementById('medibot-drawer');
+    }
+    if (this.drawer && this.drawer.classList.contains('translate-x-full')) {
       this.open();
     } else {
       this.close();
