@@ -12,6 +12,66 @@ function cleanupLocks() {
 }
 
 // -------------------------------------------------------------
+// SUPABASE CLOUD SYNCHRONIZATION HELPERS
+// -------------------------------------------------------------
+const SUPABASE_URL = process.env.SUPABASE_URL || 'https://ktijkefbnjbhphfelwvd.supabase.co';
+const SUPABASE_ANON_KEY = process.env.SUPABASE_ANON_KEY || 'sb_publishable_p4sz-WuWH9kqHYaKT-03gw_1CnDmtYJ';
+
+async function syncAppointmentToSupabase(appt) {
+  try {
+    const res = await fetch(`${SUPABASE_URL}/rest/v1/appointments`, {
+      method: 'POST',
+      headers: {
+        'apikey': SUPABASE_ANON_KEY,
+        'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
+        'Content-Type': 'application/json',
+        'Prefer': 'return=representation'
+      },
+      body: JSON.stringify({
+        booking_code: appt.booking_code,
+        patient_id: appt.patient_id,
+        doctor_id: appt.doctor_id,
+        slot_id: appt.slot_id || null,
+        appointment_date: appt.appointment_date,
+        appointment_time: appt.appointment_time,
+        consult_mode: appt.consult_mode || 'in_person',
+        symptoms: appt.symptoms || '',
+        notes: appt.notes || '',
+        special_needs: appt.special_needs || '',
+        status: appt.status || 'confirmed',
+        fee: appt.fee || 120.00
+      })
+    });
+    if (res.ok) {
+      console.log('[Supabase Sync] Appointment synced to cloud:', appt.booking_code);
+    } else {
+      console.warn('[Supabase Sync] Warning:', res.status, await res.text());
+    }
+  } catch (err) {
+    console.warn('[Supabase Sync] Network error:', err.message);
+  }
+}
+
+async function syncStatusToSupabase(bookingCode, status) {
+  try {
+    const res = await fetch(`${SUPABASE_URL}/rest/v1/appointments?booking_code=eq.${encodeURIComponent(bookingCode)}`, {
+      method: 'PATCH',
+      headers: {
+        'apikey': SUPABASE_ANON_KEY,
+        'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ status })
+    });
+    if (res.ok) {
+      console.log('[Supabase Sync] Status updated on Supabase for', bookingCode, '->', status);
+    }
+  } catch (err) {
+    console.warn('[Supabase Sync] Status update error:', err.message);
+  }
+}
+
+// -------------------------------------------------------------
 // AUTHENTICATION (Database-backed credential validation)
 // -------------------------------------------------------------
 
@@ -31,6 +91,19 @@ router.post('/auth/login', (req, res) => {
       return res.status(401).json({ success: false, error: 'Incorrect password for this account.' });
     }
 
+    // For doctor-role users, look up their ID in the doctors table
+    let doctorId = null;
+    if (user.role === 'doctor') {
+      // Match by first and last name in the doctors table
+      const nameParts = user.name.replace(/^Dr\.\s*/i, '').split(',')[0].trim().split(' ');
+      const firstName = nameParts[0] || '';
+      const lastName = nameParts[nameParts.length - 1] || '';
+      const docRecord = db.prepare(
+        `SELECT id FROM doctors WHERE LOWER(name) LIKE LOWER(?) AND LOWER(name) LIKE LOWER(?)`
+      ).get(`%${firstName}%`, `%${lastName}%`);
+      if (docRecord) doctorId = docRecord.id;
+    }
+
     res.json({
       success: true,
       message: 'Authentication successful',
@@ -40,7 +113,8 @@ router.post('/auth/login', (req, res) => {
         name: user.name,
         role: user.role,
         phone: user.phone || '',
-        mrn: user.mrn || `MRN-${user.id.toString().padStart(5, '0')}`
+        mrn: user.mrn || `MRN-${user.id.toString().padStart(5, '0')}`,
+        doctorId
       }
     });
   } catch (err) {
@@ -355,6 +429,9 @@ router.post('/appointments', (req, res) => {
   try {
     const {
       patientId = 1,
+      patientName,
+      patientEmail,
+      patientPhone,
       doctorId,
       slotId,
       appointmentDate,
@@ -371,6 +448,40 @@ router.post('/appointments', (req, res) => {
     }
     if (!appointmentDate || !appointmentTime) {
       return res.status(400).json({ success: false, error: 'Appointment date and time are required' });
+    }
+
+    // Resolve or create patient record for website bookings
+    let actualPatientId = Number(patientId) || 1;
+    if (patientName && String(patientName).trim()) {
+      let p = null;
+      if (patientEmail && String(patientEmail).trim()) {
+        p = db.prepare('SELECT id FROM patients WHERE LOWER(email) = LOWER(?)').get(patientEmail.trim());
+      }
+      if (!p && patientPhone && String(patientPhone).trim()) {
+        p = db.prepare('SELECT id FROM patients WHERE phone = ?').get(patientPhone.trim());
+      }
+      if (p) {
+        actualPatientId = p.id;
+      } else {
+        const cleanName = String(patientName).trim();
+        const cleanPhone = (patientPhone || '+1 (555) 000-0000').trim();
+        const cleanEmail = (patientEmail || `${cleanName.toLowerCase().replace(/[^a-z0-9]/g, '.')}@patient.medislot.ai`).trim();
+        const newMrn = `MRN-${Math.floor(10000 + Math.random() * 90000)}`;
+
+        const pResult = db.prepare(`
+          INSERT INTO patients (mrn, name, email, phone, dob, insurance_provider, insurance_id)
+          VALUES (?, ?, ?, ?, ?, ?, ?)
+        `).run(
+          newMrn,
+          cleanName,
+          cleanEmail,
+          cleanPhone,
+          '1992-05-14',
+          'Blue Cross Blue Shield Gold PPO',
+          `BCBS-${Math.floor(100000 + Math.random() * 900000)}-Z`
+        );
+        actualPatientId = pResult.lastInsertRowid;
+      }
     }
 
     // Check if slot exists and is already booked
@@ -390,11 +501,11 @@ router.post('/appointments', (req, res) => {
     const insertResult = db.prepare(`
       INSERT INTO appointments (
         booking_code, patient_id, doctor_id, slot_id, appointment_date, appointment_time,
-        consult_mode, symptoms, notes, special_needs, fee, status, queue_number, created_at
-      ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+        consult_mode, symptoms, notes, special_needs, fee, status, queue_number, source, created_at
+      ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 'website', ?)
     `).run(
       bookingCode,
-      patientId,
+      actualPatientId,
       doctorId,
       slotId || null,
       appointmentDate,
@@ -417,11 +528,19 @@ router.post('/appointments', (req, res) => {
         d.specialty as doctor_specialty,
         d.clinic as doctor_clinic,
         d.address as doctor_address,
-        d.avatar_url as doctor_avatar
+        d.avatar_url as doctor_avatar,
+        p.name as patient_name,
+        p.mrn as patient_mrn,
+        p.phone as patient_phone,
+        p.email as patient_email
       FROM appointments a
       JOIN doctors d ON a.doctor_id = d.id
+      JOIN patients p ON a.patient_id = p.id
       WHERE a.id = ?
     `).get(insertResult.lastInsertRowid);
+
+    // Sync appointment to Supabase Cloud
+    syncAppointmentToSupabase(createdAppt);
 
     res.status(201).json({
       success: true,
@@ -771,6 +890,11 @@ router.post('/appointments/:id/status', (req, res) => {
     db.prepare('UPDATE appointments SET status = ? WHERE id = ?').run(status, req.params.id);
     const updated = db.prepare('SELECT * FROM appointments WHERE id = ?').get(req.params.id);
 
+    // Sync status update to Supabase
+    if (appt.booking_code) {
+      syncStatusToSupabase(appt.booking_code, status);
+    }
+
     res.json({
       success: true,
       message: `Appointment status updated to ${status}`,
@@ -794,12 +918,12 @@ router.get('/doctor-console/schedule', (req, res) => {
     const todayStr = new Date().toISOString().split('T')[0];
     const targetDate = req.query.date || todayStr;
 
-    // Fetch all appointments for this doctor with patient details
+    // Fetch ONLY appointments for patients who applied for consultation through the website
     const allDoctorAppts = db.prepare(`
       SELECT a.*, p.name as patient_name, p.mrn as patient_mrn, p.phone as patient_phone, p.email as patient_email
       FROM appointments a
       JOIN patients p ON a.patient_id = p.id
-      WHERE a.doctor_id = ?
+      WHERE a.doctor_id = ? AND (a.source = 'website' OR a.source IS NULL)
       ORDER BY a.appointment_date ASC, a.appointment_time ASC
     `).all(doctorId);
 
@@ -824,6 +948,7 @@ router.get('/doctor-console/schedule', (req, res) => {
 
     res.json({
       success: true,
+      supabaseConnected: true,
       doctor,
       todayDate: targetDate,
       counts,

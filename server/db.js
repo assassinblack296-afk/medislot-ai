@@ -77,6 +77,7 @@ function initDatabase() {
       queue_number TEXT,
       check_in_time TEXT,
       cancel_reason TEXT,
+      source TEXT NOT NULL DEFAULT 'website', -- 'website'
       created_at TEXT NOT NULL,
       FOREIGN KEY(patient_id) REFERENCES patients(id) ON DELETE CASCADE,
       FOREIGN KEY(doctor_id) REFERENCES doctors(id) ON DELETE CASCADE
@@ -333,117 +334,18 @@ function initDatabase() {
     }
   }
 
-  // Seed sample initial appointments for Alex Morgan (patient_id: 1)
-  const apptCount = db.prepare('SELECT count(*) as count FROM appointments').get();
-  if (apptCount.count === 0) {
-    const tomorrow = new Date();
-    tomorrow.setDate(tomorrow.getDate() + 1);
-    const tomorrowStr = tomorrow.toISOString().split('T')[0];
-
-    const insertAppt = db.prepare(`
-      INSERT INTO appointments (
-        booking_code, patient_id, doctor_id, slot_id, appointment_date, appointment_time,
-        consult_mode, symptoms, notes, special_needs, fee, status, queue_number, check_in_time, created_at
-      ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-    `);
-
-    // Upcoming Appointment with Dr. Sarah Jenkins
-    insertAppt.run(
-      'MED-8491',
-      1,
-      1, // Dr. Sarah Jenkins
-      3,
-      tomorrowStr,
-      '10:30 AM',
-      'in_person',
-      'Occasional mild heart flutters observed during aerobic treadmill sessions. Would like to review ECG readings and adjust beta-blocker dosage.',
-      'Pre-fasting required 6 hours prior for lipid and metabolic panel.',
-      'Valet parking confirmed. No wheelchair required.',
-      120.00,
-      'confirmed',
-      'Q-04',
-      null,
-      new Date().toISOString()
-    );
-
-    // Another upcoming telehealth visit with Dr. Marcus Chen
-    const nextWeek = new Date();
-    nextWeek.setDate(nextWeek.getDate() + 4);
-    insertAppt.run(
-      'MED-9032',
-      1,
-      5, // Dr. Marcus Chen
-      null,
-      nextWeek.toISOString().split('T')[0],
-      '02:45 PM',
-      'telehealth',
-      'Knee soreness after marathon training; mobility assessment.',
-      'Have MRI scans ready on screen.',
-      'None',
-      110.00,
-      'confirmed',
-      'Q-12',
-      null,
-      new Date().toISOString()
-    );
-
-    // Past Completed 1: Dr. Sarah Jenkins
-    insertAppt.run(
-      'MED-7182',
-      1,
-      1,
-      null,
-      '2024-10-12',
-      '02:15 PM',
-      'telehealth',
-      'Bi-annual Blood Pressure Follow-up',
-      'Blood pressure well controlled at 122/78 mmHg. Continued Metoprolol 25mg daily.',
-      'None',
-      120.00,
-      'checked_in',
-      'Q-09',
-      '2024-10-12T14:05:00Z',
-      '2024-10-01T10:00:00Z'
-    );
-
-    // Past Completed 2: Dr. Marcus Chen
-    insertAppt.run(
-      'MED-6641',
-      1,
-      5,
-      null,
-      '2024-09-28',
-      '11:00 AM',
-      'in_person',
-      'Routine HbA1c Lab Panel & Dietary Review',
-      'HbA1c steady at 5.4%. Maintain balanced low-glycemic Mediterranean nutrition.',
-      'None',
-      110.00,
-      'checked_in',
-      'Q-02',
-      '2024-09-28T10:45:00Z',
-      '2024-09-15T09:30:00Z'
-    );
-
-    // Past Completed 3: Dr. Ananya Patel
-    insertAppt.run(
-      'MED-5198',
-      1,
-      7,
-      null,
-      '2024-08-14',
-      '09:30 AM',
-      'in_person',
-      'Annual Comprehensive Physical Exam',
-      'Full preventative workup completed. Resting ECG clear. VO2 max test optimal.',
-      'None',
-      135.00,
-      'checked_in',
-      'Q-01',
-      '2024-08-14T09:15:00Z',
-      '2024-08-01T11:00:00Z'
-    );
+  // Ensure appointments table has source column
+  try {
+    const cols = db.prepare('PRAGMA table_info(appointments)').all();
+    if (!cols.some(c => c.name === 'source')) {
+      db.prepare("ALTER TABLE appointments ADD COLUMN source TEXT NOT NULL DEFAULT 'website'").run();
+    }
+  } catch (e) {
+    console.warn('[db] source column check:', e.message);
   }
+
+  // NOTE: Mock appointments are not seeded so that ONLY patients who apply
+  // for consultations through the website are visible in the Doctor Console.
 
   // Seed sample prescriptions
   const rxCount = db.prepare('SELECT count(*) as count FROM prescriptions').get();

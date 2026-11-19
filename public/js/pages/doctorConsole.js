@@ -101,11 +101,29 @@ window.DoctorConsolePage = {
   },
 
   async afterRender() {
+    // Determine which doctor to show based on logged-in user
+    const user = window.MediSlotStore?.currentUser;
+    if (user && user.role === 'doctor' && user.doctorId) {
+      this.activeDoctorId = user.doctorId;
+    } else {
+      this.activeDoctorId = 1; // Default: Dr. Sarah Jenkins
+    }
+
     await this.loadSchedule();
+
+    // Subscribe to live Supabase updates if available
+    if (window.SupabaseService && window.SupabaseService.subscribeToAppointments) {
+      this._realtimeChannel = window.SupabaseService.subscribeToAppointments((payload) => {
+        console.log('[DoctorConsole] Realtime update received:', payload.eventType);
+        // Auto-refresh the schedule when any appointment changes
+        this.loadSchedule();
+        showToast('Patient schedule updated in real-time ↻', 'info');
+      });
+    }
   },
 
   async loadSchedule() {
-    const data = await MediSlotStore.fetchDoctorConsole(1, this.currentDate);
+    const data = await MediSlotStore.fetchDoctorConsole(this.activeDoctorId || 1, this.currentDate);
     if (!data || !data.success) {
       const container = document.getElementById('doctor-agenda-container');
       if (container) {

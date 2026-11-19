@@ -695,6 +695,10 @@ window.BookAppointmentPage = {
               <input id="patient-phone-field" value="${p.phone}" class="w-full bg-[#FFFDF5] border-2 border-[#1E293B] rounded-lg px-3 py-2 text-on-surface font-body-sm shadow-[2px_2px_0px_#1E293B]" required/>
             </div>
             <div class="flex flex-col gap-1">
+              <label class="font-label-sm text-label-sm uppercase font-bold text-on-surface-variant">Email Address</label>
+              <input id="patient-email-field" type="email" value="${p.email || (MediSlotStore.currentUser?.email || 'alex.morgan@healthmail.com')}" class="w-full bg-[#FFFDF5] border-2 border-[#1E293B] rounded-lg px-3 py-2 text-on-surface font-body-sm shadow-[2px_2px_0px_#1E293B]" required/>
+            </div>
+            <div class="flex flex-col gap-1">
               <label class="font-label-sm text-label-sm uppercase font-bold text-on-surface-variant">Insurance Provider</label>
               <input id="patient-insurance-field" value="${p.insuranceProvider}" class="w-full bg-[#FFFDF5] border-2 border-[#1E293B] rounded-lg px-3 py-2 text-on-surface font-body-sm shadow-[2px_2px_0px_#1E293B]"/>
             </div>
@@ -1050,6 +1054,7 @@ window.BookAppointmentPage = {
       const symptomsInput = document.getElementById('booking-symptoms-input');
       const nameInput = document.getElementById('patient-name-field');
       const phoneInput = document.getElementById('patient-phone-field');
+      const emailInput = document.getElementById('patient-email-field');
 
       if (!nameInput || !nameInput.value.trim()) {
         showToast('Please enter your full name', 'error');
@@ -1063,6 +1068,7 @@ window.BookAppointmentPage = {
       MediSlotStore.bookingState.symptoms = symptomsInput ? symptomsInput.value.trim() : '';
       MediSlotStore.patient.name = nameInput.value.trim();
       MediSlotStore.patient.phone = phoneInput.value.trim();
+      if (emailInput) MediSlotStore.patient.email = emailInput.value.trim();
 
       const wheelchair = document.getElementById('special-wheelchair');
       const translator = document.getElementById('special-translator');
@@ -1073,9 +1079,19 @@ window.BookAppointmentPage = {
     if (current === 5) {
       // Final confirm & submit appointment to backend API
       const s = MediSlotStore.bookingState;
+      const p = MediSlotStore.patient;
+
+      // Use logged-in user ID or default to patient id=1
+      const currentUser = window.MediSlotStore.currentUser;
+      const patientId = (currentUser && currentUser.role === 'patient' && currentUser.id) ? currentUser.id : 1;
+
       const res = await MediSlotStore.createAppointment({
-        patientId: 1,
+        patientId,
+        patientName: p.name,
+        patientPhone: p.phone,
+        patientEmail: p.email || (currentUser?.email) || '',
         doctorId: s.doctorId || 1,
+        slotId: s.selectedSlotId || null,
         appointmentDate: s.selectedDate,
         appointmentTime: s.selectedSlotTime,
         consultMode: s.consultMode,

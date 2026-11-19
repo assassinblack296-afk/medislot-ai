@@ -276,6 +276,65 @@
       const raw = localStorage.getItem('medislot_auth_user');
       return raw ? JSON.parse(raw) : null;
     }
+
+    // ============================================================
+    // DOCTOR CONSOLE SUPABASE INTEGRATION & LIVE SYNC
+    // ============================================================
+
+    async getSupabaseAppointments(doctorId) {
+      await this.init();
+      if (!this.client) return [];
+      try {
+        let q = this.client.from('appointments').select('*');
+        if (doctorId) q = q.eq('doctor_id', doctorId);
+        const { data, error } = await q.order('appointment_date', { ascending: true });
+        if (error) {
+          console.warn('[SupabaseService] getSupabaseAppointments query error:', error.message);
+          return [];
+        }
+        return data || [];
+      } catch (err) {
+        console.warn('[SupabaseService] Supabase appointment fetch failed:', err.message);
+        return [];
+      }
+    }
+
+    async updateSupabaseAppointmentStatus(bookingCode, status) {
+      await this.init();
+      if (!this.client || !bookingCode) return false;
+      try {
+        const { error } = await this.client
+          .from('appointments')
+          .update({ status })
+          .eq('booking_code', bookingCode);
+        if (error) {
+          console.warn('[SupabaseService] Status update error:', error.message);
+          return false;
+        }
+        console.log(`[SupabaseService] Successfully synced status '${status}' for ${bookingCode}`);
+        return true;
+      } catch (err) {
+        console.warn('[SupabaseService] Status sync exception:', err.message);
+        return false;
+      }
+    }
+
+    subscribeToAppointments(callback) {
+      if (!this.client) return null;
+      try {
+        const channel = this.client
+          .channel('doctor-console-appointments-' + Date.now())
+          .on('postgres_changes', { event: '*', schema: 'public', table: 'appointments' }, payload => {
+            console.log('[SupabaseService] Realtime appointment update:', payload);
+            if (typeof callback === 'function') callback(payload);
+          })
+          .subscribe();
+        return channel;
+      } catch (err) {
+        console.warn('[SupabaseService] Realtime channel setup failed:', err.message);
+        return null;
+      }
+    }
   }
 
   window.SupabaseService = new SupabaseAuthService();
